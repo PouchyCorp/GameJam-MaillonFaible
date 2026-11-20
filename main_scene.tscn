@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://qhlxx4868pwb"]
+
+[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://conveyor.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://carjsgft4omwu" path="res://discombobulator.tscn" id="1_2c62f"]
+
+[node name="Node2D" type="Node2D" unique_id=166482189]
+
+[node name="Node2D" parent="." unique_id=1695691332 instance=ExtResource("1_2c62f")]
+position = Vector2(671, 338)
+
+[node name="Conveyor" parent="." unique_id=1491902394 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(350, 338)
+frontContraption = NodePath("../Conveyor2")
+
+[node name="Conveyor2" parent="." unique_id=886386989 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(453, 338)
+frontContraption = NodePath("../Conveyor3")
+
+[node name="Conveyor3" parent="." unique_id=1369742149 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(557, 338)
+frontContraption = NodePath("../Node2D")

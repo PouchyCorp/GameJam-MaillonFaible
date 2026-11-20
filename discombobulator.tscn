@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://carjsgft4omwu"]
+
+[ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://discombobulator.gd" id="1_r8xb1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62myk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stq56"]
+size = Vector2(90, 91)
+
+[node name="Discombobulator" type="StaticBody2D" unique_id=1695691332]
+script = ExtResource("1_r8xb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000933227]
+shape = SubResource("RectangleShape2D_62myk")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1130119059]
+color = Color(0.38431132, 0.04061252, 0.12874332, 1)
+polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
+uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1664934556]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1962946442]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_stq56")
+
+[node name="Container" type="Node" parent="." unique_id=63803703]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2144427539]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
