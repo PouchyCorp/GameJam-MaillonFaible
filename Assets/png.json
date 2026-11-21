@@ -18,5 +18,6 @@
   "roquefort": "res://Assets/Sprites/roquefort.png",
   "tracteur": "res://Assets/Sprites/tracteur.png",
   "vache-rouge": "res://Assets/Sprites/redcow.png",
-  "demi_vache": "res://Assets/Sprites/halfcow.png"
+  "demi_vache": "res://Assets/Sprites/halfcow.png",
+  "ambroisie": "res://Assets/Sprites/ambrosia.png"
 }
