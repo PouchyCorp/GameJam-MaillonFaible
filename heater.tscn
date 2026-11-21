@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bm005p474wetk"]
 
-[ext_resource type="Script" uid="uid://c2ovf46vb581c" path="res://conveyor.gd" id="1_emja5"]
+[ext_resource type="Script" uid="uid://cm8pxrbi842au" path="res://heater.gd" id="1_emja5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
 size = Vector2(90, 91)
@@ -18,9 +18,9 @@ size = Vector2(90, 91)
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
-[node name="Conveyor" type="StaticBody2D" unique_id=886386989]
+[node name="Heater" type="StaticBody2D" unique_id=1849556168]
 script = ExtResource("1_emja5")
-metadata/_custom_type_script = "uid://c2ovf46vb581c"
+metadata/_custom_type_script = "uid://cm8pxrbi842au"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=928395063]
 position = Vector2(0, 2.5)
@@ -64,5 +64,3 @@ position = Vector2(47.000004, -6.0000005)
 scale = Vector2(0.12055555, 0.12345679)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

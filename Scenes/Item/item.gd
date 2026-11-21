@@ -4,8 +4,6 @@ class_name Grabbable
 
 const BASE_DIMENSIONS = Vector2(128,128)
 
-
-var slot:Slot = null
 var reached = false
 
 @export var grabbed:bool = false
@@ -23,20 +21,14 @@ func _process(delta: float) -> void:
 		modulate = Color(1,1,1,1)
 
 func grab():
-	if slot != null: slot.remove()
-	slot = null
 	grabbed = true
 	$CollisionBox.disabled = true
 	
-	for elem in $Slots.get_children():
-		elem.item_is_grabbed()
 	
 func drop():
 	grabbed = false
 	$CollisionBox.disabled = false
 	
-	for elem in $Slots.get_children():
-		elem.item_is_dropped()
 	
 func rotate_item():
 	rotation = rotation + PI/2
