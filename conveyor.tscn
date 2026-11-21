@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ckfdqnbh112nw"]
 
 [ext_resource type="Script" uid="uid://c2ovf46vb581c" path="res://conveyor.gd" id="1_be0bl"]
+[ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="2_wo26x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
-size = Vector2(90, 91)
+size = Vector2(128, 128)
 
 [sub_resource type="Curve2D" id="Curve2D_be0bl"]
 _data = {
@@ -12,7 +13,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xm45u"]
-size = Vector2(90, 91)
+size = Vector2(128, 128)
 
 [sub_resource type="LabelSettings" id="LabelSettings_be0bl"]
 font_size = 50
@@ -22,13 +23,13 @@ font_color = Color(1, 0, 0, 1)
 script = ExtResource("1_be0bl")
 metadata/_custom_type_script = "uid://c2ovf46vb581c"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=928395063]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_e7js5")
+[node name="PlaceIndicator" type="Sprite2D" parent="." unique_id=757860404]
+modulate = Color(0.37, 0, 0, 0.2)
+texture = ExtResource("2_wo26x")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2097960051]
 color = Color(0.2, 0.2, 0.22352941, 1)
-polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
+polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1360691989]
@@ -37,6 +38,10 @@ scale = Vector2(0.40833333, 0.31944445)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=928395063]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_e7js5")
+
 [node name="MainPath" type="Path2D" parent="." unique_id=1686482513]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_be0bl")
@@ -44,7 +49,6 @@ curve = SubResource("Curve2D_be0bl")
 [node name="Area2D" type="Area2D" parent="." unique_id=1470416922]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1650885184]
-position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_xm45u")
 
 [node name="DropLabel" type="Label" parent="." unique_id=1023587248]

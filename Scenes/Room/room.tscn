@@ -10,7 +10,13 @@ script = ExtResource("1_ogljc")
 [node name="Contraptions" type="Node2D" parent="." unique_id=1896597418]
 
 [node name="Item" parent="Contraptions" unique_id=1739888710 instance=ExtResource("2_gtrrj")]
-position = Vector2(301, 266)
+position = Vector2(505, 97)
+
+[node name="Item2" parent="Contraptions" unique_id=863362315 instance=ExtResource("2_gtrrj")]
+position = Vector2(92, 201)
+
+[node name="Item3" parent="Contraptions" unique_id=2136779190 instance=ExtResource("2_gtrrj")]
+position = Vector2(154, 366)
 
 [node name="Worker" parent="." unique_id=971947915 instance=ExtResource("2_8ln5v")]
 position = Vector2(625, 388)

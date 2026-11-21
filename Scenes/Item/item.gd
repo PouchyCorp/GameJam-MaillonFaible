@@ -1,34 +1,53 @@
 extends Contraption
 class_name Grabbable
 
-const SNAP = Vector2(100,100)
+
+const BASE_DIMENSIONS = Vector2(128,128)
+var size = Grid.BlockSize.A
+
+var SNAP = Vector2(Grid.SIZE,Grid.SIZE)
+
+var slot:Slot = null
+var reached = false
 
 @export var grabbed:bool = false
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	scale = SNAP/BASE_DIMENSIONS
+	global_position = global_position.snapped(SNAP)
+	drop()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if grabbed:
-		$PlaceIndicator.show()
-		$PlaceIndicator.global_position = global_position.snapped(SNAP)
+	if reached:
+		modulate = Color(0.05, 1.0, 0.0, 1.0)
+	elif $Slots/Slot.grabItem != null:
+		modulate = Color(1,0,0,1)
 	else:
-		$PlaceIndicator.hide()
+		modulate = Color(1,1,1,1)
 
 func grab():
+	if slot != null: slot.remove()
+	slot = null
 	grabbed = true
+	$CollisionBox.disabled = true
+	
+	for elem in $Slots.get_children():
+		elem.item_is_grabbed()
 	
 func drop():
 	grabbed = false
-	global_position = global_position.snapped(SNAP)
+	$CollisionBox.disabled = false
+	
+	for elem in $Slots.get_children():
+		elem.item_is_dropped()
+	
+func rotate_item():
+	rotation = rotation + PI/2
+	facing = (facing + 1) % 4
 
 func grab_highlight():
-	modulate = Color(1.0, 0.0, 0.0, 1.0)
+	reached = true
 	
 func ungrab_highlight():
-	modulate = Color(1,1,1,1)
+	reached = false

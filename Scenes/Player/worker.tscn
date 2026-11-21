@@ -34,5 +34,7 @@ modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_vf3hw")
 
+[connection signal="area_entered" from="Hand/ItemDetector" to="." method="_on_item_detector_area_entered"]
+[connection signal="area_exited" from="Hand/ItemDetector" to="." method="_on_item_detector_area_exited"]
 [connection signal="body_entered" from="Hand/ItemDetector" to="." method="_on_item_detector_body_entered"]
 [connection signal="body_exited" from="Hand/ItemDetector" to="." method="_on_item_detector_body_exited"]
