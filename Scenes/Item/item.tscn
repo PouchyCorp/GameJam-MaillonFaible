@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b6ety7ljh80ta"]
+
+[ext_resource type="Script" uid="uid://dn6y4knnrwmwu" path="res://Scenes/Item/item.gd" id="1_hvuqc"]
+[ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="1_i10cy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmj21"]
+size = Vector2(34, 33)
+
+[node name="Item" type="StaticBody2D" unique_id=1739888710]
+script = ExtResource("1_hvuqc")
+
+[node name="PlaceIndicator" type="Sprite2D" parent="." unique_id=520878438]
+modulate = Color(0.37, 0, 0, 0.2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_i10cy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014869010]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_i10cy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1226257563]
+shape = SubResource("RectangleShape2D_pmj21")
