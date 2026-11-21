@@ -1,5 +1,5 @@
 extends Contraption
-class_name Discombobulator
+class_name Merger
 
 
 @export
@@ -40,7 +40,7 @@ func try_push_out_item()-> void:
 		frontContraption.append_item(product_item_buffer, frontContraptionSide)
 		product_item_buffer = null
 	else:
-		start_drop_process()
+		pass #start_drop_process() disabled for now, we don't want to drop items if the front contraption cannot accept them
 
 
 func start_drop_process() -> void:

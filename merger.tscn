@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://carjsgft4omwu"]
 
-[ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://discombobulator.gd" id="1_r8xb1"]
+[ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://merger.gd" id="1_r8xb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62myk"]
 size = Vector2(90, 91)
@@ -14,7 +14,7 @@ size = Vector2(90, 91)
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
-[node name="Discombobulator" type="StaticBody2D" unique_id=1695691332]
+[node name="Merger" type="StaticBody2D" unique_id=1695691332]
 script = ExtResource("1_r8xb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000933227]

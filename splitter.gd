@@ -143,16 +143,21 @@ func _process_path(itemsNodes: Array, delta: float, targetContraption: Contrapti
 			pathFollow.progress_ratio += delta / Constants.MachineSpeed
 
 			if pathFollow.progress_ratio >= 1:
-				if targetContraption != null and targetContraption.can_append_item(itemNode, targetSide):
-					if dropTimer.is_stopped() == false and pending_drop_item == itemNode:
-						dropTimer.stop()
-						pending_drop_parent = null
-						pending_drop_item = null
+				if targetContraption != null:
+					if targetContraption.can_append_item(itemNode, targetSide):
+						if dropTimer.is_stopped() == false and pending_drop_item == itemNode:
+							dropTimer.stop()
+							pending_drop_parent = null
+							pending_drop_item = null
 
-					pathFollow.remove_child(itemNode)
-					pathFollow.queue_free()
-					itemsNodes.remove_at(i)
-					targetContraption.append_item(itemNode, targetSide)
+						pathFollow.remove_child(itemNode)
+						pathFollow.queue_free()
+						itemsNodes.remove_at(i)
+						targetContraption.append_item(itemNode, targetSide)
+					else:
+						pass
+						# if the front contraption cannot accept the item, we drop it after a delay (disabled for now)
+						#start_drop_process(pathFollow, itemNode)
 				else:
 					start_drop_process(pathFollow, itemNode)
 

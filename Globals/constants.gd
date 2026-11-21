@@ -4,6 +4,8 @@ var MachineSpeed = 3.0;
 
 var DropTime = 6.0;
 
+var DispenseTime = 3.0;
+
 enum Sides {
 	LEFT,
 	RIGHT,
