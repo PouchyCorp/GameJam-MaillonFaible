@@ -33,3 +33,12 @@ uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 
 [node name="MainPath" type="Path2D" parent="." unique_id=1202516852]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_nh6hy")
+
+[node name="RequirementsContainer" type="VBoxContainer" parent="." unique_id=1404282850]
+unique_name_in_owner = true
+z_index = 21
+offset_left = -42.0
+offset_top = -75.0
+offset_right = 43.0
+offset_bottom = -28.0
+alignment = 1

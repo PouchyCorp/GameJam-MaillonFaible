@@ -90,6 +90,10 @@ func _on_drop_timer_timeout() -> void:
 	pending_drop_item = null
 
 func _process(delta: float) -> void:
+	_process_oil(delta)
+	if not is_oil_available():
+		return
+	
 	for i in range(itemsNodes.size()):
 		var childItems = itemsNodes[i]
 		if childItems is PathFollow2D:
@@ -137,6 +141,14 @@ func _process(delta: float) -> void:
 		#drop_time_label.position.y = position.y
 	else:
 		drop_time_label.visible = false
+
+func clear_items() -> void:
+	for i in range(itemsNodes.size()):
+		var childItems = itemsNodes[i]
+		if childItems is PathFollow2D:
+			var pathFollow: PathFollow2D = childItems
+			pathFollow.queue_free()
+	itemsNodes.clear()
 
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

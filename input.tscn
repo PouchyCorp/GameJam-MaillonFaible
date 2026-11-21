@@ -12,6 +12,10 @@ size = Vector2(90, 91)
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_input_status"]
+font_size = 18
+font_color = Color(1, 1, 1, 1)
+
 [node name="InputThingy" type="StaticBody2D" unique_id=1418371769]
 script = ExtResource("1_ibw0e")
 metadata/_custom_type_script = "uid://cbty1u3flijoc"
@@ -45,3 +49,9 @@ offset_top = -34.0
 offset_right = 45.0
 offset_bottom = 35.0
 label_settings = SubResource("LabelSettings_bcj43")
+
+[node name="InputStatusSprite" type="Sprite2D" parent="." unique_id=1404282851]
+unique_name_in_owner = true
+z_index = 21
+position = Vector2(0, -61)
+scale = Vector2(0.18, 0.18)
