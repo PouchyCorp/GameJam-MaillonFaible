@@ -27,13 +27,13 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_e7js5")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2097960051]
-color = Color(0.2, 0.2, 0.22352941, 1)
+color = Color(8.904189e-07, 0.28397036, 0.31524792, 1)
 polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
 uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1360691989]
-position = Vector2(30, -14)
-scale = Vector2(0.40833333, 0.31944445)
+position = Vector2(-29, -4)
+scale = Vector2(0.12055555, 0.12345679)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 
@@ -42,8 +42,11 @@ unique_name_in_owner = true
 curve = SubResource("Curve2D_be0bl")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1470416922]
+z_index = -4
+rotation = -7.6233664e-05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1650885184]
+z_index = -4
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_xm45u")
 
@@ -55,5 +58,11 @@ offset_top = -34.0
 offset_right = 45.0
 offset_bottom = 35.0
 label_settings = SubResource("LabelSettings_be0bl")
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=2031614948]
+position = Vector2(47.000004, -6.0000005)
+scale = Vector2(0.12055555, 0.12345679)
+polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
+uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
