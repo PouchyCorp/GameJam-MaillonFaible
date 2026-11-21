@@ -107,6 +107,6 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
 			grabbedItem.rotate(PI/2)
-			grabbedItem.facing = (grabbedItem.facing+1)%4
+			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Faces
 
 			
