@@ -3,14 +3,22 @@
 [ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://discombobulator.gd" id="1_r8xb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62myk"]
+size = Vector2(90, 91)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stq56"]
 size = Vector2(90, 91)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rrs4q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8xb1"]
+font_size = 50
+font_color = Color(1, 0, 0, 1)
 
 [node name="Discombobulator" type="StaticBody2D" unique_id=1695691332]
 script = ExtResource("1_r8xb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000933227]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_62myk")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1130119059]
@@ -29,5 +37,50 @@ unique_name_in_owner = true
 
 [node name="Timer" type="Timer" parent="." unique_id=2144427539]
 one_shot = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Timer" unique_id=1868520180]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_rrs4q")
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1161991292]
+position = Vector2(-1.1920929e-07, 31.000002)
+rotation = -1.5707964
+scale = Vector2(0.27255684, 0.3264023)
+color = Color(1, 0.22745098, 1, 1)
+polygon = PackedVector2Array(-56.00003, -56, 39.99991, 9.536743e-06, -48.00009, 56.000008, -3.0517578e-05, 9.536743e-06)
+uv = PackedVector2Array(-176, -32, -80.00006, 24.000008, -168.00006, 80.00001, -120, 24.000008)
+
+[node name="Polygon2D4" type="Polygon2D" parent="." unique_id=1070054403]
+position = Vector2(-1.0000002, -25.000002)
+rotation = 1.5707964
+scale = Vector2(0.33074254, 0.31868383)
+color = Color(0.06666667, 1, 1, 1)
+polygon = PackedVector2Array(-56.00003, -56, 39.99991, 9.536743e-06, -48.00009, 56.000008, -3.0517578e-05, 9.536743e-06)
+uv = PackedVector2Array(-176, -32, -80.00006, 24.000008, -168.00006, 80.00001, -120, 24.000008)
+
+[node name="Polygon2D5" type="Polygon2D" parent="." unique_id=1946991358]
+position = Vector2(38.000008, 0)
+rotation = 0.007245589
+scale = Vector2(0.13045874, 0.13321444)
+skew = -0.0005186796
+color = Color(0.925496, 0.8419645, 0.97616, 1)
+polygon = PackedVector2Array(-56.00003, -56, 39.99991, 9.536743e-06, -48.00009, 56.000008, -3.0517578e-05, 9.536743e-06)
+uv = PackedVector2Array(-176, -32, -80.00006, 24.000008, -168.00006, 80.00001, -120, 24.000008)
+
+[node name="DropLabel" type="Label" parent="." unique_id=711769144]
+unique_name_in_owner = true
+z_index = 20
+offset_left = 5.0
+offset_top = -11.0
+offset_right = 45.0
+offset_bottom = 12.0
+label_settings = SubResource("LabelSettings_r8xb1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
