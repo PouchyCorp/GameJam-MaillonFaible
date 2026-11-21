@@ -1,6 +1,5 @@
-extends Contraption
+extends Grabbable
 class_name Conveyor
-
 
 @export
 var frontContraption: Contraption = null
@@ -56,6 +55,8 @@ func _ready() -> void:
 	add_child(dropTimer)
 	
 	drop_time_label = %DropLabel
+	
+	super()
 
 func start_drop_process(parent: Node, itemNode: Item) -> void:
 	if parent == null or itemNode == null:
@@ -90,10 +91,7 @@ func _on_drop_timer_timeout() -> void:
 	pending_drop_item = null
 
 func _process(delta: float) -> void:
-	_process_oil(delta)
-	if not is_oil_available():
-		return
-	
+	super(delta)
 	for i in range(itemsNodes.size()):
 		var childItems = itemsNodes[i]
 		if childItems is PathFollow2D:
@@ -160,3 +158,4 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 
 		if item != null:
 			append_item(item, Constants.Sides.BACK)
+			

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ch1cq2gopqyq6"]
+
+[ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="1_vf3hw"]
+[ext_resource type="Script" uid="uid://ceify8ha1e6xg" path="res://Scenes/Player/worker.gd" id="1_w6ba7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6ba7"]
+size = Vector2(58, 58)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmj21"]
+radius = 94.00532
+
+[node name="Worker" type="CharacterBody2D" unique_id=971947915]
+script = ExtResource("1_w6ba7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=36444375]
+texture = ExtResource("1_vf3hw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223732288]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_w6ba7")
+
+[node name="Hand" type="Node2D" parent="." unique_id=877140163]
+position = Vector2(0, -100)
+
+[node name="ItemDetector" type="Area2D" parent="Hand" unique_id=1902266982]
+position = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/ItemDetector" unique_id=711738165]
+position = Vector2(1, -100)
+shape = SubResource("CircleShape2D_pmj21")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand" unique_id=313096876]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_vf3hw")
+
+[connection signal="area_entered" from="Hand/ItemDetector" to="." method="_on_item_detector_area_entered"]
+[connection signal="area_exited" from="Hand/ItemDetector" to="." method="_on_item_detector_area_exited"]
+[connection signal="body_entered" from="Hand/ItemDetector" to="." method="_on_item_detector_body_entered"]
+[connection signal="body_exited" from="Hand/ItemDetector" to="." method="_on_item_detector_body_exited"]
