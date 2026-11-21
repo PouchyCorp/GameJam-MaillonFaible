@@ -76,8 +76,13 @@ func _on_processing_timer_timeout() -> void:
 	if product == null:
 		return
 
-	# TODO : Determine the product type based on the input item type (json) for now it is an identical item
-	product.set_meta("type", str(processing_item.get_meta("type")))
+	if (Constants.json_as_dict != null and Constants.json_as_dict["four"].has(processing_item.get_meta("type"))):
+		product.set_meta("type", str(Constants.json_as_dict["four"][processing_item.get_meta("type")]))
+
+	else:
+		push_warning("No product type defined for input item type: " + str(processing_item.get_meta("type")) + ". Using the same type as input.")
+		product.set_meta("type", processing_item.get_meta("type"))
+
 	product.update_sprite()
 
 	processing_item.queue_free()

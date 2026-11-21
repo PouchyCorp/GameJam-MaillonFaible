@@ -73,8 +73,6 @@ func _on_processing_timer_timeout() -> void:
 	if processing_item == null:
 		return
 
-	var input_type = str(processing_item.get_meta("type"))
-
 	var scene: PackedScene = preload("res://item.tscn")
 	var left_product: Item = scene.instantiate() as Item
 	var right_product: Item = scene.instantiate() as Item
@@ -86,11 +84,16 @@ func _on_processing_timer_timeout() -> void:
 			right_product.queue_free()
 		return
 
-	# TODO : Fetch recipe from a json, for now it just duplicates the input type
-	var processed_type = input_type
+	# TODO : Determine the product type based on the input item type (json) for now it is an identical item
+	if (Constants.json_as_dict != null and Constants.json_as_dict["decoupeur"].has(processing_item.get_meta("type"))):
+		left_product.set_meta("type", str(Constants.json_as_dict["decoupeur"][processing_item.get_meta("type")]))
+		right_product.set_meta("type", str(Constants.json_as_dict["decoupeur"][processing_item.get_meta("type")]))
 
-	left_product.set_meta("type", processed_type)
-	right_product.set_meta("type", processed_type)
+	else:
+		push_warning("No product type defined for input item type: " + str(processing_item.get_meta("type")) + ". Using the same type as input.")
+		left_product.set_meta("type", processing_item.get_meta("type"))
+		right_product.set_meta("type", processing_item.get_meta("type"))
+
 	left_product.update_sprite()
 	right_product.update_sprite()
 
