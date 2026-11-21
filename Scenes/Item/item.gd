@@ -3,9 +3,7 @@ class_name Grabbable
 
 
 const BASE_DIMENSIONS = Vector2(128,128)
-var size = Grid.BlockSize.A
 
-var SNAP = Vector2(Grid.SIZE,Grid.SIZE)
 
 var slot:Slot = null
 var reached = false
@@ -14,8 +12,6 @@ var reached = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scale = SNAP/BASE_DIMENSIONS
-	global_position = global_position.snapped(SNAP)
 	drop()
 
 func _process(delta: float) -> void:
@@ -44,7 +40,6 @@ func drop():
 	
 func rotate_item():
 	rotation = rotation + PI/2
-	facing = (facing + 1) % 4
 
 func grab_highlight():
 	reached = true

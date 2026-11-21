@@ -151,18 +151,3 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		if item != null:
 			append_item(item, Constants.Sides.BACK)
 			
-			
-func alter_input_output(item:Contraption,block:Grid.Block,direction:Constants.Faces):
-	print(item,block,direction)
-	print(facing)
-	if direction == facing: 
-		frontContraption = item
-		if item != null:
-			frontContraptionSide = Constants.Sides.BACK # TODO modifier ça
-		print("fc",frontContraption)
-		
-		
-func grab():
-	frontContraption = null
-	frontContraptionSide = null
-	super()

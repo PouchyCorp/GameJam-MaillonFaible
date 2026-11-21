@@ -12,10 +12,3 @@ enum Sides {
 	FRONT,
 	BACK
 }
-
-enum Faces {
-	UP = 1,
-	DOWN = 3,
-	RIGHT = 0,
-	LEFT = 2
-}
