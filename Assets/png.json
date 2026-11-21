@@ -1,0 +1,22 @@
+{
+  "buche": "res://Assets/Sprites/log.png",
+  "seau": "res://Assets/Sprites/bucket.png",
+  "charbon": "res://Assets/Sprites/coal.png",
+  "planche": "res://Assets/Sprites/plank.png",
+  "diamant": "res://Assets/Sprites/diamond.png",
+  "statue_vache": "res://Assets/Sprites/cowstatue.png",
+  "vache_riche": "res://Assets/Sprites/richcow.png",
+  "statue_ornementee": "res://Assets/Sprites/ornementedstatue.png",
+  "beurre": "res://Assets/Sprites/butter.png",
+  "sirop_erable": "res://Assets/Sprites/syrup.png",
+  "fromage": "res://Assets/Sprites/cheese.png",
+  "buche_noel": "res://Assets/Sprites/buchenoel.png",
+  "croissant": "res://Assets/Sprites/croissant.png",
+  "fromage_rape": "res://Assets/Sprites/fromagerape.png",
+  "lait": "res://Assets/Sprites/milk.png",
+  "planche_fromage": "res://Assets/Sprites/planchefromage.png",
+  "roquefort": "res://Assets/Sprites/roquefort.png",
+  "tracteur": "res://Assets/Sprites/tracteur.png",
+  "vache-rouge": "res://Assets/Sprites/redcow.png",
+  "demi_vache": "res://Assets/Sprites/halfcow.png"
+}
