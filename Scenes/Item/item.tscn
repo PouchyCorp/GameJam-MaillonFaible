@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b6ety7ljh80ta"]
+
+[ext_resource type="Script" uid="uid://dn6y4knnrwmwu" path="res://Scenes/Item/item.gd" id="1_hvuqc"]
+[ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="1_i10cy"]
+[ext_resource type="PackedScene" uid="uid://dnq8k2mibprl1" path="res://Scenes/Item/Slot.tscn" id="3_2ky4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmj21"]
+size = Vector2(128, 128)
+
+[node name="Item" type="StaticBody2D" unique_id=1739888710]
+script = ExtResource("1_hvuqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014869010]
+texture = ExtResource("1_i10cy")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1226257563]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_pmj21")
+
+[node name="Slots" type="Node2D" parent="." unique_id=1634903302]
+
+[node name="Slot" parent="Slots" unique_id=2046637788 instance=ExtResource("3_2ky4l")]
+position = Vector2(128, 0)

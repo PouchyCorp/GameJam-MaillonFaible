@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dnq8k2mibprl1"]
+
+[ext_resource type="Script" uid="uid://b4vblekew7trt" path="res://Scenes/Item/slot.gd" id="1_ci2yo"]
+[ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="2_gwqm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmj21"]
+size = Vector2(128, 128)
+
+[node name="Slot" type="Area2D" unique_id=2046637788]
+script = ExtResource("1_ci2yo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1910056586]
+shape = SubResource("RectangleShape2D_pmj21")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=521348051]
+modulate = Color(0.15, 0.15, 0.15, 0.2901961)
+texture = ExtResource("2_gwqm0")
