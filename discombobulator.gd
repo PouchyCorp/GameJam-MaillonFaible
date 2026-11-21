@@ -96,6 +96,7 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 		# Both items are present: process them.
 		waitingForPair = false
 		processingTimer.wait_time = Constants.MachineSpeed
+	
 		if processingTimer != null:
 			processingTimer.start()
 	else:

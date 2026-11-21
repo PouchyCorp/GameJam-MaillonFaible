@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://conveyor.tscn" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://carjsgft4omwu" path="res://discombobulator.tscn" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://btlmwcwil81f1" path="res://splitter.tscn" id="3_gyfs4"]
 
 [node name="Node2D" type="Node2D" unique_id=166482189]
 
@@ -37,7 +38,21 @@ scale = Vector2(0.9999999, 0.9999999)
 frontContraption = NodePath("../Node2D")
 frontContraptionSide = 1
 
-[node name="Conveyor6" parent="." unique_id=884617592 instance=ExtResource("1_0f027")]
+[node name="Conveyor6" parent="." unique_id=884617592 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
 position = Vector2(519.00006, 348.99997)
 rotation = -6.2856493
 scale = Vector2(0.99999994, 0.99999994)
+frontContraption = NodePath("../Splitter")
+
+[node name="Splitter" parent="." unique_id=1711607641 node_paths=PackedStringArray("contraptionLeft", "contraptionRight") instance=ExtResource("3_gyfs4")]
+position = Vector2(618, 350)
+contraptionLeft = NodePath("../Conveyor7")
+contraptionRight = NodePath("../Conveyor8")
+
+[node name="Conveyor7" parent="." unique_id=763575808 instance=ExtResource("1_0f027")]
+position = Vector2(612, 247)
+rotation = -1.5575311
+
+[node name="Conveyor8" parent="." unique_id=1271185285 instance=ExtResource("1_0f027")]
+position = Vector2(623, 450)
+rotation = 1.576188
