@@ -2,9 +2,8 @@ extends StaticBody2D
 
 class_name Contraption
 
-const facing:Constants.Faces = Constants.Faces.RIGHT
+var facing:Constants.Faces = Constants.Faces.RIGHT
 
-func append_item(item: Item, side: Constants.Sides) -> void:
 @export var oil_max: float = 100.0
 @export var oil_drain_per_second: float = 1.5
 @export var oil_recovery: float = 25.0

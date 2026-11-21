@@ -13,7 +13,7 @@ const SPEED = 500.0
 const ACCEL = 20
 
 var hasItem:bool = false
-var grabbedItem:Node2D = null
+var grabbedItem:Grabbable = null
 
 var reachable:Array[Grabbable]
 
@@ -107,5 +107,6 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
 			grabbedItem.rotate(PI/2)
+			grabbedItem.facing = (grabbedItem.facing+1)%4
 
 			

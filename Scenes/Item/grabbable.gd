@@ -11,6 +11,7 @@ var reached = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global_position = global_position.snapped(SNAP)
 	drop()
 
 func _process(delta: float) -> void:
