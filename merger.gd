@@ -1,5 +1,5 @@
 extends Contraption
-class_name Discombobulator
+class_name Merger
 
 
 @export
@@ -40,7 +40,7 @@ func try_push_out_item()-> void:
 		frontContraption.append_item(product_item_buffer, frontContraptionSide)
 		product_item_buffer = null
 	else:
-		start_drop_process()
+		pass #start_drop_process() disabled for now, we don't want to drop items if the front contraption cannot accept them
 
 
 func start_drop_process() -> void:
@@ -129,15 +129,17 @@ func _on_timer_timeout() -> void:
 		push_error("Processing processingTimer timeout called but one or both items are null.")
 		return
 
-
-	# TODO : Implement the actual processing logic here
-
 	var scene: PackedScene = preload("res://item.tscn")
-	var placeholder_product: Item = scene.instantiate() as Item
+	var product: Item = scene.instantiate() as Item
+
+	var left_type = str(processing_item_left.get_meta("type"))
+	var right_type = str(processing_item_right.get_meta("type"))
+
+	product.set_meta("type", Constants.json_as_dict["fusion"][left_type][right_type])
 
 	processingTimer.stop()
 
-	product_item_buffer = placeholder_product
+	product_item_buffer = product
 	processing_item_left.queue_free()
 	processing_item_right.queue_free()
 	processing_item_left = null

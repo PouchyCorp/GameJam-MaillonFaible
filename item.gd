@@ -8,4 +8,11 @@ func _ready() -> void:
 	if sprite != null:
 		var size = sprite.texture.get_size().x * sprite.get_scale().x # texture is square and using the width as the size
 		set_meta("size", size)
+
+	update_sprite()
 	
+
+func update_sprite() -> void:
+	var sprite = get_node("Sprite2D")
+	
+	sprite.texture = load("res://icon.svg")

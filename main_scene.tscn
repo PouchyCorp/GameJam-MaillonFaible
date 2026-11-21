@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://qhlxx4868pwb"]
 
 [ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://conveyor.tscn" id="1_0f027"]
-[ext_resource type="PackedScene" uid="uid://carjsgft4omwu" path="res://discombobulator.tscn" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://carjsgft4omwu" path="res://merger.tscn" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://btlmwcwil81f1" path="res://splitter.tscn" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://cqk15siylsiyd" path="res://input.tscn" id="4_d5x1h"]
 
 [node name="Node2D" type="Node2D" unique_id=166482189]
 
-[node name="Node2D" parent="." unique_id=1695691332 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_2c62f")]
+[node name="Merger" parent="." unique_id=1695691332 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_2c62f")]
 position = Vector2(420, 350)
 frontContraption = NodePath("../Conveyor6")
 
@@ -23,7 +24,7 @@ frontContraptionSide = 1
 position = Vector2(420, 253)
 rotation = -4.7149954
 scale = Vector2(0.99999994, 0.99999994)
-frontContraption = NodePath("../Node2D")
+frontContraption = NodePath("../Merger")
 frontContraptionSide = 0
 
 [node name="Conveyor3" parent="." unique_id=1369742149 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
@@ -35,7 +36,7 @@ frontContraption = NodePath("../Conveyor4")
 position = Vector2(420, 454)
 rotation = -1.5997559
 scale = Vector2(0.9999999, 0.9999999)
-frontContraption = NodePath("../Node2D")
+frontContraption = NodePath("../Merger")
 frontContraptionSide = 1
 
 [node name="Conveyor6" parent="." unique_id=884617592 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
@@ -45,7 +46,7 @@ scale = Vector2(0.99999994, 0.99999994)
 frontContraption = NodePath("../Splitter")
 
 [node name="Splitter" parent="." unique_id=1711607641 node_paths=PackedStringArray("contraptionLeft", "contraptionRight") instance=ExtResource("3_gyfs4")]
-position = Vector2(618, 350)
+position = Vector2(619, 350)
 contraptionLeft = NodePath("../Conveyor7")
 contraptionRight = NodePath("../Conveyor8")
 
@@ -56,3 +57,12 @@ rotation = -1.5575311
 [node name="Conveyor8" parent="." unique_id=1271185285 instance=ExtResource("1_0f027")]
 position = Vector2(623, 450)
 rotation = 1.576188
+
+[node name="InputThingy" parent="." unique_id=1418371769 node_paths=PackedStringArray("frontContraption") instance=ExtResource("4_d5x1h")]
+position = Vector2(99, 153)
+frontContraption = NodePath("../Conveyor")
+
+[node name="InputThingy2" parent="." unique_id=149304491 node_paths=PackedStringArray("frontContraption") instance=ExtResource("4_d5x1h")]
+position = Vector2(323, 456)
+frontContraption = NodePath("../Conveyor5")
+frontContraptionSide = 0

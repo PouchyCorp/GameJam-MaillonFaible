@@ -108,9 +108,9 @@ func _process(delta: float) -> void:
 			if pathFollow.progress_ratio >= 1:
 				if (frontContraption != null):
 					if (!frontContraption.can_append_item(itemNode, frontContraptionSide)):
-						# if the front contraption cannot accept the item, we drop it after a delay
-
-						start_drop_process(pathFollow, itemNode)
+						pass
+						# if the front contraption cannot accept the item, we drop it after a delay (disabled for now)
+						#start_drop_process(pathFollow, itemNode)
 					else:
 
 						if dropTimer.is_stopped() == false:
