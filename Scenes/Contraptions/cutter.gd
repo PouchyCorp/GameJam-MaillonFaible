@@ -1,15 +1,22 @@
-extends Contraption
+extends Grabbable
 
 class_name Cutter
 
 @export
 var leftContraption: Contraption = null
 @export
-var leftContraptionSide: Constants.Sides = Constants.Sides.BACK
+var leftContraptionSide: Constants.Sides = Constants.Sides.BOTTOM
 @export
 var rightContraption: Contraption = null
 @export
-var rightContraptionSide: Constants.Sides = Constants.Sides.BACK
+var rightContraptionSide: Constants.Sides = Constants.Sides.TOP
+
+var topContraption: Contraption:
+	get: return rightContraption
+	set(value): rightContraption = value
+var bottomContraption: Contraption:
+	get: return leftContraption
+	set(value): leftContraption = value
 
 var processing_item: Item = null
 var product_item_left_buffer: Item = null
@@ -21,6 +28,7 @@ var rightDropTimer: Timer = null
 
 
 func _ready() -> void:
+	super()
 	processingTimer = Timer.new()
 	processingTimer.one_shot = true
 	processingTimer.wait_time = Constants.MachineSpeed
@@ -44,7 +52,7 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side != Constants.Sides.BACK:
+	if side != Constants.Sides.LEFT:
 		return false
 
 	if processing_item != null:

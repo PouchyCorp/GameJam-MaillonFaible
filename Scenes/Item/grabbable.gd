@@ -26,11 +26,16 @@ func grab():
 	grabbed = true
 	$CollisionBox.disabled = true
 	
-func drop():
+func drop() -> bool:
 	global_position = global_position.snapped(SNAP)
+	if not Grid.can_place(global_position):
+		grabbed = true
+		$CollisionBox.disabled = true
+		return false
 	Grid.update_contraptions(global_position,self)
 	grabbed = false
 	$CollisionBox.disabled = false
+	return true
 	
 
 func grab_highlight():

@@ -5,7 +5,7 @@ class_name InputThingy
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Sides = Constants.Sides.BACK
+var frontContraptionSide: Constants.Sides = Constants.Sides.LEFT
 @export
 var thingToDispense: String = ""
 

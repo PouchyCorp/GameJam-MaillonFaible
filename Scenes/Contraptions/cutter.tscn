@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ca3g7l5p8mx51"]
 
-[ext_resource type="Script" uid="uid://b4l0b0of3ed6m" path="res://Scenes/Contraptions/splitter.gd" id="1_vd457"]
+[ext_resource type="Script" uid="uid://dkw2garxjdeyj" path="res://Scenes/Contraptions/cutter.gd" id="1_vd457"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2t55a"]
 size = Vector2(90, 91)
@@ -11,6 +11,9 @@ size = Vector2(90, 91)
 [sub_resource type="LabelSettings" id="LabelSettings_e8ffd"]
 font_size = 50
 font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qthl3"]
+size = Vector2(128, 128)
 
 [node name="Cutter" type="StaticBody2D" unique_id=1711607641]
 script = ExtResource("1_vd457")
@@ -71,5 +74,9 @@ offset_right = 49.0
 offset_bottom = 30.0
 label_settings = SubResource("LabelSettings_e8ffd")
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1706715341]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_qthl3")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

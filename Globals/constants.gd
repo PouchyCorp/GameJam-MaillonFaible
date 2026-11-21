@@ -15,21 +15,12 @@ enum Directions {
 	RIGHT
 }
 
-enum Faces { # clockwise order for 2x2 contraptions
-	RIGHTTOP,
-	RIGHTDOWN,
-	DOWNRIGHT,
-	DOWNLEFT,
-	LEFTDOWN,
-	LEFTUP,
-	UPLEFT,
-	UPRIGHT
+enum Sides {
+	LEFT,
+	RIGHT,
+	TOP,
+	BOTTOM
 }
-
-# for 1by1 contraptions, use RIGHTTOP, DOWNRIGHT, LEFTDOWN, UPLEFT
-
-func is_eq_for_1b1(val : Faces, other : Faces) -> bool:
-	return val / 2 == other / 2 # integer division
 	
 
 var file = "res://Assets/transformation.json"

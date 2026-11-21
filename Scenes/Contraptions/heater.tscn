@@ -18,6 +18,9 @@ size = Vector2(90, 91)
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6074j"]
+size = Vector2(128, 128)
+
 [node name="Heater" type="StaticBody2D" unique_id=1849556168]
 script = ExtResource("1_emja5")
 metadata/_custom_type_script = "uid://cm8pxrbi842au"
@@ -64,3 +67,7 @@ position = Vector2(47.000004, -6.0000005)
 scale = Vector2(0.12055555, 0.12345679)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=933276277]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_6074j")

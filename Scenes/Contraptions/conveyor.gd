@@ -4,7 +4,7 @@ class_name Conveyor
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Faces = Constants.Faces.LEFT
+var frontContraptionSide: Constants.Sides = Constants.Sides.LEFT
 
 var itemsNodes: Array = []
 
@@ -19,15 +19,14 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side == Constants.Faces.RIGHTTOP:
+	if side == Constants.Sides.RIGHT:
 		return false
 
-	if (side == Constants.Faces.DOWNRIGHT or side == Constants.Faces.TOPLEFT):
+	if side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
 		if (itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size") * 2):
 			return false
 
-	#if there is already a PathFollow2D node with less than 50% progress, it would overlap with the previous one
-	if (side == Constants.Faces.LEFTDOWN and itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size")):
+	if side == Constants.Sides.LEFT and itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size"):
 		return false
 
 	return true
@@ -38,9 +37,9 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 	var pathFollow: PathFollow2D = PathFollow2D.new()
 	pathFollow.loop = false
 
-	if (side == Constants.Faces.LEFTDOWN):
+	if side == Constants.Sides.LEFT:
 		pathFollow.progress_ratio = 0
-	elif (side == Constants.Faces.UPLEFT or side == Constants.Faces.DOWNRIGHT):
+	elif side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
 		pathFollow.progress_ratio = 0.5
 	else:
 		push_error("Invalid side for appending an item on a conveyor: " + str(side))
@@ -51,8 +50,6 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 
 	pathFollow.h_offset = -item.get_meta("size") / 2
 	itemsNodes.insert(0, pathFollow)
-
-	
 
 func _ready() -> void:
 	dropTimer = Timer.new()
@@ -164,5 +161,5 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		var item: Node2D = scene.instantiate() as Node2D
 
 		if item != null:
-			append_item(item, Constants.Faces.LEFTDOWN)
+			append_item(item, Constants.Sides.LEFT)
 			

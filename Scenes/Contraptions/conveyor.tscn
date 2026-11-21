@@ -20,8 +20,8 @@ font_color = Color(1, 0, 0, 1)
 
 [node name="Conveyor" type="StaticBody2D" unique_id=886386989]
 script = ExtResource("1_be0bl")
-base_input_faces = [0, 2, 3]
-base_output_faces = [1]
+base_input_sides = [0, 2, 3]
+base_output_sides = [1]
 metadata/_custom_type_script = "uid://c2ovf46vb581c"
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2097960051]

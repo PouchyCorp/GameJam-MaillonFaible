@@ -1,4 +1,4 @@
-extends Contraption
+extends Grabbable
 class_name Merger
 
 
@@ -9,7 +9,7 @@ var processing_item_right: Item = null
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Sides = Constants.Sides.BACK
+var frontContraptionSide: Constants.Sides = Constants.Sides.RIGHT
 var product_item_buffer: Item = null
 
 var processingTimer : Timer = null
@@ -21,9 +21,9 @@ func can_append_item(_item: Item, side: Constants.Sides) -> bool:
 	if product_item_buffer != null:
 		return false
 
-	if side == Constants.Sides.LEFT:
+	if side == Constants.Sides.TOP:
 		return processing_item_left == null
-	elif side == Constants.Sides.RIGHT:
+	elif side == Constants.Sides.BOTTOM:
 		return processing_item_right == null
 	else:
 		return false
@@ -53,6 +53,7 @@ func start_drop_process() -> void:
 
 
 func _ready() -> void:
+	super()
 	processingTimer = get_node("Timer")
 	dropTimer = Timer.new()
 	dropTimer.one_shot = true
@@ -93,7 +94,7 @@ func _process(delta: float) -> void:
 	
 
 func append_item(item: Item, side: Constants.Sides) -> void:
-	if side == Constants.Sides.LEFT:
+	if side == Constants.Sides.TOP:
 		processing_item_left = item
 	else:
 		processing_item_right = item

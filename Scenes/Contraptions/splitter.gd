@@ -1,4 +1,4 @@
-extends Contraption
+extends Grabbable
 
 class_name Splitter
 
@@ -7,9 +7,18 @@ var contraptionLeft: Contraption = null
 @export
 var contraptionRight: Contraption = null
 @export
-var contraptionRightSide: Constants.Sides = Constants.Sides.BACK
+var contraptionRightSide: Constants.Sides = Constants.Sides.BOTTOM
 @export
-var contraptionLeftSide: Constants.Sides = Constants.Sides.BACK
+var contraptionLeftSide: Constants.Sides = Constants.Sides.TOP
+
+var contraptionTop: Contraption:
+	get: return contraptionLeft
+	set(value): contraptionLeft = value
+var contraptionBottom: Contraption:
+	get: return contraptionRight
+	set(value): contraptionRight = value
+var contraptionTopSide: Constants.Sides = Constants.Sides.TOP
+var contraptionBottomSide: Constants.Sides = Constants.Sides.BOTTOM
 
 var pointingLeft: bool = true
 var itemsNodesLeft: Array = []
@@ -21,6 +30,7 @@ var pending_drop_parent: PathFollow2D = null
 var pending_drop_item: Item = null
 
 func _ready() -> void:
+	super()
 	dropTimer = Timer.new()
 	dropTimer.one_shot = true
 	dropTimer.wait_time = Constants.DropTime
@@ -33,10 +43,10 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side == Constants.Sides.FRONT or side == Constants.Sides.LEFT or side == Constants.Sides.RIGHT:
+	if side != Constants.Sides.LEFT:
 		return false
 
-	if side == Constants.Sides.BACK and _is_back_entry_blocked(item):
+	if _is_back_entry_blocked(item):
 		return false
 
 	return true
@@ -70,9 +80,9 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 
 	pathFollow.add_child(item)
 
-	if side == Constants.Sides.BACK:
+	if side == Constants.Sides.LEFT:
 		pathFollow.progress_ratio = 0
-	elif side == Constants.Sides.LEFT or side == Constants.Sides.RIGHT:
+	elif side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
 		pathFollow.progress_ratio = 0.5
 	else:
 		pathFollow.progress_ratio = 0
@@ -137,8 +147,8 @@ func _process(delta: float) -> void:
 	if not is_oil_available():
 		return
 
-	_process_path(itemsNodesLeft, delta, contraptionLeft, contraptionLeftSide)
-	_process_path(itemsNodesRight, delta, contraptionRight, contraptionRightSide)
+	_process_path(itemsNodesLeft, delta, contraptionTop, contraptionTopSide)
+	_process_path(itemsNodesRight, delta, contraptionBottom, contraptionBottomSide)
 
 	if dropTimer.is_stopped() == false:
 		dropLabel.visible = true

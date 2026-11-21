@@ -4,10 +4,11 @@ class_name Contraption
 
 var facing:Constants.Directions = Constants.Directions.RIGHT
 
-@export var oil_max: float = 100.0
-@export var oil_drain_per_second: float = 1.5
-@export var oil_recovery: float = 25.0
-@export var footprint_size: Vector2i = Vector2i.ONE
+var oil_max: float = 100.0
+var oil_drain_per_second: float = 1.5
+var oil_recovery: float = 25.0
+@export var base_input_sides: Array[Constants.Sides] = []
+@export var base_output_sides: Array[Constants.Sides] = []
 
 var oil_level: float = 100.0
 var oil_bar: ProgressBar = null
@@ -72,7 +73,57 @@ func can_append_item(item: Item, _side: Constants.Sides) -> bool:
 	print("this is a generic contraption, you should not see this. item :", item)
 	return false
 
-func notify_change(contraption:Contraption,side:Constants.Faces):
+func notify_change(contraption:Contraption, side:Constants.Sides):
 	print("got contraption ",contraption," with side ",side)
 func clear_items() -> void:
 	pass
+
+func accepts_side(side:Constants.Sides) -> bool:
+	return side in base_input_sides
+
+func rotate_side(side:Constants.Sides) -> Constants.Sides:
+	var vector = side_vector(side)
+	var rotated = vector
+	match facing:
+		Constants.Directions.DOWN:
+			rotated = Vector2i(-vector.y, vector.x)
+		Constants.Directions.LEFT:
+			rotated = Vector2i(-vector.x, -vector.y)
+		Constants.Directions.UP:
+			rotated = Vector2i(vector.y, -vector.x)
+	return vector_to_side(rotated)
+
+func to_local_side(side:Constants.Sides) -> Constants.Sides:
+	var vector = side_vector(side)
+	var local = vector
+	match facing:
+		Constants.Directions.DOWN:
+			local = Vector2i(vector.y, -vector.x)
+		Constants.Directions.LEFT:
+			local = Vector2i(-vector.x, -vector.y)
+		Constants.Directions.UP:
+			local = Vector2i(-vector.y, vector.x)
+	return vector_to_side(local)
+
+func side_vector(side:Constants.Sides) -> Vector2i:
+	match side:
+		Constants.Sides.LEFT: return Vector2i(-1, 0)
+		Constants.Sides.RIGHT: return Vector2i(1, 0)
+		Constants.Sides.TOP: return Vector2i(0, -1)
+		Constants.Sides.BOTTOM: return Vector2i(0, 1)
+	return Vector2i.ZERO
+
+func vector_to_side(vector:Vector2i) -> Constants.Sides:
+	if vector.x < 0: return Constants.Sides.LEFT
+	if vector.x > 0: return Constants.Sides.RIGHT
+	if vector.y < 0: return Constants.Sides.TOP
+	if vector.y > 0: return Constants.Sides.BOTTOM
+	return Constants.Sides.RIGHT
+
+func opposite_side(side:Constants.Sides) -> Constants.Sides:
+	match side:
+		Constants.Sides.LEFT: return Constants.Sides.RIGHT
+		Constants.Sides.RIGHT: return Constants.Sides.LEFT
+		Constants.Sides.TOP: return Constants.Sides.BOTTOM
+		Constants.Sides.BOTTOM: return Constants.Sides.TOP
+	return side

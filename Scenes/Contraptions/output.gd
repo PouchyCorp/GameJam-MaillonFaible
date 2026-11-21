@@ -13,7 +13,7 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side == Constants.Sides.BACK:
+	if side == Constants.Sides.LEFT:
 		return true
 
 	return false

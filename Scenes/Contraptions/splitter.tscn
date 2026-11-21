@@ -24,6 +24,9 @@ size = Vector2(90, 91)
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dl8u7"]
+size = Vector2(128, 128)
+
 [node name="Splitter" type="StaticBody2D" unique_id=1711607641]
 script = ExtResource("1_ah7u2")
 metadata/_custom_type_script = "uid://cbty1u3flijoc"
@@ -91,5 +94,9 @@ offset_right = 48.0
 offset_bottom = 32.0
 label_settings = SubResource("LabelSettings_e8ffd")
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1702339868]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_dl8u7")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

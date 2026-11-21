@@ -1,11 +1,11 @@
-extends Contraption
+extends Grabbable
 
 class_name Heater
 
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Sides = Constants.Sides.BACK
+var frontContraptionSide: Constants.Sides = Constants.Sides.RIGHT
 
 var processing_item: Item = null
 var product_item_buffer: Item = null
@@ -16,6 +16,7 @@ var dropLabel: Label = null
 
 
 func _ready() -> void:
+	super()
 	processingTimer = Timer.new()
 	processingTimer.one_shot = true
 	processingTimer.wait_time = Constants.MachineSpeed
@@ -35,7 +36,7 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side != Constants.Sides.BACK:
+	if side not in base_input_sides:
 		return false
 
 	if processing_item != null:

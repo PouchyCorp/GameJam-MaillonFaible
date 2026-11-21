@@ -87,16 +87,16 @@ func compare_distance(a:Grabbable,b:Grabbable):
 	b.ungrab_highlight()
 	var distance_a = a.global_position - $Hand.global_position
 	var distance_b = b.global_position - $Hand.global_position
-	return distance_a.normalized() < distance_b.normalized()
+	return distance_a.length_squared() < distance_b.length_squared()
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("interact")):
 		if hasItem:
-			grabbedItem.drop()
-			hasItem = false
-			reachable.push_front(grabbedItem)
-			grabbedItem = null
-			$PlaceIndicator.hide()
+			if grabbedItem.drop():
+				hasItem = false
+				reachable.push_front(grabbedItem)
+				grabbedItem = null
+				$PlaceIndicator.hide()
 		elif !hasItem && reachable.size() > 0:
 			grabbedItem = reachable[0]
 			grabbedItem.ungrab_highlight()
@@ -107,6 +107,6 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
 			grabbedItem.rotate(PI/2)
-			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Faces
+			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Directions
 
 			
