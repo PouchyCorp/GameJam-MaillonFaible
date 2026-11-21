@@ -2,6 +2,9 @@ extends StaticBody2D
 
 class_name Contraption
 
+const facing:Constants.Faces = Constants.Faces.RIGHT
+
+func append_item(item: Item, side: Constants.Sides) -> void:
 @export var oil_max: float = 100.0
 @export var oil_drain_per_second: float = 1.5
 @export var oil_recovery: float = 25.0
@@ -69,5 +72,7 @@ func can_append_item(item: Item, _side: Constants.Sides) -> bool:
 	print("this is a generic contraption, you should not see this. item :", item)
 	return false
 
+func notify_change(contraption:Contraption,side:Constants.Faces):
+	print("got contraption ",contraption," with side ",side)
 func clear_items() -> void:
 	pass

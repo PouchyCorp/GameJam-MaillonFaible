@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0dqdhs5yhpcs"]
 
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="1_lc1oi"]
-[ext_resource type="PackedScene" uid="uid://b6ety7ljh80ta" path="res://Scenes/Item/item.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://b6ety7ljh80ta" path="res://Scenes/Item/grabbable.tscn" id="2_8od7v"]
 
 [node name="Test" type="Node2D" unique_id=1905752789]
 
