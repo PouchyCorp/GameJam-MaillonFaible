@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tmkso63rlntm"
+path="res://.godot/imported/High quality, royalty free_ elevator music..mp3-e0658c9e2ac0615df7f06661bab0e0a2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/High quality, royalty free_ elevator music..mp3"
+dest_files=["res://.godot/imported/High quality, royalty free_ elevator music..mp3-e0658c9e2ac0615df7f06661bab0e0a2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

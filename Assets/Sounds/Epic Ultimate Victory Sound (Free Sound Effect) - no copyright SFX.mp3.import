@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://buc4dyewsmwj4"
+path="res://.godot/imported/Epic Ultimate Victory Sound (Free Sound Effect) - no copyright SFX.mp3-5d9c1a6545476632ec4585ff26c2b5db.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Epic Ultimate Victory Sound (Free Sound Effect) - no copyright SFX.mp3"
+dest_files=["res://.godot/imported/Epic Ultimate Victory Sound (Free Sound Effect) - no copyright SFX.mp3-5d9c1a6545476632ec4585ff26c2b5db.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
