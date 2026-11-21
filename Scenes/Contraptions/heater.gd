@@ -86,7 +86,7 @@ func _on_processing_timer_timeout() -> void:
 	if processing_item == null:
 		return
 
-	var scene: PackedScene = preload("res://item.tscn")
+	var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
 	var product: Item = scene.instantiate() as Item
 	if product == null:
 		return

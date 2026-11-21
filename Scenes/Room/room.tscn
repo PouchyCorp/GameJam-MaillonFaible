@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0loxwcnuqefa" path="res://Scenes/Room/room.gd" id="1_ogljc"]
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="2_8ln5v"]
-[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://conveyor.tscn" id="2_gtrrj"]
+[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://Scenes/Contraptions/conveyor.tscn" id="2_gtrrj"]
 
 [node name="Room" type="Node2D" unique_id=1288325252]
 script = ExtResource("1_ogljc")

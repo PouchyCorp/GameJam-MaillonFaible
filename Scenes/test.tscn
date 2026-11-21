@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0dqdhs5yhpcs"]
 
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="1_lc1oi"]
-[ext_resource type="PackedScene" uid="uid://b6ety7ljh80ta" path="res://Scenes/Item/grabbable.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://Scenes/Contraptions/conveyor.tscn" id="2_8od7v"]
 
 [node name="Test" type="Node2D" unique_id=1905752789]
 
@@ -9,14 +9,14 @@
 position = Vector2(293, 234)
 scale = Vector2(0.7, 0.7)
 
-[node name="Item" parent="." unique_id=470048977 instance=ExtResource("2_8od7v")]
-position = Vector2(762, 396)
+[node name="Conveyor" parent="." unique_id=886386989 instance=ExtResource("2_8od7v")]
+position = Vector2(238, 454)
 
-[node name="Item2" parent="." unique_id=1739888710 instance=ExtResource("2_8od7v")]
-position = Vector2(270, 505)
+[node name="Conveyor2" parent="." unique_id=864235313 instance=ExtResource("2_8od7v")]
+position = Vector2(543, 432)
 
-[node name="Item3" parent="." unique_id=1562461295 instance=ExtResource("2_8od7v")]
-position = Vector2(991, 487)
+[node name="Conveyor3" parent="." unique_id=1628727556 instance=ExtResource("2_8od7v")]
+position = Vector2(826, 204)
 
-[node name="Item4" parent="." unique_id=1539244419 instance=ExtResource("2_8od7v")]
-position = Vector2(894, 181)
+[node name="Conveyor4" parent="." unique_id=1765720903 instance=ExtResource("2_8od7v")]
+position = Vector2(878, 410)

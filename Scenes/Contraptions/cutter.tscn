@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ca3g7l5p8mx51"]
 
-[ext_resource type="Script" uid="uid://b4l0b0of3ed6m" path="res://splitter.gd" id="1_vd457"]
+[ext_resource type="Script" uid="uid://b4l0b0of3ed6m" path="res://Scenes/Contraptions/splitter.gd" id="1_vd457"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2t55a"]
 size = Vector2(90, 91)

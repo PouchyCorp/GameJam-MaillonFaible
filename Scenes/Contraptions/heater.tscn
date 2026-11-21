@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://ckfdqnbh112nw"]
+[gd_scene format=3 uid="uid://bm005p474wetk"]
 
-[ext_resource type="Script" uid="uid://c2ovf46vb581c" path="res://conveyor.gd" id="1_be0bl"]
+[ext_resource type="Script" uid="uid://cm8pxrbi842au" path="res://Scenes/Contraptions/heater.gd" id="1_emja5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
-size = Vector2(160, 159.99998)
+size = Vector2(90, 91)
 
 [sub_resource type="Curve2D" id="Curve2D_be0bl"]
 _data = {
@@ -12,39 +12,42 @@ _data = {
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xm45u"]
-size = Vector2(128, 128)
+size = Vector2(90, 91)
 
 [sub_resource type="LabelSettings" id="LabelSettings_be0bl"]
 font_size = 50
 font_color = Color(1, 0, 0, 1)
 
-[node name="Conveyor" type="StaticBody2D" unique_id=886386989]
-script = ExtResource("1_be0bl")
-metadata/_custom_type_script = "uid://c2ovf46vb581c"
+[node name="Heater" type="StaticBody2D" unique_id=1849556168]
+script = ExtResource("1_emja5")
+metadata/_custom_type_script = "uid://cm8pxrbi842au"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=928395063]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_e7js5")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2097960051]
-color = Color(0.2, 0.2, 0.22352941, 1)
-polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+color = Color(8.904189e-07, 0.28397036, 0.31524792, 1)
+polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
 uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1360691989]
-position = Vector2(30, -14)
-scale = Vector2(0.40833333, 0.31944445)
+position = Vector2(-29, -4)
+scale = Vector2(0.12055555, 0.12345679)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
-
-[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=928395063]
-position = Vector2(-2.9802322e-07, -3.33786e-06)
-scale = Vector2(0.8, 0.8)
-shape = SubResource("RectangleShape2D_e7js5")
 
 [node name="MainPath" type="Path2D" parent="." unique_id=1686482513]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_be0bl")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1470416922]
+z_index = -4
+rotation = -7.6233664e-05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1650885184]
+z_index = -4
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_xm45u")
 
 [node name="DropLabel" type="Label" parent="." unique_id=1023587248]
@@ -56,4 +59,8 @@ offset_right = 45.0
 offset_bottom = 35.0
 label_settings = SubResource("LabelSettings_be0bl")
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=2031614948]
+position = Vector2(47.000004, -6.0000005)
+scale = Vector2(0.12055555, 0.12345679)
+polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
+uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)

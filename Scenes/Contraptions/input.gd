@@ -59,7 +59,7 @@ func _on_dispense_timer_timeout() -> void:
 	if thingToDispense.is_empty():
 		return
 
-	var scene: PackedScene = preload("res://item.tscn")
+	var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
 	
 	if scene == null:
 		return

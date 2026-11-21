@@ -2,11 +2,12 @@ extends StaticBody2D
 
 class_name Contraption
 
-var facing:Constants.Faces = Constants.Faces.RIGHT
+var facing:Constants.Directions = Constants.Directions.RIGHT
 
 @export var oil_max: float = 100.0
 @export var oil_drain_per_second: float = 1.5
 @export var oil_recovery: float = 25.0
+@export var footprint_size: Vector2i = Vector2i.ONE
 
 var oil_level: float = 100.0
 var oil_bar: ProgressBar = null

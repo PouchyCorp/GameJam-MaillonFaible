@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://qhlxx4868pwb"]
 
-[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://conveyor.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://Scenes/Contraptions/conveyor.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://mhodue0vyjkr" path="res://mainLoop.gd" id="1_hq1ik"]
-[ext_resource type="PackedScene" uid="uid://cqk15siylsiyd" path="res://input.tscn" id="4_d5x1h"]
-[ext_resource type="PackedScene" uid="uid://bm005p474wetk" path="res://heater.tscn" id="5_8mm7a"]
-[ext_resource type="PackedScene" uid="uid://nrvd6lu2qkxp" path="res://output.tscn" id="6_nfk4m"]
+[ext_resource type="PackedScene" uid="uid://cqk15siylsiyd" path="res://Scenes/Contraptions/input.tscn" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://bm005p474wetk" path="res://Scenes/Contraptions/heater.tscn" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://nrvd6lu2qkxp" path="res://Scenes/Contraptions/output.tscn" id="6_nfk4m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8brw"]
 font_size = 40

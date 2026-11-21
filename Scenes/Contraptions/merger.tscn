@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://carjsgft4omwu"]
 
-[ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://merger.gd" id="1_r8xb1"]
+[ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://Scenes/Contraptions/merger.gd" id="1_r8xb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62myk"]
 size = Vector2(90, 88)

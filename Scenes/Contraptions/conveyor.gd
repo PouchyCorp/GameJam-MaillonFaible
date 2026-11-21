@@ -4,7 +4,7 @@ class_name Conveyor
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Sides = Constants.Sides.BACK
+var frontContraptionSide: Constants.Faces = Constants.Faces.LEFT
 
 var itemsNodes: Array = []
 
@@ -19,33 +19,40 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	if item == null:
 		return false
 
-	if side == Constants.Sides.FRONT:
+	if side == Constants.Faces.RIGHTTOP:
 		return false
 
-	if (side == Constants.Sides.LEFT or side == Constants.Sides.RIGHT):
+	if (side == Constants.Faces.DOWNRIGHT or side == Constants.Faces.TOPLEFT):
 		if (itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size") * 2):
 			return false
 
 	#if there is already a PathFollow2D node with less than 50% progress, it would overlap with the previous one
-	if (side == Constants.Sides.BACK and itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size")):
+	if (side == Constants.Faces.LEFTDOWN and itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size")):
 		return false
 
 	return true
 
 func append_item(item: Item, side: Constants.Sides) -> void:
 	# Add the item with a fresh PathFollow2D node to the conveyor
+
 	var pathFollow: PathFollow2D = PathFollow2D.new()
 	pathFollow.loop = false
+
+	if (side == Constants.Faces.LEFTDOWN):
+		pathFollow.progress_ratio = 0
+	elif (side == Constants.Faces.UPLEFT or side == Constants.Faces.DOWNRIGHT):
+		pathFollow.progress_ratio = 0.5
+	else:
+		push_error("Invalid side for appending an item on a conveyor: " + str(side))
+		return # invalid side for appending an item
+
 	%MainPath.add_child(pathFollow)
 	pathFollow.add_child(item)
 
 	pathFollow.h_offset = -item.get_meta("size") / 2
 	itemsNodes.insert(0, pathFollow)
 
-	if (side == Constants.Sides.BACK):
-		pathFollow.progress_ratio = 0
-	elif (side == Constants.Sides.LEFT or side == Constants.Sides.RIGHT):
-		pathFollow.progress_ratio = 0.5
+	
 
 func _ready() -> void:
 	dropTimer = Timer.new()
@@ -153,9 +160,9 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# add an item (for testing purposes) when the conveyor is clicked
-		var scene: PackedScene = preload("res://item.tscn")
+		var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
 		var item: Node2D = scene.instantiate() as Node2D
 
 		if item != null:
-			append_item(item, Constants.Sides.BACK)
+			append_item(item, Constants.Faces.LEFTDOWN)
 			

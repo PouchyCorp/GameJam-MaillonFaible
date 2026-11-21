@@ -146,7 +146,7 @@ func _on_timer_timeout() -> void:
 		push_error("Processing processingTimer timeout called but one or both items are null.")
 		return
 
-	var scene: PackedScene = preload("res://item.tscn")
+	var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
 	var product: Item = scene.instantiate() as Item
 
 	var left_type = str(processing_item_left.get_meta("type"))
