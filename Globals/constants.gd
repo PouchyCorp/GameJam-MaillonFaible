@@ -15,6 +15,13 @@ enum Sides {
 	BACK
 }
 
+enum Faces {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN
+}
+
 
 
 var file = "res://Assets/transformation.json"

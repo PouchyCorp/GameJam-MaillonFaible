@@ -2,22 +2,24 @@
 
 [ext_resource type="Script" uid="uid://c0loxwcnuqefa" path="res://Scenes/Room/room.gd" id="1_ogljc"]
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="2_8ln5v"]
-[ext_resource type="PackedScene" uid="uid://b6ety7ljh80ta" path="res://Scenes/Item/item.tscn" id="2_gtrrj"]
+[ext_resource type="PackedScene" uid="uid://b6ety7ljh80ta" path="res://Scenes/Item/grabbable.tscn" id="2_gtrrj"]
 
 [node name="Room" type="Node2D" unique_id=1288325252]
 script = ExtResource("1_ogljc")
 
 [node name="Contraptions" type="Node2D" parent="." unique_id=1896597418]
 
-[node name="Item" parent="Contraptions" unique_id=1739888710 instance=ExtResource("2_gtrrj")]
-position = Vector2(505, 97)
+[node name="Grabbable" parent="Contraptions" unique_id=1739888710 instance=ExtResource("2_gtrrj")]
+position = Vector2(198, 356)
+grabbed = null
 
-[node name="Item2" parent="Contraptions" unique_id=863362315 instance=ExtResource("2_gtrrj")]
-position = Vector2(92, 201)
+[node name="Grabbable2" parent="Contraptions" unique_id=1879636813 instance=ExtResource("2_gtrrj")]
+position = Vector2(416, 102)
+grabbed = null
 
-[node name="Item3" parent="Contraptions" unique_id=2136779190 instance=ExtResource("2_gtrrj")]
-position = Vector2(154, 366)
+[node name="Grabbable3" parent="Contraptions" unique_id=608735131 instance=ExtResource("2_gtrrj")]
+position = Vector2(224, 174)
+grabbed = null
 
 [node name="Worker" parent="." unique_id=971947915 instance=ExtResource("2_8ln5v")]
 position = Vector2(625, 388)
-scale = Vector2(0.7, 0.7)
