@@ -5,17 +5,39 @@
 
 [node name="Node2D" type="Node2D" unique_id=166482189]
 
-[node name="Node2D" parent="." unique_id=1695691332 instance=ExtResource("1_2c62f")]
-position = Vector2(671, 338)
+[node name="Node2D" parent="." unique_id=1695691332 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_2c62f")]
+position = Vector2(420, 350)
+frontContraption = NodePath("../Conveyor6")
 
 [node name="Conveyor" parent="." unique_id=1491902394 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
-position = Vector2(350, 338)
+position = Vector2(214, 151)
 frontContraption = NodePath("../Conveyor2")
 
-[node name="Conveyor2" parent="." unique_id=886386989 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
-position = Vector2(453, 338)
+[node name="Conveyor2" parent="." unique_id=1748429424 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(317, 151)
 frontContraption = NodePath("../Conveyor3")
+frontContraptionSide = 1
+
+[node name="Conveyor4" parent="." unique_id=886386989 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(420, 253)
+rotation = -4.7149954
+scale = Vector2(0.99999994, 0.99999994)
+frontContraption = NodePath("../Node2D")
+frontContraptionSide = 0
 
 [node name="Conveyor3" parent="." unique_id=1369742149 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
-position = Vector2(557, 338)
+position = Vector2(421, 150.99998)
+rotation = 1.594797
+frontContraption = NodePath("../Conveyor4")
+
+[node name="Conveyor5" parent="." unique_id=2077595634 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+position = Vector2(420, 454)
+rotation = -1.5997559
+scale = Vector2(0.9999999, 0.9999999)
 frontContraption = NodePath("../Node2D")
+frontContraptionSide = 1
+
+[node name="Conveyor6" parent="." unique_id=884617592 instance=ExtResource("1_0f027")]
+position = Vector2(519.00006, 348.99997)
+rotation = -6.2856493
+scale = Vector2(0.99999994, 0.99999994)
