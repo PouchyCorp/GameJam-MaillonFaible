@@ -1,0 +1,91 @@
+{
+  "four": 
+    {
+      "buche": "charbon",
+      "planche": "charbon",
+      "charbon": "diamant",
+      "vache": "vache_rouge",
+      "vache_rouge": "vache_rouge"
+    },
+  "decoupeur":
+    {
+      "buche": "planche",
+      "lait": "beurre",
+      "fromage": "fromage_rape",
+      "statue_vache": "planche",
+      "vache": "demi_vache",
+      "buche_noel": "planche"
+    },
+
+  "buche":
+    {
+      "charbon": "charbon",
+      "seau": "sirop_erable",
+      "vache": "statue_vache",
+      "beurre": "buche_noel",
+      "vache_riche": "statue_ornementee"
+    },
+  "vache":
+    {
+      "buche": "statue_vache",
+      "seau": "lait",
+      "charbon": "tracteur",
+      "diamant": "vache_riche"
+    },
+  "seau":
+    {
+      "vache": "lait",
+      "buche": "sirop_erable",
+      "statue_ornementee": "ambroisie"
+    },
+  "charbon":
+    {
+      "vache": "tracteur",
+      "buche": "charbon",
+      "planche": "charbon",
+      "statue_vache": "charbon"
+    },
+  "planche":
+    {
+      "charbon": "charbon",
+      "fromage": "planche_fromage"
+    },
+  "diamant":
+    {
+      "vache": "vache_riche",
+      "statue_vache": "statue_ornementee",
+      "fromage": "roquefort"
+    },
+  "statue_vache":
+    {
+      "diamant": "statue_ornementee"
+    },
+  "vache_riche":
+    {
+      "buche": "statue_ornementee"
+    },
+  "statue_ornementee":
+    {
+      "seau": "ambroisie"
+    },
+  "beurre":
+    {
+      "sirop_erable": "croissant",
+      "buche": "buche_noel"
+    }, 
+  "sirop_erable":
+    {
+      "beurre": "croissant"
+    },
+  "demi_vache":
+    {
+      "demi_vache": "vache"
+    },
+  "fromage":
+    {
+      "planche": "planche_fromage",
+      "diamant": "roquefort"
+    }
+}
+
+
