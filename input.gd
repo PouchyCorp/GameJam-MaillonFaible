@@ -7,12 +7,15 @@ var frontContraption: Contraption = null
 @export
 var frontContraptionSide: Constants.Sides = Constants.Sides.BACK
 @export
-var thingToDispense: String = "placeholderItem"
+var thingToDispense: String = ""
 
 var dispenseTimer: Timer = null
 var dropTimer: Timer = null
 var drop_time_label: Label = null
+var status_sprite: Sprite2D = null
 var pending_drop_item: Item = null
+
+var emitting : bool = false
 
 signal dropped_item(item: Item)
 
@@ -23,6 +26,11 @@ func can_append_item(_item: Item, _side: Constants.Sides) -> bool:
 
 func append_item(_item: Item, _side: Constants.Sides) -> void:
 	push_warning("InputThingy cannot accept items")
+
+func clear_items() -> void:
+	if pending_drop_item != null:
+		pending_drop_item.queue_free()
+		pending_drop_item = null
 
 
 func _ready() -> void:
@@ -39,10 +47,15 @@ func _ready() -> void:
 	add_child(dropTimer)
 
 	drop_time_label = %DropLabel
+	status_sprite = %InputStatusSprite
 	dispenseTimer.start()
 
 
 func _on_dispense_timer_timeout() -> void:
+
+	if !emitting:
+		return
+
 	if thingToDispense.is_empty():
 		return
 
@@ -91,7 +104,8 @@ func _on_drop_timer_timeout() -> void:
 	pending_drop_item = null
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+
 	if pending_drop_item != null and frontContraption != null:
 		if frontContraption.can_append_item(pending_drop_item, frontContraptionSide):
 			var item: Item = pending_drop_item
@@ -105,3 +119,15 @@ func _process(_delta: float) -> void:
 		drop_time_label.text = str(round(dropTimer.time_left * 10) / 10)
 	else:
 		drop_time_label.visible = false
+
+	if status_sprite == null:
+		return
+
+	status_sprite.visible = not thingToDispense.is_empty()
+	if status_sprite.visible:
+		var texture = Item.get_item_texture(thingToDispense)
+		if texture != null:
+			status_sprite.texture = texture 
+		else:
+			status_sprite.texture = load("res://icon.svg")
+			push_warning("No texture found for item type: " + str(thingToDispense) + ". Using default icon.")

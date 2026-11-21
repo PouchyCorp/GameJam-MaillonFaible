@@ -64,9 +64,28 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 	processingTimer.start()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_process_oil(delta)
+	if processingTimer != null:
+		processingTimer.paused = not is_oil_available()
+	if not is_oil_available():
+		return
+
 	_try_push_left_item()
 	_try_push_right_item()
+
+func clear_items() -> void:
+	if processing_item != null:
+		processing_item.queue_free()
+		processing_item = null
+
+	if product_item_left_buffer != null:
+		product_item_left_buffer.queue_free()
+		product_item_left_buffer = null
+
+	if product_item_right_buffer != null:
+		product_item_right_buffer.queue_free()
+		product_item_right_buffer = null
 
 
 func _on_processing_timer_timeout() -> void:

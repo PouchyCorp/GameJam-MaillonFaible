@@ -41,6 +41,21 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 
 	return true
 
+func clear_items() -> void:
+	for i in range(itemsNodesLeft.size()):
+		var childItems = itemsNodesLeft[i]
+		if childItems is PathFollow2D:
+			var pathFollow: PathFollow2D = childItems
+			pathFollow.queue_free()
+	itemsNodesLeft.clear()
+
+	for i in range(itemsNodesRight.size()):
+		var childItems = itemsNodesRight[i]
+		if childItems is PathFollow2D:
+			var pathFollow: PathFollow2D = childItems
+			pathFollow.queue_free()
+	itemsNodesRight.clear()
+
 
 func append_item(item: Item, side: Constants.Sides) -> void:
 	var pathFollow: PathFollow2D = PathFollow2D.new()
@@ -118,6 +133,10 @@ func _on_drop_timer_timeout() -> void:
 
 
 func _process(delta: float) -> void:
+	_process_oil(delta)
+	if not is_oil_available():
+		return
+
 	_process_path(itemsNodesLeft, delta, contraptionLeft, contraptionLeftSide)
 	_process_path(itemsNodesRight, delta, contraptionRight, contraptionRightSide)
 

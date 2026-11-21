@@ -140,6 +140,14 @@ func _process(delta: float) -> void:
 	else:
 		drop_time_label.visible = false
 
+func clear_items() -> void:
+	for i in range(itemsNodes.size()):
+		var childItems = itemsNodes[i]
+		if childItems is PathFollow2D:
+			var pathFollow: PathFollow2D = childItems
+			pathFollow.queue_free()
+	itemsNodes.clear()
+
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 
