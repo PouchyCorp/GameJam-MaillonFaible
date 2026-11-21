@@ -54,14 +54,14 @@ func _process(_delta: float) -> void:
 		timer.start(nextWaveStartTime)
 
 		var input1type = ""
-		var input2type = "placeholderItem"
-		var input3type = "placeholderItem"
+		var input2type = "buche"
+		var input3type = "buche"
 
 		input1.thingToDispense = input1type
 		input2.thingToDispense = input2type
 		input3.thingToDispense = input3type
 
-		var requirements1 = {"placeholderItem": 1}
+		var requirements1 = {"buche": 1}
 		var requirements2 = {}
 		var requirements3 = {}
 

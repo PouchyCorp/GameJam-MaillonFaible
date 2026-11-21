@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c2ovf46vb581c" path="res://conveyor.gd" id="1_be0bl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
-size = Vector2(128, 128)
+size = Vector2(160, 159.99998)
 
 [sub_resource type="Curve2D" id="Curve2D_be0bl"]
 _data = {
@@ -34,6 +34,7 @@ polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, 
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=928395063]
+position = Vector2(-2.9802322e-07, -3.33786e-06)
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_e7js5")
 
