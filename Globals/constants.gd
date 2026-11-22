@@ -9,17 +9,10 @@ var DropTime = 6.0;
 var DispenseTime = 3.0;
 
 enum Directions {
-	UP,
+	RIGHT,
 	DOWN,
 	LEFT,
-	RIGHT
-}
-
-enum Sides {
-	LEFT,
-	RIGHT,
-	TOP,
-	BOTTOM
+	UP,
 }
 	
 

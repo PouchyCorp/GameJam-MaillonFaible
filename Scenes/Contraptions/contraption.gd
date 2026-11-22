@@ -2,13 +2,25 @@ extends StaticBody2D
 
 class_name Contraption
 
+var SNAP = Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE) # l'ide preferait ne pas avoir une constante ici
+
 var facing:Constants.Directions = Constants.Directions.RIGHT
+
+# Grid coordinate of the top-left cell (the machine core).
+var core_position: Vector2i = Vector2i(-1, -1)
 
 var oil_max: float = 100.0
 var oil_drain_per_second: float = 1.5
 var oil_recovery: float = 25.0
-@export var base_input_sides: Array[Constants.Sides] = []
-@export var base_output_sides: Array[Constants.Sides] = []
+
+# Grid data is relative to this machine's core.
+# 1x1 is the default footprint; larger machines override these offsets.
+@export var base_occupied_offsets: Array[Vector2i] = [Vector2i(0, 0)]
+
+@export var base_input_slots: Array[Vector2i] = []
+
+var input_connections: Dictionary = {}
+var output_connections: Dictionary = {}
 
 var oil_level: float = 100.0
 var oil_bar: ProgressBar = null
@@ -63,67 +75,93 @@ func _on_machine_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		recover_oil()
 
 
-func append_item(item: Item, _side: Constants.Sides) -> void:
-	# This function is meant to be overridden by subclasses
-	print("this is a generic contraption, you should not see this. item :", item)
-	pass
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	print("this is a generic contraption, you should not see this. item :", item, " slot:", slot)
 
-func can_append_item(item: Item, _side: Constants.Sides) -> bool:
-	# This function is meant to be overridden by subclasses
+
+func can_append_item(item: Item, _slot: Vector2i = Vector2i.ZERO) -> bool:
 	print("this is a generic contraption, you should not see this. item :", item)
 	return false
 
-func notify_change(contraption:Contraption, side:Constants.Sides):
-	print("got contraption ",contraption," with side ",side)
+
+func notify_change(_contraption:Contraption) -> void:
+	pass
+
+
 func clear_items() -> void:
 	pass
 
-func accepts_side(side:Constants.Sides) -> bool:
-	return side in base_input_sides
 
-func rotate_side(side:Constants.Sides) -> Constants.Sides:
-	var vector = side_vector(side)
-	var rotated = vector
+func rotate_vector(vector: Vector2i) -> Vector2i:
 	match facing:
 		Constants.Directions.DOWN:
-			rotated = Vector2i(-vector.y, vector.x)
+			return Vector2i(-vector.y, vector.x)
 		Constants.Directions.LEFT:
-			rotated = Vector2i(-vector.x, -vector.y)
+			return Vector2i(-vector.x, -vector.y)
 		Constants.Directions.UP:
-			rotated = Vector2i(vector.y, -vector.x)
-	return vector_to_side(rotated)
+			return Vector2i(vector.y, -vector.x)
+	return vector
 
-func to_local_side(side:Constants.Sides) -> Constants.Sides:
-	var vector = side_vector(side)
-	var local = vector
-	match facing:
-		Constants.Directions.DOWN:
-			local = Vector2i(vector.y, -vector.x)
-		Constants.Directions.LEFT:
-			local = Vector2i(-vector.x, -vector.y)
-		Constants.Directions.UP:
-			local = Vector2i(-vector.y, vector.x)
-	return vector_to_side(local)
 
-func side_vector(side:Constants.Sides) -> Vector2i:
-	match side:
-		Constants.Sides.LEFT: return Vector2i(-1, 0)
-		Constants.Sides.RIGHT: return Vector2i(1, 0)
-		Constants.Sides.TOP: return Vector2i(0, -1)
-		Constants.Sides.BOTTOM: return Vector2i(0, 1)
-	return Vector2i.ZERO
+func get_occupied_offsets() -> Array[Vector2i]:
+	var rotated:Array[Vector2i] = []
+	for offset in base_occupied_offsets:
+		rotated.append(rotate_vector(offset))
+	return rotated
 
-func vector_to_side(vector:Vector2i) -> Constants.Sides:
-	if vector.x < 0: return Constants.Sides.LEFT
-	if vector.x > 0: return Constants.Sides.RIGHT
-	if vector.y < 0: return Constants.Sides.TOP
-	if vector.y > 0: return Constants.Sides.BOTTOM
-	return Constants.Sides.RIGHT
 
-func opposite_side(side:Constants.Sides) -> Constants.Sides:
-	match side:
-		Constants.Sides.LEFT: return Constants.Sides.RIGHT
-		Constants.Sides.RIGHT: return Constants.Sides.LEFT
-		Constants.Sides.TOP: return Constants.Sides.BOTTOM
-		Constants.Sides.BOTTOM: return Constants.Sides.TOP
-	return side
+func get_rotated_input_slots() -> Array[Vector2i]:
+	var result:Array[Vector2i] = []
+	for slot in base_input_slots:
+		result.append(rotate_vector(slot))
+	return result
+
+
+#func get_rotated_output_slots() -> Array[Vector2i]:
+#	var result:Array[Vector2i] = []
+#	for slot in base_output_slots:
+#		result.append(rotate_vector(slot))
+#	return result
+
+
+func get_core_center_offset() -> Vector2:
+	var min_x := 0
+	var min_y := 0
+	var max_x := 0
+	var max_y := 0
+	for offset in get_occupied_offsets():
+		min_x = min(min_x, offset.x)
+		min_y = min(min_y, offset.y)
+		max_x = max(max_x, offset.x)
+		max_y = max(max_y, offset.y)
+	return Vector2((min_x + max_x + 1) * Grid.GRID_SIZE / 2.0,
+		(min_y + max_y + 1) * Grid.GRID_SIZE / 2.0)
+
+
+func set_core_position(core_coord: Vector2i) -> void:
+	core_position = core_coord
+
+
+func get_core_position() -> Vector2i:
+	return core_position
+
+
+func get_global_occupied_cells() -> Array[Vector2i]:
+	var result:Array[Vector2i] = []
+	if core_position.x < 0:
+		return result
+	for offset in get_occupied_offsets():
+		result.append(core_position + offset)
+	return result
+
+
+func get_global_slot_cells(base_slots: Array[Vector2i]) -> Array[Vector2i]:
+	var result:Array[Vector2i] = []
+	if core_position.x < 0:
+		return result
+	for offset in base_slots:
+		result.append(core_position + rotate_vector(offset))
+	return result
+
+func _ready() -> void:
+	global_position = global_position.snapped(SNAP)

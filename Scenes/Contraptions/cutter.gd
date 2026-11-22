@@ -2,23 +2,8 @@ extends Grabbable
 
 class_name Cutter
 
-@export
-var leftContraption: Contraption = null
-@export
-var leftContraptionSide: Constants.Sides = Constants.Sides.BOTTOM
-@export
-var rightContraption: Contraption = null
-@export
-var rightContraptionSide: Constants.Sides = Constants.Sides.TOP
-
-var topContraption: Contraption:
-	get: return rightContraption
-	set(value): rightContraption = value
-var bottomContraption: Contraption:
-	get: return leftContraption
-	set(value): leftContraption = value
-
 var processing_item: Item = null
+
 var product_item_left_buffer: Item = null
 var product_item_right_buffer: Item = null
 
@@ -27,7 +12,30 @@ var leftDropTimer: Timer = null
 var rightDropTimer: Timer = null
 
 
+func get_left_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(2, 0))
+	return core_position + output_offset
+
+
+func get_right_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(2, 1))
+	return core_position + output_offset
+
+
+func get_left_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	return Grid.get_contraption_at(get_left_output_position())
+
+
+func get_right_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	return Grid.get_contraption_at(get_right_output_position())
+
+
 func _ready() -> void:
+	base_input_slots = [Vector2i(-1, 0)]
 	super()
 	processingTimer = Timer.new()
 	processingTimer.one_shot = true
@@ -48,26 +56,21 @@ func _ready() -> void:
 	add_child(rightDropTimer)
 
 
-func can_append_item(item: Item, side: Constants.Sides) -> bool:
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if item == null:
 		return false
-
-	if side != Constants.Sides.LEFT:
+	if (slot - core_position) not in get_rotated_input_slots():
 		return false
-
 	if processing_item != null:
 		return false
-
 	if product_item_left_buffer != null or product_item_right_buffer != null:
 		return false
-
 	return true
 
 
-func append_item(item: Item, side: Constants.Sides) -> void:
-	if can_append_item(item, side) == false:
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	if can_append_item(item, slot) == false:
 		return
-
 	processing_item = item
 	processingTimer.start()
 
@@ -135,14 +138,15 @@ func _try_push_left_item() -> void:
 	if product_item_left_buffer == null:
 		return
 
+	var leftContraption = get_left_contraption()
 	if leftContraption == null:
 		_start_left_drop_process()
 		return
 
-	if leftContraption.can_append_item(product_item_left_buffer, leftContraptionSide):
+	if leftContraption.can_append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0))):
 		if leftDropTimer.is_stopped() == false:
 			leftDropTimer.stop()
-		leftContraption.append_item(product_item_left_buffer, leftContraptionSide)
+		leftContraption.append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0)))
 		product_item_left_buffer = null
 
 
@@ -150,14 +154,15 @@ func _try_push_right_item() -> void:
 	if product_item_right_buffer == null:
 		return
 
+	var rightContraption = get_right_contraption()
 	if rightContraption == null:
 		_start_right_drop_process()
 		return
 
-	if rightContraption.can_append_item(product_item_right_buffer, rightContraptionSide):
+	if rightContraption.can_append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1))):
 		if rightDropTimer.is_stopped() == false:
 			rightDropTimer.stop()
-		rightContraption.append_item(product_item_right_buffer, rightContraptionSide)
+		rightContraption.append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1)))
 		product_item_right_buffer = null
 
 

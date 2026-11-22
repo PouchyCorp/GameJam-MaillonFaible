@@ -2,11 +2,6 @@ extends Grabbable
 
 class_name Heater
 
-@export
-var frontContraption: Contraption = null
-@export
-var frontContraptionSide: Constants.Sides = Constants.Sides.RIGHT
-
 var processing_item: Item = null
 var product_item_buffer: Item = null
 
@@ -14,9 +9,24 @@ var processingTimer: Timer = null
 var dropTimer: Timer = null
 var dropLabel: Label = null
 
+signal dropped_item(item: Item)
+
+
+func get_facing_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(1, 0))
+	return core_position + output_offset
+
+
+func get_facing_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	return Grid.get_contraption_at(get_facing_output_position())
+
 
 func _ready() -> void:
 	super()
+	base_input_slots = [Vector2i(-1, 0)]
+
 	processingTimer = Timer.new()
 	processingTimer.one_shot = true
 	processingTimer.wait_time = Constants.MachineSpeed
@@ -32,11 +42,10 @@ func _ready() -> void:
 	dropLabel = get_node_or_null("DropLabel") as Label
 
 
-func can_append_item(item: Item, side: Constants.Sides) -> bool:
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if item == null:
 		return false
-
-	if side not in base_input_sides:
+	if (slot - core_position) not in get_rotated_input_slots():
 		return false
 
 	if processing_item != null:
@@ -48,8 +57,8 @@ func can_append_item(item: Item, side: Constants.Sides) -> bool:
 	return true
 
 
-func append_item(item: Item, side: Constants.Sides) -> void:
-	if can_append_item(item, side) == false:
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	if can_append_item(item, slot) == false:
 		return
 
 	processing_item = item
@@ -110,14 +119,15 @@ func _try_push_out_item() -> void:
 	if product_item_buffer == null:
 		return
 
-	if frontContraption == null:
+	var target_contraption = get_facing_contraption()
+	if target_contraption == null:
 		_start_drop_process()
 		return
 
-	if frontContraption.can_append_item(product_item_buffer, frontContraptionSide):
+	if target_contraption.can_append_item(product_item_buffer, core_position):
 		if dropTimer.is_stopped() == false:
 			dropTimer.stop()
-		frontContraption.append_item(product_item_buffer, frontContraptionSide)
+		target_contraption.append_item(product_item_buffer, core_position)
 		product_item_buffer = null
 
 
@@ -129,5 +139,6 @@ func _start_drop_process() -> void:
 
 func _on_drop_timer_timeout() -> void:
 	if product_item_buffer != null:
+		emit_signal("dropped_item", product_item_buffer)
 		product_item_buffer.queue_free()
 		product_item_buffer = null

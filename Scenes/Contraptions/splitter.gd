@@ -2,24 +2,6 @@ extends Grabbable
 
 class_name Splitter
 
-@export
-var contraptionLeft: Contraption = null
-@export
-var contraptionRight: Contraption = null
-@export
-var contraptionRightSide: Constants.Sides = Constants.Sides.BOTTOM
-@export
-var contraptionLeftSide: Constants.Sides = Constants.Sides.TOP
-
-var contraptionTop: Contraption:
-	get: return contraptionLeft
-	set(value): contraptionLeft = value
-var contraptionBottom: Contraption:
-	get: return contraptionRight
-	set(value): contraptionRight = value
-var contraptionTopSide: Constants.Sides = Constants.Sides.TOP
-var contraptionBottomSide: Constants.Sides = Constants.Sides.BOTTOM
-
 var pointingLeft: bool = true
 var itemsNodesLeft: Array = []
 var itemsNodesRight: Array = []
@@ -29,8 +11,30 @@ var dropLabel: Label = null
 var pending_drop_parent: PathFollow2D = null
 var pending_drop_item: Item = null
 
+signal dropped_item(item: Item)
+
+func get_left_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(0, -1))
+	return core_position + output_offset
+
+func get_right_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(0, 1))
+	return core_position + output_offset
+
+func get_left_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	return Grid.get_contraption_at(get_left_output_position())
+
+func get_right_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	return Grid.get_contraption_at(get_right_output_position())
+
 func _ready() -> void:
 	super()
+	base_input_slots = [Vector2i(-1, 0)]
+
 	dropTimer = Timer.new()
 	dropTimer.one_shot = true
 	dropTimer.wait_time = Constants.DropTime
@@ -39,17 +43,16 @@ func _ready() -> void:
 
 	dropLabel = %DropLabel
 
-func can_append_item(item: Item, side: Constants.Sides) -> bool:
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if item == null:
 		return false
-
-	if side != Constants.Sides.LEFT:
+	var local_slot = slot - core_position
+	if local_slot not in get_rotated_input_slots():
 		return false
-
 	if _is_back_entry_blocked(item):
 		return false
-
 	return true
+
 
 func clear_items() -> void:
 	for i in range(itemsNodesLeft.size()):
@@ -67,7 +70,10 @@ func clear_items() -> void:
 	itemsNodesRight.clear()
 
 
-func append_item(item: Item, side: Constants.Sides) -> void:
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	if not can_append_item(item, slot):
+		return
+
 	var pathFollow: PathFollow2D = PathFollow2D.new()
 	pathFollow.loop = false
 
@@ -79,14 +85,7 @@ func append_item(item: Item, side: Constants.Sides) -> void:
 		itemsNodesRight.insert(0, pathFollow)
 
 	pathFollow.add_child(item)
-
-	if side == Constants.Sides.LEFT:
-		pathFollow.progress_ratio = 0
-	elif side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
-		pathFollow.progress_ratio = 0.5
-	else:
-		pathFollow.progress_ratio = 0
-
+	pathFollow.progress_ratio = 0
 	pathFollow.h_offset = -item.get_meta("size") / 2
 
 
@@ -136,6 +135,7 @@ func _on_drop_timer_timeout() -> void:
 		pending_drop_parent.queue_free()
 
 	if is_instance_valid(pending_drop_item):
+		emit_signal("dropped_item", pending_drop_item)
 		pending_drop_item.queue_free()
 
 	pending_drop_parent = null
@@ -147,8 +147,8 @@ func _process(delta: float) -> void:
 	if not is_oil_available():
 		return
 
-	_process_path(itemsNodesLeft, delta, contraptionTop, contraptionTopSide)
-	_process_path(itemsNodesRight, delta, contraptionBottom, contraptionBottomSide)
+	_process_path(itemsNodesLeft, delta, get_left_contraption())
+	_process_path(itemsNodesRight, delta, get_right_contraption())
 
 	if dropTimer.is_stopped() == false:
 		dropLabel.visible = true
@@ -157,8 +157,8 @@ func _process(delta: float) -> void:
 		dropLabel.visible = false
 
 
-func _process_path(itemsNodes: Array, delta: float, targetContraption: Contraption, targetSide: Constants.Sides) -> void:
-	for i in range(itemsNodes.size()):
+func _process_path(itemsNodes: Array, delta: float, targetContraption: Contraption) -> void:
+	for i in range(itemsNodes.size() - 1, -1, -1):
 		var childItems = itemsNodes[i]
 		if childItems is PathFollow2D:
 			var pathFollow: PathFollow2D = childItems
@@ -173,7 +173,7 @@ func _process_path(itemsNodes: Array, delta: float, targetContraption: Contrapti
 
 			if pathFollow.progress_ratio >= 1:
 				if targetContraption != null:
-					if targetContraption.can_append_item(itemNode, targetSide):
+					if targetContraption.can_append_item(itemNode, core_position):
 						if dropTimer.is_stopped() == false and pending_drop_item == itemNode:
 							dropTimer.stop()
 							pending_drop_parent = null
@@ -182,11 +182,9 @@ func _process_path(itemsNodes: Array, delta: float, targetContraption: Contrapti
 						pathFollow.remove_child(itemNode)
 						pathFollow.queue_free()
 						itemsNodes.remove_at(i)
-						targetContraption.append_item(itemNode, targetSide)
+						targetContraption.append_item(itemNode, core_position)
 					else:
 						pass
-						# if the front contraption cannot accept the item, we drop it after a delay (disabled for now)
-						#start_drop_process(pathFollow, itemNode)
 				else:
 					start_drop_process(pathFollow, itemNode)
 
