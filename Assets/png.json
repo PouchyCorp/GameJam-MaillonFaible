@@ -20,5 +20,6 @@
   "vache-rouge": "res://Assets/Sprites/redcow.png",
   "demi_vache": "res://Assets/Sprites/halfcow.png",
   "ambroisie": "res://Assets/Sprites/ambrosia.png",
-  "amalgame": "res://Assets/Sprites/amalgame.png"
+  "amalgame": "res://Assets/Sprites/amalgame.png",
+  "vache": "res://Assets/Sprites/CowSprites/image0000.png"
 }
