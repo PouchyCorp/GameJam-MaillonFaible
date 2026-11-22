@@ -19,5 +19,6 @@
   "tracteur": "res://Assets/Sprites/tracteur.png",
   "vache-rouge": "res://Assets/Sprites/redcow.png",
   "demi_vache": "res://Assets/Sprites/halfcow.png",
-  "ambroisie": "res://Assets/Sprites/ambrosia.png"
+  "ambroisie": "res://Assets/Sprites/ambrosia.png",
+  "amalgame": "res://Assets/Sprites/amalgame.png"
 }
