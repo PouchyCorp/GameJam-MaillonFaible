@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blqpep1jf7xxw"
-path="res://.godot/imported/Spritesheet_belt_cote.png-b7a49e5c7c8431cd02ee0ce592041feb.ctex"
+path="res://.godot/imported/Spritesheet_belt_cote.png-73bc64ce23c71eaaf968b6838181b53f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/sprites/Spritesheet_belt_cote.png"
-dest_files=["res://.godot/imported/Spritesheet_belt_cote.png-b7a49e5c7c8431cd02ee0ce592041feb.ctex"]
+source_file="res://Assets/sprites/sprites/Spritesheet_belt_cote.png"
+dest_files=["res://.godot/imported/Spritesheet_belt_cote.png-73bc64ce23c71eaaf968b6838181b53f.ctex"]
 
 [params]
 
