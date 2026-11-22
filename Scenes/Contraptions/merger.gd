@@ -17,7 +17,7 @@ signal dropped_item(item: Item)
 
 
 func get_facing_output_position() -> Vector2i:
-	var output_offset = rotate_vector(Vector2i(2, 0))
+	var output_offset = rotate_vector(Vector2i(1, 0))
 	return core_position + output_offset
 
 
@@ -48,10 +48,10 @@ func try_push_out_item() -> void:
 		start_drop_process()
 		return
 
-	if target_contraption.can_append_item(product_item_buffer, core_position + rotate_vector(Vector2i(1, 0))):
+	if target_contraption.can_append_item(product_item_buffer, core_position):
 		if dropTimer.is_stopped() == false:
 			dropTimer.stop()
-		target_contraption.append_item(product_item_buffer, core_position + rotate_vector(Vector2i(1, 0)))
+		target_contraption.append_item(product_item_buffer, core_position)
 		product_item_buffer = null
 
 
@@ -63,10 +63,9 @@ func start_drop_process() -> void:
 
 func _ready() -> void:
 	base_occupied_offsets = [
-		Vector2i(0, 0), Vector2i(1, 0),
-		Vector2i(0, 1), Vector2i(1, 1)
+		Vector2i(0, 0)
 	]
-	base_input_slots = [Vector2i(0, -1), Vector2i(0,2)]
+	base_input_slots = [Vector2i(0, -1), Vector2i(0,1)]
 	super()
 	processingTimer = get_node("Timer")
 	dropTimer = Timer.new()
