@@ -8,14 +8,11 @@
 			"planche": 5
 		},
 		"2": {
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "",
 			1: "buche",
 			2: ""
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -34,14 +31,11 @@
 		},
 		"2": {
 			"charbon": 3
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "",
 			1: "buche",
 			2: ""
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -62,14 +56,11 @@
 		},
 		"2": {
 			"fromage": 3
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "seau",
 			1: "vache",
 			2: ""
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -82,8 +73,6 @@
 "4": {
 	"requirements": {
 		"0": {
-<<<<<<< HEAD
-=======
 			"
 			},
 			1: {
@@ -92,7 +81,6 @@
 			2: {
 				"tracteur": 4
 			},
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		},
 		"1": {
 			"fromage_rape":4
@@ -117,14 +105,11 @@
 		},
 		"2": {
 			"planche_fromage": 2
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "vache",
 			1: "seau",
 			2: "buche"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -144,14 +129,11 @@
 		},
 		"2": {
 			"croissant": 1, "beurre":3
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "vache",
 			1: "seau",
 			2: "buche"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -171,14 +153,11 @@
 		},
 		"2": {
 			"tracteur": 5
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "buche",
 			1: "vache",
 			2: "buche"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -196,14 +175,11 @@
 			"ambroisie": 3
 		},
 		"2": {
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "buche",
 			1: "vache",
 			2: "seau"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -224,14 +200,11 @@
 
 		},
 		"2": {
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "buche",
 			1: "vache",
 			2: "seau"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
@@ -250,14 +223,11 @@
 		},
 		"2": {
 			"sirop_erable": 1, "roquefort":2, "fromage_rape": 1
-<<<<<<< HEAD
-=======
 		},
 		"sources": {
 			0: "seau",
 			1: "vache",
 			2: "buche"
->>>>>>> 0ebdfd4697a90a854f2467c766be084204f416c6
 		}
 	},
 	"sources": {
