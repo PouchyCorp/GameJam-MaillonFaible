@@ -1,10 +1,28 @@
 {
 	"four": {
+		"charbon": "diamant",
+		"lait": "fromage",
 		"buche": "charbon",
 		"planche": "charbon",
-		"charbon": "diamant",
 		"vache": "vache_rouge",
-		"vache_rouge": "vache_rouge"
+		"vache_rouge": "vache_rouge",
+		"seau": "seau",
+		"statue_vache": "charbon",
+		"vache_riche": "vache_rouge",
+		"statue_ornementee": "charbon",
+		"beurre": "charbon",
+		"sirop_erable": "charbon",
+		"fromage": "charbon",
+		"buche_noel": "charbon",
+		"croissant": "charbon",
+		"fromage_rape": "charbon",
+		"planche_fromage": "charbon",
+		"diamant": "diamant",
+		"roquefort": "diamant",
+		"tracteur": "tracteur",
+		"demi_vache": "vache_rouge",
+		"ambroisie": ""
+
 	},
 	"decoupeur": {
 		"buche": "planche",
@@ -13,6 +31,22 @@
 		"statue_vache": "planche",
 		"vache": "demi_vache",
 		"buche_noel": "planche"
+		"charbon": "",
+		"planche": "",
+		"vache_rouge": "demi_vache",
+		"seau": "seau",
+		"vache_riche": "demi_vache",
+		"statue_ornementee": "planche",
+		"beurre": "beurre",
+		"sirop_erable": "",
+		"croissant": "",
+		"fromage_rape": "",
+		"planche_fromage": "fromage_rape",
+		"diamant": "diamant",
+		"roquefort": "fromage_rape",
+		"tracteur": "tracteur",
+		"demi_vache": "demi_vache",
+		"ambroisie": ""
 	},
 	"fusion": {
 		"buche": {
