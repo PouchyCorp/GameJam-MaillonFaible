@@ -1,8 +1,8 @@
 extends Node
 
-const GRID_SIZE = 128 - 12
+const GRID_SIZE = 117
 const ROWS = 9
-const ROW_SIZE = 12
+const ROW_SIZE = 13
 
 var cells:Array[Contraption] = []
 
