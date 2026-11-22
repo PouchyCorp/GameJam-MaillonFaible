@@ -24,6 +24,7 @@ func grab():
 	var coords = global_position.snapped(SNAP)
 	Grid.update_contraptions(coords,null)
 	grabbed = true
+	scale = Vector2(0.5,0.5)
 	$CollisionBox.disabled = true
 	
 func drop() -> bool:
@@ -34,6 +35,7 @@ func drop() -> bool:
 		return false
 	Grid.update_contraptions(global_position,self)
 	grabbed = false
+	scale = Vector2(1,1)
 	$CollisionBox.disabled = false
 	return true
 	
