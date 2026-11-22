@@ -11,6 +11,10 @@ var output3: OutputThingy = null
 var timer: Timer = null
 var phaseID = 0;
 
+var file = "res://Assets/balancing.json"
+var json_as_text = FileAccess.get_file_as_string(file)
+var json_as_dict = JSON.parse_string(json_as_text) as Dictionary
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	input1 = %Constructs.get_node("InputThingy1") as InputThingy
@@ -23,7 +27,6 @@ func _ready() -> void:
 
 	timer = get_node("PhaseTimer")
 	timer.connect("timeout", Callable(self, "_on_phase_timer_timeout"))
-	# pass # Replace with function body.
 
 
 
@@ -53,21 +56,17 @@ func _process(_delta: float) -> void:
 
 		timer.start(nextWaveStartTime)
 
-		var input1type = ""
-		var input2type = "buche"
-		var input3type = "buche"
+		var dict = json_as_dict[str(phaseID)]["sources"]
 
-		input1.thingToDispense = input1type
-		input2.thingToDispense = input2type
-		input3.thingToDispense = input3type
+		input1.thingToDispense = dict["0"]
+		input2.thingToDispense = dict["1"]
+		input3.thingToDispense = dict["2"]
 
-		var requirements1 = {"buche": 1}
-		var requirements2 = {}
-		var requirements3 = {}
+		dict = json_as_dict[str(phaseID)]["requirements"]
 
-		output1.requirements = requirements1
-		output2.requirements = requirements2
-		output3.requirements = requirements3
+		output1.requirements = dict["0"]
+		output2.requirements = dict["1"]
+		output3.requirements = dict["2"]
 
 	if timer.is_stopped() == false:
 		var timeLeft = timer.time_left
