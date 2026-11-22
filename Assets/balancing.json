@@ -8,7 +8,7 @@
 			"planche": 5
 		},
 		"2": {
-		},
+		}
 	},
 	"sources": {
 		"0": "",
@@ -26,7 +26,7 @@
 		},
 		"2": {
 			"charbon": 3
-		},
+		}
 	},
 	"sources": {
 		"0": "",
@@ -46,7 +46,7 @@
 		},
 		"2": {
 			"fromage": 3
-		},
+		}
 	},
 	"sources": {
 		"0": "seau",
@@ -58,14 +58,13 @@
 "4": {
 	"requirements": {
 		"0": {
-			"
 		},
 		"1": {
 			"fromage_rape":4
 		},
 		"2": {
 			"tracteur":4
-		},
+		}
 	},
 	"sources": {
 		"0": "seau",
@@ -83,7 +82,7 @@
 		},
 		"2": {
 			"planche_fromage": 2
-		},
+		}
 	},
 	"sources": {
 		"0": "vache",
@@ -102,7 +101,7 @@
 		},
 		"2": {
 			"croissant": 1, "beurre":3
-		},
+		}
 	},
 	"sources": {
 		"0": "vache",
@@ -121,7 +120,7 @@
 		},
 		"2": {
 			"tracteur": 5
-		},
+		}
 	},
 	"sources": {
 		"0": "buche",
@@ -138,7 +137,7 @@
 			"ambroisie": 3
 		},
 		"2": {
-		},
+		}
 	},
 	"sources": {
 		"0": "buche",
@@ -158,7 +157,7 @@
 
 		},
 		"2": {
-		},
+		}
 	},
 	"sources": {
 		"0": "buche",
@@ -176,13 +175,13 @@
 		},
 		"2": {
 			"sirop_erable": 1, "roquefort":2, "fromage_rape": 1
-		},
+		}
 	},
 	"sources": {
 		"0": "seau",
 		"1": "vache",
 		"2": "buche"
 	}
-},
+}
 
 }
