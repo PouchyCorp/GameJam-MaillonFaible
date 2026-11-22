@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpnlcdnlgiegu"
-path="res://.godot/imported/Spritesheet_coeur.png-5795f76b9492c216b7e4c3011942f7c5.ctex"
+path="res://.godot/imported/Spritesheet_coeur.png-397406ac1dff3d5fd7eecb8f7b6b95d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Spritesheet_coeur.png"
-dest_files=["res://.godot/imported/Spritesheet_coeur.png-5795f76b9492c216b7e4c3011942f7c5.ctex"]
+source_file="res://Assets/sprites/Spritesheet_coeur.png"
+dest_files=["res://.godot/imported/Spritesheet_coeur.png-397406ac1dff3d5fd7eecb8f7b6b95d6.ctex"]
 
 [params]
 

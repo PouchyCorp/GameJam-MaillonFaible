@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr76qsqjs3sd2"
-path="res://.godot/imported/Spritesheet_fusionneur.png-66a3a5728bd4d8888153a13af55521ff.ctex"
+path="res://.godot/imported/Spritesheet_fusionneur.png-ab5a924de05f9e0b0fac1433e30baa98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Spritesheet_fusionneur.png"
-dest_files=["res://.godot/imported/Spritesheet_fusionneur.png-66a3a5728bd4d8888153a13af55521ff.ctex"]
+source_file="res://Assets/sprites/Spritesheet_fusionneur.png"
+dest_files=["res://.godot/imported/Spritesheet_fusionneur.png-ab5a924de05f9e0b0fac1433e30baa98.ctex"]
 
 [params]
 
