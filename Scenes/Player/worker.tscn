@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://ceify8ha1e6xg" path="res://Scenes/Player/worker.gd" id="1_w6ba7"]
 [ext_resource type="Texture2D" uid="uid://db8ge1nuqnpir" path="res://Assets/sprites/Spritesheet_personage.png" id="2_w6ba7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6ba7"]
-size = Vector2(58, 58)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmj21"]
 radius = 94.00532
 
@@ -252,7 +249,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e605j")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"walk_carry_back",
 "speed": 8.0
 }, {
@@ -288,7 +285,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_carry_side",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -322,8 +319,11 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_side",
-"speed": 6.0
+"speed": 8.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5c7ct"]
+height = 70.0
 
 [node name="Worker" type="CharacterBody2D" unique_id=971947915]
 script = ExtResource("1_w6ba7")
@@ -332,11 +332,6 @@ script = ExtResource("1_w6ba7")
 visible = false
 modulate = Color(0.13, 0.13, 0.13, 0.34509805)
 texture = ExtResource("1_vf3hw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223732288]
-position = Vector2(-2, 1)
-shape = SubResource("RectangleShape2D_w6ba7")
-disabled = true
 
 [node name="Hand" type="Node2D" parent="." unique_id=877140163]
 position = Vector2(0, -100)
@@ -352,8 +347,11 @@ shape = SubResource("CircleShape2D_pmj21")
 position = Vector2(-1.1920929e-07, -1.9073486e-06)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pmj21")
-animation = &"idle_front"
-frame_progress = 0.2502887
+animation = &"walk_carry_side"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223732288]
+position = Vector2(1, 46)
+shape = SubResource("CapsuleShape2D_5c7ct")
 
 [node name="CarryPlace" type="Node2D" parent="." unique_id=167996407]
 

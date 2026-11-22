@@ -35,9 +35,6 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2(0,0): 
 		$Hand.position = direction * 100
 		animationPrefix = "walk_"
-		
-		if hasItem && grabbedItem != null:
-			$PlaceIndicator.global_position = grabbedItem.global_position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE))
 	
 	if hasItem: animationPrefix += "carry_"
 
@@ -62,6 +59,9 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = lerp(velocity, direction * SPEED, ACCEL * delta)
 	move_and_slide()
+	
+	if hasItem && grabbedItem != null:
+		$PlaceIndicator.global_position = grabbedItem.global_position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE))
 	
 	if grabbedItem != null && hasItem:
 		grabbedItem.global_position = $CarryPlace.global_position

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dvdy2tnhksoj6"]
+
+[ext_resource type="PackedScene" uid="uid://chb3l4upaa2rx" path="res://Scenes/Room/room.tscn" id="1_80nbo"]
+
+[node name="Game" type="Node" unique_id=1962059938]
+
+[node name="Tkt" type="Control" parent="." unique_id=84557719]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Tkt" unique_id=177367562]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Tkt/SubViewportContainer" unique_id=1844932353]
+handle_input_locally = false
+size = Vector2i(1632, 1084)
+render_target_update_mode = 4
+
+[node name="Room" parent="Tkt/SubViewportContainer/SubViewport" unique_id=1288325252 instance=ExtResource("1_80nbo")]
+
+[node name="PanelContainer" type="PanelContainer" parent="Tkt" unique_id=74470707]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

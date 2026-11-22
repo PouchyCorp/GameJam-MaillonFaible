@@ -24,12 +24,14 @@ func grab():
 	var snapped = global_position.snapped(SNAP)
 	Grid.set_contraption(snapped,null)
 	grabbed = true
+	scale = Vector2(0.5,0.5)
 	$CollisionBox.disabled = true
 	
 func drop():
 	global_position = global_position.snapped(SNAP)
 	Grid.set_contraption(global_position,self)
 	grabbed = false
+	scale = Vector2(1,1)
 	$CollisionBox.disabled = false
 	
 
