@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://mhodue0vyjkr" path="res://mainLoop.gd" id="1_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://cqk15siylsiyd" path="res://Scenes/Contraptions/input.tscn" id="4_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://bm005p474wetk" path="res://Scenes/Contraptions/heater.tscn" id="5_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="6_hq1ik"]
 [ext_resource type="PackedScene" uid="uid://nrvd6lu2qkxp" path="res://Scenes/Contraptions/output.tscn" id="6_nfk4m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8brw"]
@@ -29,17 +30,15 @@ unique_name_in_owner = true
 
 [node name="InputThingy1" parent="Constructs" unique_id=1418371769 instance=ExtResource("4_d5x1h")]
 unique_name_in_owner = true
-position = Vector2(99, 153)
+position = Vector2(96, 155)
 
-[node name="InputThingy2" parent="Constructs" unique_id=149304491 node_paths=PackedStringArray("frontContraption") instance=ExtResource("4_d5x1h")]
+[node name="InputThingy2" parent="Constructs" unique_id=149304491 instance=ExtResource("4_d5x1h")]
 unique_name_in_owner = true
-position = Vector2(105, 318)
-frontContraption = NodePath("../Conveyor")
-frontContraptionSide = 0
+position = Vector2(94, 334)
 
 [node name="InputThingy3" parent="Constructs" unique_id=339218062 instance=ExtResource("4_d5x1h")]
 unique_name_in_owner = true
-position = Vector2(110, 452)
+position = Vector2(94, 518)
 
 [node name="OutputThingy1" parent="Constructs" unique_id=107196506 instance=ExtResource("6_nfk4m")]
 unique_name_in_owner = true
@@ -53,22 +52,21 @@ position = Vector2(1076, 336)
 unique_name_in_owner = true
 position = Vector2(1078, 455)
 
-[node name="Conveyor" parent="Constructs" unique_id=886386989 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+[node name="Conveyor" parent="Constructs" unique_id=886386989 instance=ExtResource("1_0f027")]
 position = Vector2(229, 329)
-frontContraption = NodePath("../Conveyor2")
 
-[node name="Conveyor2" parent="Constructs" unique_id=1282676238 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+[node name="Conveyor2" parent="Constructs" unique_id=1282676238 instance=ExtResource("1_0f027")]
 position = Vector2(362, 329)
-frontContraption = NodePath("../Heater")
 
-[node name="Conveyor3" parent="Constructs" unique_id=1373407438 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+[node name="Conveyor3" parent="Constructs" unique_id=1373407438 instance=ExtResource("1_0f027")]
 position = Vector2(659, 328)
-frontContraption = NodePath("../Conveyor4")
 
-[node name="Conveyor4" parent="Constructs" unique_id=1843085128 node_paths=PackedStringArray("frontContraption") instance=ExtResource("1_0f027")]
+[node name="Conveyor4" parent="Constructs" unique_id=1843085128 instance=ExtResource("1_0f027")]
 position = Vector2(789, 328)
-frontContraption = NodePath("../OutputThingy1")
 
 [node name="Heater" parent="Constructs" unique_id=747148886 node_paths=PackedStringArray("frontContraption") instance=ExtResource("5_8mm7a")]
 position = Vector2(501, 325)
 frontContraption = NodePath("../Conveyor3")
+
+[node name="Worker" parent="." unique_id=971947915 instance=ExtResource("6_hq1ik")]
+position = Vector2(511, 513)

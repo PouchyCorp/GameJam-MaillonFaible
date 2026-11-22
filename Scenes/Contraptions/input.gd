@@ -5,9 +5,10 @@ class_name InputThingy
 @export
 var frontContraption: Contraption = null
 @export
-var frontContraptionSide: Constants.Sides = Constants.Sides.LEFT
-@export
 var thingToDispense: String = ""
+
+@export
+var frontContraptionSlot: Vector2i = Vector2i(0, 0)
 
 var dispenseTimer: Timer = null
 var dropTimer: Timer = null
@@ -20,11 +21,11 @@ var emitting : bool = false
 signal dropped_item(item: Item)
 
 
-func can_append_item(_item: Item, _side: Constants.Sides) -> bool:
+func can_append_item(_item: Item, _slot: Vector2i = Vector2i.ZERO) -> bool:
 	return false
 
 
-func append_item(_item: Item, _side: Constants.Sides) -> void:
+func append_item(_item: Item, _slot: Vector2i = Vector2i.ZERO) -> void:
 	push_warning("InputThingy cannot accept items")
 
 func clear_items() -> void:
@@ -34,6 +35,11 @@ func clear_items() -> void:
 
 
 func _ready() -> void:
+	base_occupied_offsets = [Vector2i(0, 0)]
+	base_input_slots = []
+	if core_position.x < 0:
+		Grid.place_contraption(global_position, self)
+
 	dispenseTimer = Timer.new()
 	dispenseTimer.one_shot = false
 	dispenseTimer.wait_time = Constants.DispenseTime
@@ -50,20 +56,14 @@ func _ready() -> void:
 	status_sprite = %InputStatusSprite
 	dispenseTimer.start()
 
+	super()
+
 
 func _on_dispense_timer_timeout() -> void:
-
-	if !emitting:
-		return
-
-	if thingToDispense.is_empty():
+	if not emitting or thingToDispense.is_empty():
 		return
 
 	var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
-	
-	if scene == null:
-		return
-
 	var item: Item = scene.instantiate() as Item
 	if item == null:
 		return
@@ -71,10 +71,7 @@ func _on_dispense_timer_timeout() -> void:
 	item.set_meta("type", thingToDispense)
 	item.update_sprite()
 
-	if frontContraption != null and frontContraption.can_append_item(item, frontContraptionSide):
-		if dropTimer.is_stopped() == false and pending_drop_item == item:
-			return
-		frontContraption.append_item(item, frontContraptionSide)
+	if _try_append_to_front(item):
 		return
 
 	start_drop_process(item)
@@ -104,15 +101,12 @@ func _on_drop_timer_timeout() -> void:
 	pending_drop_item = null
 
 
-func _process(delta: float) -> void:
-
-	if pending_drop_item != null and frontContraption != null:
-		if frontContraption.can_append_item(pending_drop_item, frontContraptionSide):
-			var item: Item = pending_drop_item
+func _process(_delta: float) -> void:
+	if pending_drop_item != null:
+		if _try_append_to_front(pending_drop_item):
+			remove_child(pending_drop_item)
 			pending_drop_item = null
 			dropTimer.stop()
-			remove_child(item)
-			frontContraption.append_item(item, frontContraptionSide)
 
 	if dropTimer.is_stopped() == false:
 		drop_time_label.visible = true
@@ -131,3 +125,26 @@ func _process(delta: float) -> void:
 		else:
 			status_sprite.texture = load("res://icon.svg")
 			push_warning("No texture found for item type: " + str(thingToDispense) + ". Using default icon.")
+
+
+func get_facing_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(1, 0))
+	return core_position + output_offset
+
+
+func get_facing_contraption() -> Contraption:
+	if core_position.x < 0:
+		return frontContraption
+	var target_position = get_facing_output_position()
+	var target = Grid.get_contraption_at(target_position)
+	return target if target != null else frontContraption
+
+
+func _try_append_to_front(item: Item) -> bool:
+	var target = get_facing_contraption()
+	if target == null:
+		return false
+	if not target.can_append_item(item, core_position):
+		return false
+	target.append_item(item, core_position)
+	return true

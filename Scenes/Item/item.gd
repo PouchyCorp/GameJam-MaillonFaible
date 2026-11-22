@@ -10,7 +10,6 @@ func _ready() -> void:
 		set_meta("size", size)
 
 	update_sprite()
-	
 
 func update_sprite() -> void:
 	var sprite = get_node("Sprite2D")

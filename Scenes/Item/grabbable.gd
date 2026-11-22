@@ -3,7 +3,6 @@ class_name Grabbable
 
 
 const BASE_DIMENSIONS = Vector2(128,128)
-var SNAP = Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE) # l'ide preferait ne pas avoir une constante ici
 
 var reached = false
 
@@ -22,17 +21,18 @@ func _process(_delta: float) -> void:
 
 func grab():
 	var coords = global_position.snapped(SNAP)
-	Grid.update_contraptions(coords,null)
+	Grid.take_contraption(coords, self)
+	core_position = Vector2i(-1, -1)
 	grabbed = true
 	$CollisionBox.disabled = true
 	
 func drop() -> bool:
 	global_position = global_position.snapped(SNAP)
-	if not Grid.can_place(global_position):
+	if not Grid.can_place(global_position, self):
 		grabbed = true
 		$CollisionBox.disabled = true
 		return false
-	Grid.update_contraptions(global_position,self)
+	Grid.update_contraptions(global_position, self)
 	grabbed = false
 	$CollisionBox.disabled = false
 	return true

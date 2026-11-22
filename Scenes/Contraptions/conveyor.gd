@@ -1,11 +1,6 @@
 extends Grabbable
 class_name Conveyor
 
-@export
-var frontContraption: Contraption = null
-@export
-var frontContraptionSide: Constants.Sides = Constants.Sides.LEFT
-
 var itemsNodes: Array = []
 
 var dropTimer: Timer = null
@@ -15,43 +10,45 @@ var pending_drop_item: Item = null
 
 signal dropped_item(item: Item)
 
-func can_append_item(item: Item, side: Constants.Sides) -> bool:
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if item == null:
 		return false
 
-	if side == Constants.Sides.RIGHT:
+	var local_slot = slot - core_position
+	if not local_slot in get_rotated_input_slots():
 		return false
 
-	if side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
-		if (itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size") * 2):
-			return false
-
-	if side == Constants.Sides.LEFT and itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size"):
+	if itemsNodes.size() > 0 and itemsNodes[0].progress < item.get_meta("size") * 2:
 		return false
 
 	return true
 
-func append_item(item: Item, side: Constants.Sides) -> void:
-	# Add the item with a fresh PathFollow2D node to the conveyor
-
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	var _local_slot = slot - core_position
 	var pathFollow: PathFollow2D = PathFollow2D.new()
 	pathFollow.loop = false
-
-	if side == Constants.Sides.LEFT:
-		pathFollow.progress_ratio = 0
-	elif side == Constants.Sides.TOP or side == Constants.Sides.BOTTOM:
-		pathFollow.progress_ratio = 0.5
-	else:
-		push_error("Invalid side for appending an item on a conveyor: " + str(side))
-		return # invalid side for appending an item
 
 	%MainPath.add_child(pathFollow)
 	pathFollow.add_child(item)
 
 	pathFollow.h_offset = -item.get_meta("size") / 2
 	itemsNodes.insert(0, pathFollow)
+	pathFollow.progress_ratio = 0.5
+
+func get_facing_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(1, 0))
+	return core_position + output_offset
+
+func get_facing_contraption() -> Contraption:
+	if core_position.x < 0:
+		return null
+	var target_position = get_facing_output_position()
+	return Grid.get_contraption_at(target_position)
 
 func _ready() -> void:
+	base_occupied_offsets = [Vector2i(0, 0)]
+	base_input_slots = [Vector2i(-1, 0), Vector2i(0, -1), Vector2i(0, 1)]
+
 	dropTimer = Timer.new()
 	dropTimer.one_shot = true
 	dropTimer.wait_time = Constants.DropTime
@@ -110,15 +107,15 @@ func _process(delta: float) -> void:
 			# interpolation from 0 to 1 based on speed and delta time
 			pathFollow.progress_ratio += delta / Constants.MachineSpeed
 
-			# at the end of the conveyor, we either pass the item to the next contraption or drop it
+			# at the end of the conveyor, find the facing contraption dynamically
 			if pathFollow.progress_ratio >= 1:
-				if (frontContraption != null):
-					if (!frontContraption.can_append_item(itemNode, frontContraptionSide)):
+				var target_contraption = get_facing_contraption()
+				#print("Conveyor: facing contraption: ", target_contraption, facing)
+				if target_contraption != null:
+					if !target_contraption.can_append_item(itemNode, core_position):
 						pass
-						# if the front contraption cannot accept the item, we drop it after a delay (disabled for now)
-						#start_drop_process(pathFollow, itemNode)
+						# if the target cannot accept the item, keep it waiting
 					else:
-
 						if dropTimer.is_stopped() == false:
 							dropTimer.stop()
 							pending_drop_parent = null
@@ -127,9 +124,8 @@ func _process(delta: float) -> void:
 						pathFollow.remove_child(itemNode)
 						pathFollow.queue_free()
 						itemsNodes.remove_at(i)
-						frontContraption.append_item(itemNode, frontContraptionSide)
+						target_contraption.append_item(itemNode, core_position)
 				else:
-					# if there is no front contraption, we drop the item after a delay					
 					start_drop_process(pathFollow, itemNode)
 
 					
@@ -137,10 +133,6 @@ func _process(delta: float) -> void:
 	if dropTimer.is_stopped() == false:
 		drop_time_label.visible = true
 		drop_time_label.text = str(round(dropTimer.time_left*10)/10)
-
-		# Update the progress bar offset position
-		#drop_time_label.position.x = position.x
-		#drop_time_label.position.y = position.y
 	else:
 		drop_time_label.visible = false
 
@@ -161,5 +153,4 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		var item: Node2D = scene.instantiate() as Node2D
 
 		if item != null:
-			append_item(item, Constants.Sides.LEFT)
-			
+			append_item(item, Vector2i(-1, 0))

@@ -6,10 +6,6 @@ class_name Merger
 var processing_item_left: Item = null
 @export
 var processing_item_right: Item = null
-@export
-var frontContraption: Contraption = null
-@export
-var frontContraptionSide: Constants.Sides = Constants.Sides.RIGHT
 var product_item_buffer: Item = null
 
 var processingTimer : Timer = null
@@ -17,42 +13,60 @@ var dropTimer: Timer = null
 var dropLabel: Label = null
 var waitingForPair: bool = false
 
-func can_append_item(_item: Item, side: Constants.Sides) -> bool:
-	if product_item_buffer != null:
+signal dropped_item(item: Item)
+
+
+func get_facing_output_position() -> Vector2i:
+	var output_offset = rotate_vector(Vector2i(2, 0))
+	return core_position + output_offset
+
+
+func get_facing_contraption() -> Contraption:
+	var target = Grid.get_contraption_at(get_facing_output_position())
+	return target
+
+
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
+	if item == null or product_item_buffer != null:
 		return false
 
-	if side == Constants.Sides.TOP:
+	var local_slot = slot - core_position
+	var rotated_slots = get_rotated_input_slots()
+	var input_index = rotated_slots.find(local_slot)
+	if input_index == 0:
 		return processing_item_left == null
-	elif side == Constants.Sides.BOTTOM:
+	if input_index == 1:
 		return processing_item_right == null
-	else:
-		return false
+	return false
 
-func try_push_out_item()-> void:
-	if (frontContraption == null):
+func try_push_out_item() -> void:
+	if product_item_buffer == null:
+		return
+
+	var target_contraption = get_facing_contraption()
+	if target_contraption == null:
 		start_drop_process()
 		return
-	
-	if (frontContraption.can_append_item(product_item_buffer, frontContraptionSide)):
+
+	if target_contraption.can_append_item(product_item_buffer, core_position):
 		if dropTimer.is_stopped() == false:
 			dropTimer.stop()
-		# no need remove item parent here
-		frontContraption.append_item(product_item_buffer, frontContraptionSide)
+		target_contraption.append_item(product_item_buffer, core_position)
 		product_item_buffer = null
-	else:
-		pass #start_drop_process() disabled for now, we don't want to drop items if the front contraption cannot accept them
 
 
 func start_drop_process() -> void:
 	if dropTimer.is_stopped() == false:
 		return
-
-
-	if dropTimer.is_stopped() == true:
-		dropTimer.start()
+	dropTimer.start()
 
 
 func _ready() -> void:
+	base_occupied_offsets = [
+		Vector2i(0, 0), Vector2i(1, 0),
+		Vector2i(0, 1), Vector2i(1, 1)
+	]
+	base_input_slots = [Vector2i(0, -1), Vector2i(0,2)]
 	super()
 	processingTimer = get_node("Timer")
 	dropTimer = Timer.new()
@@ -61,8 +75,7 @@ func _ready() -> void:
 	dropTimer.timeout.connect(_on_drop_timer_timeout)
 	add_child(dropTimer)
 
-	dropLabel = %DropLabel
-	pass
+	dropLabel = get_node("DropLabel")
 
 
 func _process(delta: float) -> void:
@@ -93,26 +106,28 @@ func _process(delta: float) -> void:
 		dropLabel.visible = false
 	
 
-func append_item(item: Item, side: Constants.Sides) -> void:
-	if side == Constants.Sides.TOP:
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
+	if not can_append_item(item, slot):
+		return
+
+	var local_slot = slot - core_position
+	var rotated_slots = get_rotated_input_slots()
+	var input_index = rotated_slots.find(local_slot)
+	if input_index == 0:
 		processing_item_left = item
-	else:
+	elif input_index == 1:
 		processing_item_right = item
+	else:
+		return
 
 	if processing_item_left != null and processing_item_right != null:
-		# Both items are present: process them.
 		waitingForPair = false
 		processingTimer.wait_time = Constants.MachineSpeed
-	
-		if processingTimer != null:
-			processingTimer.start()
+		processingTimer.start()
 	else:
-		# A single item is waiting for its pair. If the pair does not arrive in time,
-		# the item is ejected unprocessed.
 		waitingForPair = true
 		processingTimer.wait_time = Constants.DropTime
-		if processingTimer != null:
-			processingTimer.start()
+		processingTimer.start()
 
 func clear_items() -> void:
 	if processing_item_left != null:
@@ -149,14 +164,33 @@ func _on_timer_timeout() -> void:
 
 	var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
 	var product: Item = scene.instantiate() as Item
+	if product == null:
+		return
 
 	var left_type = str(processing_item_left.get_meta("type"))
 	var right_type = str(processing_item_right.get_meta("type"))
+	var fused_type = ""
 
-	product.set_meta("type", Constants.json_as_dict["fusion"][left_type][right_type])
+	var fusion_table = Constants.json_as_dict["fusion"] as Dictionary
+	if fusion_table.has(left_type):
+		var left_recipes = fusion_table[left_type] as Dictionary
+		if left_recipes.has(right_type):
+			fused_type = str(left_recipes[right_type])
+
+	if fused_type.is_empty():
+		push_warning("No fusion recipe for %s + %s. Pair dropped unprocessed." % [left_type, right_type])
+		product.queue_free()
+		processing_item_left.queue_free()
+		processing_item_right.queue_free()
+		processing_item_left = null
+		processing_item_right = null
+		processingTimer.stop()
+		return
+
+	product.set_meta("type", fused_type)
+	product.update_sprite()
 
 	processingTimer.stop()
-
 	product_item_buffer = product
 	processing_item_left.queue_free()
 	processing_item_right.queue_free()
@@ -166,5 +200,6 @@ func _on_timer_timeout() -> void:
 
 func _on_drop_timer_timeout() -> void:
 	if product_item_buffer != null:
+		emit_signal("dropped_item", product_item_buffer)
 		product_item_buffer.queue_free()
 		product_item_buffer = null

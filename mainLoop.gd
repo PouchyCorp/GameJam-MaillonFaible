@@ -69,10 +69,6 @@ func _process(_delta: float) -> void:
 		output2.requirements = requirements2
 		output3.requirements = requirements3
 
-		output1.set_requirements(requirements1)
-		output2.set_requirements(requirements2)
-		output3.set_requirements(requirements3)
-
 	if timer.is_stopped() == false:
 		var timeLeft = timer.time_left
 		var timeLeftInt = int(timeLeft)

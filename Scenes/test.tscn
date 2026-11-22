@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="1_lc1oi"]
 [ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://Scenes/Contraptions/conveyor.tscn" id="2_8od7v"]
+[ext_resource type="PackedScene" uid="uid://btlmwcwil81f1" path="res://Scenes/Contraptions/splitter.tscn" id="3_qc4db"]
+[ext_resource type="PackedScene" uid="uid://carjsgft4omwu" path="res://Scenes/Contraptions/merger.tscn" id="4_ys1qc"]
 
 [node name="Test" type="Node2D" unique_id=1905752789]
 
@@ -10,13 +12,19 @@ position = Vector2(293, 234)
 scale = Vector2(0.7, 0.7)
 
 [node name="Conveyor" parent="." unique_id=886386989 instance=ExtResource("2_8od7v")]
-position = Vector2(238, 454)
+position = Vector2(216, 465)
 
-[node name="Conveyor2" parent="." unique_id=864235313 instance=ExtResource("2_8od7v")]
-position = Vector2(543, 432)
+[node name="Conveyor2" parent="." unique_id=2060789793 instance=ExtResource("2_8od7v")]
+position = Vector2(359, 318)
 
-[node name="Conveyor3" parent="." unique_id=1628727556 instance=ExtResource("2_8od7v")]
-position = Vector2(826, 204)
+[node name="Conveyor3" parent="." unique_id=1912184590 instance=ExtResource("2_8od7v")]
+position = Vector2(529, 461)
 
-[node name="Conveyor4" parent="." unique_id=1765720903 instance=ExtResource("2_8od7v")]
-position = Vector2(878, 410)
+[node name="Splitter" parent="." unique_id=1711607641 instance=ExtResource("3_qc4db")]
+position = Vector2(367, 469)
+
+[node name="Splitter2" parent="." unique_id=669074130 instance=ExtResource("3_qc4db")]
+position = Vector2(192, 302)
+
+[node name="Merger" parent="." unique_id=1695691332 instance=ExtResource("4_ys1qc")]
+position = Vector2(567, 245)

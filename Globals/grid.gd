@@ -1,125 +1,112 @@
 extends Node
 
 const GRID_SIZE = 128
-var cells:Array[Contraption] = []
 const ROWS = 10
 const ROW_SIZE = 12
 
-func _ready() -> void:
-	for i in range(ROWS*ROW_SIZE):
-		cells.append(null)
+var cells:Array[Contraption] = []
 
-func coords(pos:Vector2) -> int:
-	var x = int(pos.x/GRID_SIZE)
-	var y = int(pos.y/GRID_SIZE)
-	return y*ROW_SIZE + x
+func _ready() -> void:
+	cells.resize(ROWS * ROW_SIZE)
+	cells.fill(null)
+
 
 func coord_to_vector(coord:int) -> Vector2i:
-	return Vector2i(coord % ROW_SIZE, int(coord / ROW_SIZE))
+	return Vector2i(coord % ROW_SIZE, int(float(coord) / float(ROW_SIZE)))
 
-func is_in_bounds(pos:Vector2i) -> bool:
-	return pos.x >= 0 and pos.x < ROW_SIZE and pos.y >= 0 and pos.y < ROWS
+
+func vector_to_coord(coord:Vector2i) -> int:
+	return coord.y * ROW_SIZE + coord.x
+
+
+func is_in_bounds(coord:Vector2i) -> bool:
+	return coord.x >= 0 and coord.x < ROW_SIZE and coord.y >= 0 and coord.y < ROWS
+
+
+func coords(pos:Vector2) -> Vector2i:
+	var x = floori(pos.x / GRID_SIZE)
+	var y = floori(pos.y / GRID_SIZE)
+	return Vector2i(x, y)
+
 
 func get_contraption(pos:Vector2) -> Contraption:
 	var coord = coords(pos)
-	if coord < 0 or coord >= cells.size():
+	if not is_in_bounds(coord):
 		return null
-	return cells[coord]
+	return cells[vector_to_coord(coord)]
 
-func can_place(pos:Vector2) -> bool:
-	var coord = coords(pos)
-	if coord < 0 or coord >= cells.size():
-		return false
-	return cells[coord] == null
 
-func place_contraption(pos:Vector2, contraption:Contraption) -> bool:
+func get_contraption_at(coord:Vector2i) -> Contraption:
+	if not is_in_bounds(coord):
+		return null
+	return cells[vector_to_coord(coord)]
+
+
+func can_place(pos:Vector2, contraption:Contraption = null) -> bool:
+	var proposed_core = coords(pos)
 	if contraption == null:
-		return false
-	var coord = coords(pos)
-	if coord < 0 or coord >= cells.size() or cells[coord] != null:
-		return false
-	cells[coord] = contraption
-	update_contraptions_around(coord_to_vector(coord))
+		return is_in_bounds(proposed_core) and get_contraption_at(proposed_core) == null
+
+	for offset in contraption.get_occupied_offsets():
+		var occupied = proposed_core + offset
+		if not is_in_bounds(occupied):
+			return false
+		var existing = get_contraption_at(occupied)
+		if existing != null and existing != contraption:
+			return false
 	return true
 
-func take_contraption(pos:Vector2) -> Contraption:
-	var coord = coords(pos)
-	if coord < 0 or coord >= cells.size():
-		return null
-	var contraption = cells[coord]
+
+func debug_print() -> void:
+	# display core positions of contraptions in the grid
+	var output = "Grid state:\n"
+	for y in range(ROWS):
+		for x in range(ROW_SIZE):
+			var contraption = get_contraption_at(Vector2i(x, y))
+			if contraption == null:
+				output += ". "
+			elif (contraption.core_position == Vector2i(x, y)):
+				output += "X "
+			else:
+				output += "O "
+		output += "\n"
+	print(output)
+
+func place_contraption(pos:Vector2, contraption:Contraption) -> bool:
+	if contraption == null or not can_place(pos, contraption):
+		debug_print()
+		return false
+	var core = coords(pos)
+	contraption.set_core_position(core)
+	for offset in contraption.get_occupied_offsets():
+		cells[vector_to_coord(core + offset)] = contraption
+	debug_print()
+	return true
+
+
+func take_contraption(pos:Vector2, contraption:Contraption = null) -> Contraption:
+	if contraption == null:
+		var core = coords(pos)
+		contraption = get_contraption_at(core)
+
+		if contraption == null:
+			for candidate in cells:
+				if candidate != null and candidate.core_position == core:
+					contraption = candidate
+					break
 	if contraption == null:
 		return null
-	cells[coord] = null
-	update_contraptions_around(coord_to_vector(coord))
+
+	var occupied_cells = contraption.get_global_occupied_cells()
+	for occupied in occupied_cells:
+		if is_in_bounds(occupied):
+			cells[vector_to_coord(occupied)] = null
+	contraption.set_core_position(Vector2i(-1, -1))
+	debug_print()
 	return contraption
+
 
 func update_contraptions(pos:Vector2, contraption:Contraption) -> bool:
 	if contraption == null:
-		take_contraption(pos)
-		return true
+		return take_contraption(pos) != null
 	return place_contraption(pos, contraption)
-
-func update_contraptions_around(coord:Vector2i) -> void:
-	for y in range(max(0, coord.y - 1), min(coord.y + 2, ROWS)):
-		for x in range(max(0, coord.x - 1), min(coord.x + 2, ROW_SIZE)):
-			var contraption = cells[y*ROW_SIZE + x]
-			if contraption != null:
-				update_single_contraption(x, y, contraption)
-
-func update_single_contraption(x:int, y:int, contraption:Contraption) -> void:
-	if "frontContraption" in contraption:
-		contraption.frontContraption = null
-	if "contraptionTop" in contraption:
-		contraption.contraptionTop = null
-	if "contraptionBottom" in contraption:
-		contraption.contraptionBottom = null
-	if "leftContraption" in contraption:
-		contraption.leftContraption = null
-	if "rightContraption" in contraption:
-		contraption.rightContraption = null
-
-	for output_side in contraption.base_output_sides:
-		var global_output = contraption.rotate_side(output_side)
-		var neighbor = Vector2i(x, y) + side_offset(global_output)
-		if not is_in_bounds(neighbor):
-			continue
-		var target = cells[neighbor.y*ROW_SIZE + neighbor.x]
-		if target == null:
-			continue
-		var receiving_global = contraption.opposite_side(global_output)
-		var receiving_local = target.to_local_side(receiving_global)
-		if not target.accepts_side(receiving_local):
-			continue
-
-		if contraption is Splitter:
-			if global_output == Constants.Sides.TOP:
-				contraption.contraptionTop = target
-				contraption.contraptionTopSide = receiving_local
-			elif global_output == Constants.Sides.BOTTOM:
-				contraption.contraptionBottom = target
-				contraption.contraptionBottomSide = receiving_local
-		elif contraption is Cutter:
-			if global_output == Constants.Sides.TOP:
-				contraption.topContraption = target
-				contraption.rightContraptionSide = receiving_local
-			elif global_output == Constants.Sides.BOTTOM:
-				contraption.bottomContraption = target
-				contraption.leftContraptionSide = receiving_local
-		elif "frontContraption" in contraption:
-			contraption.frontContraption = target
-			contraption.frontContraptionSide = receiving_local
-
-func side_offset(side:Constants.Sides) -> Vector2i:
-	match side:
-		Constants.Sides.LEFT:
-			return Vector2i(-1, 0)
-		Constants.Sides.RIGHT:
-			return Vector2i(1, 0)
-		Constants.Sides.TOP:
-			return Vector2i(0, -1)
-		Constants.Sides.BOTTOM:
-			return Vector2i(0, 1)
-	return Vector2i.ZERO
-
-
-
