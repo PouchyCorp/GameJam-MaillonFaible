@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mt86c646wen0"
-path="res://.godot/imported/Spritesheet_entree_niveau_2_objet_sort.png-b4ca6733d965f173d376cb77fab3f6fa.ctex"
+path="res://.godot/imported/Spritesheet_entree_niveau_2_objet_sort.png-531cdc33170a2c64dfca5b13f952860b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/sprites/Spritesheet_entree_niveau_2_objet_sort.png"
-dest_files=["res://.godot/imported/Spritesheet_entree_niveau_2_objet_sort.png-b4ca6733d965f173d376cb77fab3f6fa.ctex"]
+source_file="res://Assets/Sprites/sprites/Spritesheet_entree_niveau_2_objet_sort.png"
+dest_files=["res://.godot/imported/Spritesheet_entree_niveau_2_objet_sort.png-531cdc33170a2c64dfca5b13f952860b.ctex"]
 
 [params]
 
