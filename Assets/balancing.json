@@ -10,9 +10,9 @@
 		"2": {
 		},
 		"sources": {
-			0: "",
-			1: "buche",
-			2: ""
+			"0": "",
+			"1": "buche",
+			"2": ""
 		}
 	},
 	"sources": {
@@ -33,9 +33,9 @@
 			"charbon": 3
 		},
 		"sources": {
-			0: "",
-			1: "buche",
-			2: ""
+			"0": "",
+			"1": "buche",
+			"2": ""
 		}
 	},
 	"sources": {
@@ -58,9 +58,9 @@
 			"fromage": 3
 		},
 		"sources": {
-			0: "seau",
-			1: "vache",
-			2: ""
+			"0": "seau",
+			"1": "vache",
+			"2": ""
 		}
 	},
 	"sources": {
@@ -72,16 +72,14 @@
 
 "4": {
 	"requirements": {
-		"0": {
-			"
+  		"0": {
 			},
-			1: {
+			"1": {
 				"fromage_rape": 4
 			},
-			2: {
+			"2": {
 				"tracteur": 4
 			},
-		},
 		"1": {
 			"fromage_rape":4
 		},
@@ -107,9 +105,9 @@
 			"planche_fromage": 2
 		},
 		"sources": {
-			0: "vache",
-			1: "seau",
-			2: "buche"
+			"0": "vache",
+			"1": "seau",
+			"2": "buche"
 		}
 	},
 	"sources": {
@@ -131,9 +129,9 @@
 			"croissant": 1, "beurre":3
 		},
 		"sources": {
-			0: "vache",
-			1: "seau",
-			2: "buche"
+			"0": "vache",
+			"1": "seau",
+			"2": "buche"
 		}
 	},
 	"sources": {
@@ -153,11 +151,12 @@
 		},
 		"2": {
 			"tracteur": 5
+
 		},
 		"sources": {
-			0: "buche",
-			1: "vache",
-			2: "buche"
+			"0": "buche",
+			"1": "vache",
+			"2": "buche"
 		}
 	},
 	"sources": {
@@ -175,11 +174,12 @@
 			"ambroisie": 3
 		},
 		"2": {
+
 		},
 		"sources": {
-			0: "buche",
-			1: "vache",
-			2: "seau"
+			"0": "buche",
+			"1": "vache",
+			"2": "seau"
 		}
 	},
 	"sources": {
@@ -202,9 +202,9 @@
 		"2": {
 		},
 		"sources": {
-			0: "buche",
-			1: "vache",
-			2: "seau"
+			"0": "buche",
+			"1": "vache",
+			"2": "seau"
 		}
 	},
 	"sources": {
@@ -225,9 +225,10 @@
 			"sirop_erable": 1, "roquefort":2, "fromage_rape": 1
 		},
 		"sources": {
-			0: "seau",
-			1: "vache",
-			2: "buche"
+			"0": "seau",
+			"1": "vache",
+			"2": "buche"
+
 		}
 	},
 	"sources": {
