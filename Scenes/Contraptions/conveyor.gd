@@ -97,6 +97,7 @@ func _on_drop_timer_timeout() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
+	
 	for i in range(itemsNodes.size()):
 		var childItems = itemsNodes[i]
 		if childItems is PathFollow2D:

@@ -80,7 +80,5 @@ func _ready() -> void:
 	base_input_slots = [Vector2i(-1, 0)]
 	requirements_container = $RequirementsContainer
 	_update_requirements_label()
-	if core_position.x < 0:
-		Grid.place_contraption(global_position, self)
 
 	super()

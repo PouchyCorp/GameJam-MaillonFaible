@@ -164,4 +164,4 @@ func get_global_slot_cells(base_slots: Array[Vector2i]) -> Array[Vector2i]:
 	return result
 
 func _ready() -> void:
-	global_position = global_position.snapped(SNAP)
+	position = position.snapped(SNAP)

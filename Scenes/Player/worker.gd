@@ -61,10 +61,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if hasItem && grabbedItem != null:
-		$PlaceIndicator.global_position = grabbedItem.global_position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE))
+		$PlaceIndicator.position = grabbedItem.position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE))
 	
 	if grabbedItem != null && hasItem:
-		grabbedItem.global_position = $CarryPlace.global_position
+		grabbedItem.position = $CarryPlace.position
 
 func _on_item_detector_body_entered(body: Node2D) -> void:
 	if (body is Grabbable):
@@ -85,8 +85,8 @@ func update_nearest():
 func compare_distance(a:Grabbable,b:Grabbable):
 	a.ungrab_highlight()
 	b.ungrab_highlight()
-	var distance_a = a.global_position - $Hand.global_position
-	var distance_b = b.global_position - $Hand.global_position
+	var distance_a = a.position - $Hand.position
+	var distance_b = b.position - $Hand.position
 	return distance_a.length_squared() < distance_b.length_squared()
 
 func _input(event: InputEvent) -> void:
@@ -104,9 +104,24 @@ func _input(event: InputEvent) -> void:
 			hasItem = true
 			reachable.pop_front()
 			$PlaceIndicator.show()
+
+
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
-			grabbedItem.rotate(PI/2)
 			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Directions
+
+			match grabbedItem.facing:
+				Constants.Directions.RIGHT:
+					grabbedItem.get_node("AnimatedSprite2D").animation = "droit"
+				Constants.Directions.DOWN:
+					grabbedItem.get_node("AnimatedSprite2D").animation = "bas"
+				Constants.Directions.LEFT:
+					grabbedItem.get_node("AnimatedSprite2D").animation = "gauche"
+				Constants.Directions.UP:
+					grabbedItem.get_node("AnimatedSprite2D").animation = "haut"
+				
+
+			grabbedItem.get_node("AnimatedSprite2D").play()
+
 
 			

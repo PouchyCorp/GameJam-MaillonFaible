@@ -42,19 +42,8 @@ func get_contraption_at(coord:Vector2i) -> Contraption:
 	return cells[vector_to_coord(coord)]
 
 
-func can_place(pos:Vector2, contraption:Contraption = null) -> bool:
-	var proposed_core = coords(pos)
-	if contraption == null:
-		return is_in_bounds(proposed_core) and get_contraption_at(proposed_core) == null
-
-	for offset in contraption.get_occupied_offsets():
-		var occupied = proposed_core + offset
-		if not is_in_bounds(occupied):
-			return false
-		var existing = get_contraption_at(occupied)
-		if existing != null and existing != contraption:
-			return false
-	return true
+func can_place(pos:Vector2i) -> bool:
+	return cells[ROW_SIZE * pos.y + pos.x] == null
 
 
 func debug_print() -> void:
@@ -72,20 +61,8 @@ func debug_print() -> void:
 		output += "\n"
 	print(output)
 
-func place_contraption(pos:Vector2, contraption:Contraption) -> bool:
-	debug_print()
-	if contraption == null or not can_place(pos, contraption):
-		return false
-	var core = coords(pos)
-	contraption.set_core_position(core)
-	for offset in contraption.get_occupied_offsets():
-		cells[vector_to_coord(core + offset)] = contraption
-	
-	return true
-
 
 func take_contraption(pos:Vector2, contraption:Contraption = null) -> Contraption:
-	debug_print()
 	if contraption == null:
 		var core = coords(pos)
 		contraption = get_contraption_at(core)
@@ -103,14 +80,7 @@ func take_contraption(pos:Vector2, contraption:Contraption = null) -> Contraptio
 		if is_in_bounds(occupied):
 			cells[vector_to_coord(occupied)] = null
 	contraption.set_core_position(Vector2i(-1, -1))
-	debug_print()
 	return contraption
-
-
-func update_contraptions(pos:Vector2, contraption:Contraption) -> bool:
-	if contraption == null:
-		return take_contraption(pos) != null
-	return place_contraption(pos, contraption)
 
 
 func _get_scene_path_for_contraption_type(type:String) -> String:
@@ -149,22 +119,18 @@ func _find_random_placement_for(contraption: Contraption) -> Vector2:
 	var candidates: Array[Vector2i] = []
 	for y in range(ROWS):
 		for x in range(ROW_SIZE):
-			candidates.append(Vector2i(x, y))
+			if (cells[vector_to_coord(Vector2i(x, y))] == null):
+				candidates.append(Vector2i(x, y))
 
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	for i in range(candidates.size() - 1, 0, -1):
-		var j = rng.randi_range(0, i)
-		var tmp = candidates[i]
-		candidates[i] = candidates[j]
-		candidates[j] = tmp
-
-	for coord in candidates:
-		var pos = Vector2(coord.x * GRID_SIZE, coord.y * GRID_SIZE)
-		if can_place(pos, contraption):
-			return pos
-
-	return Vector2(-1, -1)
+	
+	if candidates.size() > 0:
+		var random_index = rng.randi_range(0, candidates.size() - 1)
+		var chosen_coord = candidates[random_index]
+		return Vector2(chosen_coord.x * GRID_SIZE, chosen_coord.y * GRID_SIZE)
+	else:
+		return Vector2(-1, -1)
 
 
 
@@ -192,7 +158,13 @@ func _on_contraption_command(type:String):
 		contraption.queue_free()
 		return
 
-	place_contraption(spawn_position, contraption)
-
-	contraption.position = spawn_position
+	
 	get_tree().current_scene.get_node("Constructs").add_child(contraption)
+
+func place_contraption(pos:Vector2i, contraption:Contraption) -> void:
+	if contraption == null:
+		return
+
+	contraption.position = pos # Offset to center the output contraption
+	contraption.core_position = coords(pos)
+	cells[vector_to_coord(coords(pos))] = contraption

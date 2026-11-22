@@ -8,7 +8,7 @@ func _ready() -> void:
 	var trash_can: Contraption = trash_can_scene.instantiate() as Contraption
 	#var trash_can_pos = Vector2((Grid.ROW_SIZE - 1) * Grid.GRID_SIZE, (Grid.ROWS - 1) * Grid.GRID_SIZE)
 	var trash_can_pos = Vector2(0,0)
-	Grid.place_contraption(trash_can_pos, trash_can)
+	Grid.cells[Grid.vector_to_coord(Grid.coords(trash_can_pos))] = trash_can
 
 	trash_can.name = "TrashCan"
 	trash_can.position = trash_can_pos + Vector2(64, 64) # Offset to center the output contraption
@@ -20,7 +20,7 @@ func _ready() -> void:
 	for i in range(3):
 		var input: Contraption = input_scene.instantiate() as Contraption
 		var input_pos = Vector2(0, (i*3 + 1) * Grid.GRID_SIZE)
-		Grid.place_contraption(input_pos, input)
+		Grid.cells[Grid.vector_to_coord(Grid.coords(input_pos))] = input
 
 		input.name = "InputThingy" + str(i+1)
 		input.position = input_pos + Vector2(64, 64)# Offset to center the output contraption
@@ -31,12 +31,11 @@ func _ready() -> void:
 	for i in range(3):
 		var output: Contraption = output_scene.instantiate() as Contraption
 		var output_pos = Vector2((Grid.ROW_SIZE - 1) * Grid.GRID_SIZE, (i*3 + 1) * Grid.GRID_SIZE)
-		Grid.place_contraption(output_pos, output)
+		Grid.cells[Grid.vector_to_coord(Grid.coords(output_pos))] = output
 
 		output.name = "OutputThingy" + str(i+1)
 		output.position = output_pos + Vector2(64, 64) # Offset to center the output contraption
 		add_child(output)
-	pass # Replace with function body.
 
 
 func _input(event: InputEvent) -> void:

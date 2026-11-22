@@ -37,8 +37,6 @@ func clear_items() -> void:
 func _ready() -> void:
 	base_occupied_offsets = [Vector2i(0, 0)]
 	base_input_slots = []
-	if core_position.x < 0:
-		Grid.place_contraption(global_position, self)
 
 	dispenseTimer = Timer.new()
 	dispenseTimer.one_shot = false
