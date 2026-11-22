@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvdy2tnhksoj6"]
 
-[ext_resource type="PackedScene" uid="uid://chb3l4upaa2rx" path="res://Scenes/Room/room.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://qhlxx4868pwb" path="res://Scenes/Room/main_scene.tscn" id="1_eow3j"]
 [ext_resource type="Texture2D" uid="uid://cy3ciiemdk75m" path="res://Assets/Sprites/small_guide.jpg" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://y8wnsnolb1cx" path="res://Assets/Sprites/ExprSpannel.png" id="3_7jktm"]
 [ext_resource type="Texture2D" uid="uid://ctlirjgk30omq" path="res://Assets/Sprites/small_belt.png" id="4_ryrav"]
@@ -34,7 +34,7 @@ handle_input_locally = false
 size = Vector2i(1632, 1084)
 render_target_update_mode = 4
 
-[node name="Room" parent="Tkt/SubViewportContainer/SubViewport" unique_id=1288325252 instance=ExtResource("1_80nbo")]
+[node name="MainNode" parent="Tkt/SubViewportContainer/SubViewport" unique_id=166482189 instance=ExtResource("1_eow3j")]
 
 [node name="PanelContainer" type="PanelContainer" parent="Tkt" unique_id=74470707]
 layout_mode = 1
