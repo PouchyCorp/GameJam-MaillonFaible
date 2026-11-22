@@ -9,32 +9,33 @@ var requirements: Dictionary = {}
 var requirements_container: VBoxContainer = null
 
 
-func can_append_item(item: Item, side: Constants.Sides) -> bool:
+func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if item == null:
 		return false
-
-	if side == Constants.Sides.LEFT:
-		return true
-
-	return false
+	var local_slot = slot - core_position
+	return local_slot in get_rotated_input_slots()
 
 
-func append_item(item: Item, _side: Constants.Sides) -> void:
-
+func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
 	if item == null:
 		return
-
-	if item.get_meta("type") not in requirements:
-		push_warning("Item type not required: " + str(item.get_meta("type")))
-		# TODO : play loud buzzer and decrease life
+	if not can_append_item(item, slot):
 		return
 
-	requirements[item.get_meta("type")] -= 1
+	var item_type = str(item.get_meta("type"))
+	if item_type not in requirements:
+		push_warning("Item type not required: " + item_type)
+		# TODO : play loud buzzer and decrease life
+		item.queue_free()
+		return
 
-	if requirements[item.get_meta("type")] <= 0:
-		requirements.erase(item.get_meta("type"))
+	requirements[item_type] -= 1
+
+	if requirements[item_type] <= 0:
+		requirements.erase(item_type)
 
 	_update_requirements_label()
+	item.queue_free()
 	# TODO : play happy sound and increase score
 
 
@@ -75,10 +76,11 @@ func requirementsMet() -> bool:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	base_occupied_offsets = [Vector2i(0, 0)]
+	base_input_slots = [Vector2i(-1, 0)]
 	requirements_container = $RequirementsContainer
 	_update_requirements_label()
+	if core_position.x < 0:
+		Grid.place_contraption(global_position, self)
 
-
-func set_requirements(new_requirements: Dictionary) -> void:
-	requirements = new_requirements
-	_update_requirements_label()
+	super()

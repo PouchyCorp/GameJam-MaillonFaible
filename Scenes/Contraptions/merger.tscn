@@ -6,7 +6,7 @@
 size = Vector2(90, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stq56"]
-size = Vector2(90, 91)
+size = Vector2(256, 256)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rrs4q"]
 
@@ -21,12 +21,13 @@ size = Vector2(128, 128)
 script = ExtResource("1_r8xb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000933227]
-position = Vector2(0, 3)
+position = Vector2(64, 64)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_62myk")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1130119059]
-scale = Vector2(2, 2)
+position = Vector2(64, 58)
+scale = Vector2(2.833333, 2.8131866)
 color = Color(0.38431132, 0.04061252, 0.12874332, 1)
 polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
 uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
@@ -34,8 +35,7 @@ uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
 [node name="Area2D" type="Area2D" parent="." unique_id=1664934556]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1962946442]
-position = Vector2(0, 5)
-scale = Vector2(2, 2)
+position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_stq56")
 
 [node name="Container" type="Node" parent="." unique_id=63803703]
@@ -57,24 +57,24 @@ texture_progress = SubResource("PlaceholderTexture2D_rrs4q")
 metadata/_edit_use_anchors_ = true
 
 [node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1161991292]
-position = Vector2(-44.01544, 79.91497)
-rotation = -1.5712271
+position = Vector2(5.0000076, -36.999992)
+rotation = -4.69925
 scale = Vector2(0.27255684, 0.3264023)
 color = Color(1, 0.22745098, 1, 1)
 polygon = PackedVector2Array(-56.00003, -56, 39.99991, 9.536743e-06, -48.00009, 56.000008, -3.0517578e-05, 9.536743e-06)
 uv = PackedVector2Array(-176, -32, -80.00006, 24.000008, -168.00006, 80.00001, -120, 24.000008)
 
 [node name="Polygon2D4" type="Polygon2D" parent="." unique_id=1070054403]
-position = Vector2(-44.01544, -68.08503)
-rotation = 1.5704871
+position = Vector2(1.9999924, 168)
+rotation = 4.7070036
 scale = Vector2(0.33074254, 0.31868383)
 color = Color(0.06666667, 1, 1, 1)
 polygon = PackedVector2Array(-56.00003, -56, 39.99991, 9.536743e-06, -48.00009, 56.000008, -3.0517578e-05, 9.536743e-06)
 uv = PackedVector2Array(-176, -32, -80.00006, 24.000008, -168.00006, 80.00001, -120, 24.000008)
 
 [node name="Polygon2D5" type="Polygon2D" parent="." unique_id=1946991358]
-position = Vector2(83.98455, -0.0850296)
-rotation = 0.008635265
+position = Vector2(182, 7.6293945e-06)
+rotation = 0.02497023
 scale = Vector2(0.13045874, 0.13321444)
 skew = -0.0005186796
 color = Color(0.925496, 0.8419645, 0.97616, 1)
@@ -92,6 +92,7 @@ label_settings = SubResource("LabelSettings_r8xb1")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1889592954]
+position = Vector2(64, 64)
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_okus7")
 

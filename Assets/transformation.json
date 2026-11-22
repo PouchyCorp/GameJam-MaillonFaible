@@ -22,7 +22,6 @@
 		"tracteur": "tracteur",
 		"demi_vache": "vache_rouge",
 		"ambroisie": ""
-
 	},
 	"decoupeur": {
 		"buche": "planche",
@@ -30,7 +29,7 @@
 		"fromage": "fromage_rape",
 		"statue_vache": "planche",
 		"vache": "demi_vache",
-		"buche_noel": "planche"
+		"buche_noel": "planche",
 		"charbon": "",
 		"planche": "",
 		"vache_rouge": "demi_vache",
