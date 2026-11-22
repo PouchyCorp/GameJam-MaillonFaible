@@ -126,3 +126,9 @@ layout_mode = 2
 texture_normal = ExtResource("5_eow3j")
 texture_pressed = ExtResource("6_eow3j")
 texture_hover = ExtResource("7_j5wjh")
+
+[connection signal="pressed" from="Tkt/PanelContainer/VBoxContainer/CommandBase/CommandButton" to="Tkt/SubViewportContainer/SubViewport/MainNode" method="_on_command_button_pressed_conveyor"]
+[connection signal="pressed" from="Tkt/PanelContainer/VBoxContainer/CommandBase2/CommandButton" to="Tkt/SubViewportContainer/SubViewport/MainNode" method="_on_command_button_pressed_splitter"]
+[connection signal="pressed" from="Tkt/PanelContainer/VBoxContainer/CommandBase3/CommandButton" to="Tkt/SubViewportContainer/SubViewport/MainNode" method="_on_command_button_pressed_heater"]
+[connection signal="pressed" from="Tkt/PanelContainer/VBoxContainer/CommandBase4/CommandButton" to="Tkt/SubViewportContainer/SubViewport/MainNode" method="_on_command_button_pressed_merger"]
+[connection signal="pressed" from="Tkt/PanelContainer/VBoxContainer/CommandBase5/CommandButton" to="Tkt/SubViewportContainer/SubViewport/MainNode" method="_on_command_button_pressed_cutter"]

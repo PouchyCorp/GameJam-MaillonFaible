@@ -8,14 +8,10 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_box"]
 size = Vector2(128, 128)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8brw"]
+
 [node name="TrashCan" type="StaticBody2D" unique_id=568305490]
 script = ExtResource("1_ew42d")
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=374086013]
-position = Vector2(3.695488e-06, -3.5164843)
-scale = Vector2(1.4222223, 1.4065936)
-color = Color(0.149, 0.149, 0.149, 1)
-polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=773515100]
 
@@ -24,3 +20,6 @@ shape = SubResource("RectangleShape2D_main")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=728498648]
 shape = SubResource("RectangleShape2D_box")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=9696268]
+sprite_frames = SubResource("SpriteFrames_c8brw")

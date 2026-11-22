@@ -68,6 +68,10 @@ func _process(_delta: float) -> void:
 		output2.requirements = dict["1"]
 		output3.requirements = dict["2"]
 
+		output1._update_requirements_label()
+		output2._update_requirements_label()
+		output3._update_requirements_label()	
+
 	if timer.is_stopped() == false:
 		var timeLeft = timer.time_left
 		var timeLeftInt = int(timeLeft)
@@ -88,3 +92,29 @@ func _on_phase_timer_timeout() -> void:
 	input1.emitting = true
 	input2.emitting = true
 	input3.emitting = true
+
+
+func _on_command_button_pressed_conveyor() -> void:
+
+	Grid._on_contraption_command("conveyor")
+	pass # Replace with function body.
+
+
+func _on_command_button_pressed_splitter() -> void:
+	Grid._on_contraption_command("splitter")
+	pass # Replace with function body.
+
+
+func _on_command_button_pressed_heater() -> void:
+	Grid._on_contraption_command("heater")
+	pass # Replace with function body.
+
+
+func _on_command_button_pressed_merger() -> void:
+	Grid._on_contraption_command("merger")
+	pass # Replace with function body.
+
+
+func _on_command_button_pressed_cutter() -> void:
+	Grid._on_contraption_command("cutter")
+	pass # Replace with function body.

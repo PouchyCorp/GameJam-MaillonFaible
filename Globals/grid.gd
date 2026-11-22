@@ -68,7 +68,8 @@ func take_contraption(pos:Vector2i, contraption:Contraption = null) -> Contrapti
 		
 	if cells[vector_to_coord(pos)] != contraption:
 		return null
-		
+	
+	cells[vector_to_coord(pos)] = null
 	contraption.set_core_position(Vector2i(-1, -1))
 	return contraption
 
@@ -156,7 +157,7 @@ func _on_contraption_command(type:String):
 
 	place_contraption(spawn_position, contraption)
 	debug_print()
-	get_tree().current_scene.get_node("Constructs").add_child(contraption)
+	get_tree().current_scene.get_node("Tkt/SubViewportContainer/SubViewport/MainNode").get_node("Constructs").add_child(contraption)
 
 func place_contraption(pos:Vector2i, contraption:Contraption) -> void:
 	if contraption == null:
