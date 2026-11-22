@@ -26,9 +26,14 @@ func _ready() -> void:
 	output3 = %Constructs.get_node("OutputThingy3") as OutputThingy
 
 	timer = get_node("PhaseTimer")
+	
 	timer.connect("timeout", Callable(self, "_on_phase_timer_timeout"))
-
-
+	
+	var sound_player = AudioStreamPlayer.new()
+	var stream = load("res://Assets/Sounds/High quality, royalty free_ elevator music.mp3")
+	sound_player.set_stream(stream)
+	add_child(sound_player)
+	sound_player.play()
 
 
 
@@ -39,7 +44,14 @@ func _process(_delta: float) -> void:
 	
 	if (output1.requirementsMet() and output2.requirementsMet() and output3.requirementsMet()):
 	
-		# TODO : play happy sound and increase score
+		# TODO : increase score
+		var sound_player = AudioStreamPlayer.new()
+		var stream = load("res://Assets/Sounds/victory.mp3")
+		sound_player.set_stream(stream)
+		get_tree().current_scene.add_child(sound_player)
+		sound_player.play()
+		await not sound_player.playing
+		sound_player.queue_free()
 
 		# Clear every contraption on the scene
 		for child in %Constructs.get_children():

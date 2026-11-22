@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dm1ig8qkyr427"
-path="res://.godot/imported/Spritesheet_sol_ligne.png-d0a6e9f1a94ce853e06b445740f39f05.ctex"
+path="res://.godot/imported/Spritesheet_sol_ligne.png-1c5321419efe15e103e00276c265acf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/sprites/Spritesheet_sol_ligne.png"
-dest_files=["res://.godot/imported/Spritesheet_sol_ligne.png-d0a6e9f1a94ce853e06b445740f39f05.ctex"]
+source_file="res://Assets/Sprites/sprites/Spritesheet_sol_ligne.png"
+dest_files=["res://.godot/imported/Spritesheet_sol_ligne.png-1c5321419efe15e103e00276c265acf8.ctex"]
 
 [params]
 

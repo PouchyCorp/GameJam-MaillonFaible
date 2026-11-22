@@ -91,6 +91,14 @@ func _on_drop_timer_timeout() -> void:
 	if is_instance_valid(pending_drop_item):
 		emit_signal("dropped_item", pending_drop_item)
 		pending_drop_item.queue_free()
+		
+		var sound_player = AudioStreamPlayer.new()
+		var stream = load("res://Assets/Sounds/metal pipe falling sound effect.mp3")
+		sound_player.set_stream(stream)
+		get_tree().current_scene.add_child(sound_player)
+		sound_player.play()
+		await not sound_player.playing
+		sound_player.queue_free()
 
 	pending_drop_parent = null
 	pending_drop_item = null

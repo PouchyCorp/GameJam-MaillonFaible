@@ -25,7 +25,14 @@ func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
 	var item_type = str(item.get_meta("type"))
 	if item_type not in requirements:
 		push_warning("Item type not required: " + item_type)
-		# TODO : play loud buzzer and decrease life
+		# TODO : decrease life
+		var sound_player = AudioStreamPlayer.new()
+		var stream = load("res://Assets/Sounds/WRONG BUZZER.mp3")
+		sound_player.set_stream(stream)
+		get_tree().current_scene.add_child(sound_player)
+		sound_player.play()
+		await not sound_player.playing
+		sound_player.queue_free()
 		item.queue_free()
 		return
 
@@ -36,7 +43,14 @@ func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
 
 	_update_requirements_label()
 	item.queue_free()
-	# TODO : play happy sound and increase score
+	var sound_player = AudioStreamPlayer.new()
+	var stream = load("res://Assets/Sounds/Correct Buzzer - Sound Effect.mp3")
+	sound_player.set_stream(stream)
+	get_tree().current_scene.add_child(sound_player)
+	sound_player.play()
+	await not sound_player.playing
+	sound_player.queue_free()
+	# TODO : increase score
 
 
 func _update_requirements_label() -> void:
