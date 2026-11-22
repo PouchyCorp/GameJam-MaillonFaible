@@ -62,23 +62,13 @@ func debug_print() -> void:
 	print(output)
 
 
-func take_contraption(pos:Vector2, contraption:Contraption = null) -> Contraption:
-	if contraption == null:
-		var core = coords(pos)
-		contraption = get_contraption_at(core)
-
-		if contraption == null:
-			for candidate in cells:
-				if candidate != null and candidate.core_position == core:
-					contraption = candidate
-					break
+func take_contraption(pos:Vector2i, contraption:Contraption = null) -> Contraption:
 	if contraption == null:
 		return null
-
-	var occupied_cells = contraption.get_global_occupied_cells()
-	for occupied in occupied_cells:
-		if is_in_bounds(occupied):
-			cells[vector_to_coord(occupied)] = null
+		
+	if cells[vector_to_coord(pos)] != contraption:
+		return null
+		
 	contraption.set_core_position(Vector2i(-1, -1))
 	return contraption
 
@@ -112,7 +102,7 @@ func _get_spawn_parent() -> Node:
 	return current_scene
 
 
-func _find_random_placement_for(contraption: Contraption) -> Vector2:
+func _find_random_placement_for(contraption: Contraption) -> Vector2i:
 	if contraption == null:
 		return Vector2(-1, -1)
 
@@ -128,7 +118,7 @@ func _find_random_placement_for(contraption: Contraption) -> Vector2:
 	if candidates.size() > 0:
 		var random_index = rng.randi_range(0, candidates.size() - 1)
 		var chosen_coord = candidates[random_index]
-		return Vector2(chosen_coord.x * GRID_SIZE, chosen_coord.y * GRID_SIZE)
+		return Vector2(chosen_coord.x, chosen_coord.y)
 	else:
 		return Vector2(-1, -1)
 
@@ -164,13 +154,14 @@ func _on_contraption_command(type:String):
 		contraption.queue_free()
 		return
 
-	
+	place_contraption(spawn_position, contraption)
+	debug_print()
 	get_tree().current_scene.get_node("Constructs").add_child(contraption)
 
 func place_contraption(pos:Vector2i, contraption:Contraption) -> void:
 	if contraption == null:
 		return
 
-	contraption.position = pos # Offset to center the output contraption
-	contraption.core_position = coords(pos)
-	cells[vector_to_coord(coords(pos))] = contraption
+	contraption.position = Vector2(pos.x * GRID_SIZE, pos.y * GRID_SIZE)
+	contraption.core_position = pos
+	cells[vector_to_coord(pos)] = contraption

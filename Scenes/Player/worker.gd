@@ -57,17 +57,18 @@ func _physics_process(delta: float) -> void:
 		$CarryPlace.position = Vector2(0,0)
 		z_index = 1
 	
-	velocity = lerp(velocity, direction * SPEED, ACCEL * delta)
+	velocity = lerp(velocity, direction * SPEED, ACCEL * delta)  # larp alert !!
 	move_and_slide()
 	
-	if hasItem && grabbedItem != null:
-		$PlaceIndicator.position = grabbedItem.position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE))
-	
+
 	if grabbedItem != null && hasItem:
-		grabbedItem.position = $CarryPlace.position
+		
+		grabbedItem.position = position + $CarryPlace.position
+		$PlaceIndicator.position = grabbedItem.position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE)) - position
 
 func _on_item_detector_body_entered(body: Node2D) -> void:
 	if (body is Grabbable):
+		#print("Entered: " + str(body))
 		if (not body in reachable): reachable.push_back(body)
 		update_nearest()
 
@@ -109,16 +110,17 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
 			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Directions
+			grabbedItem.rotate(PI/2)
 
-			match grabbedItem.facing:
-				Constants.Directions.RIGHT:
-					grabbedItem.get_node("AnimatedSprite2D").animation = "droit"
-				Constants.Directions.DOWN:
-					grabbedItem.get_node("AnimatedSprite2D").animation = "bas"
-				Constants.Directions.LEFT:
-					grabbedItem.get_node("AnimatedSprite2D").animation = "gauche"
-				Constants.Directions.UP:
-					grabbedItem.get_node("AnimatedSprite2D").animation = "haut"
+			# match grabbedItem.facing:
+			# 	Constants.Directions.RIGHT:
+			# 		grabbedItem.get_node("AnimatedSprite2D").animation = "droit"
+			# 	Constants.Directions.DOWN:
+			# 		grabbedItem.get_node("AnimatedSprite2D").animation = "bas"
+			# 	Constants.Directions.LEFT:
+			# 		grabbedItem.get_node("AnimatedSprite2D").animation = "gauche"
+			# 	Constants.Directions.UP:
+			# 		grabbedItem.get_node("AnimatedSprite2D").animation = "haut"
 				
 
 			grabbedItem.get_node("AnimatedSprite2D").play()

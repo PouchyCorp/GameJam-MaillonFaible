@@ -3,13 +3,7 @@
 [ext_resource type="Script" uid="uid://bg4lcy2up6v72" path="res://Scenes/Contraptions/output.gd" id="1_rhkpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp21n"]
-size = Vector2(90, 91)
-
-[sub_resource type="Curve2D" id="Curve2D_nh6hy"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -44, 0, 0, 0, 0, 0, 44, 0)
-}
-point_count = 2
+size = Vector2(128, 128)
 
 [node name="OutputThingy" type="StaticBody2D" unique_id=1418371769]
 script = ExtResource("1_rhkpb")
@@ -20,6 +14,8 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_lp21n")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=160682889]
+position = Vector2(-1.9073486e-06, -0.51647854)
+scale = Vector2(1.4222223, 1.4065936)
 color = Color(0.9255674, 0, 0.1238622, 1)
 polygon = PackedVector2Array(-45, -43, -45, 48, 45, 48, 45, -43)
 uv = PackedVector2Array(-167, -39, -169, 51, -82, 51, -79, -40)
@@ -29,10 +25,6 @@ position = Vector2(30, -14)
 scale = Vector2(0.40833333, 0.31944445)
 polygon = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
 uv = PackedVector2Array(-136, -32.000004, -16, 47.999992, -127.99994, 112, -72, 48)
-
-[node name="MainPath" type="Path2D" parent="." unique_id=1202516852]
-unique_name_in_owner = true
-curve = SubResource("Curve2D_nh6hy")
 
 [node name="RequirementsContainer" type="VBoxContainer" parent="." unique_id=1404282850]
 unique_name_in_owner = true

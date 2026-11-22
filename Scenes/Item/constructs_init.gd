@@ -11,7 +11,7 @@ func _ready() -> void:
 	Grid.cells[Grid.vector_to_coord(Grid.coords(trash_can_pos))] = trash_can
 
 	trash_can.name = "TrashCan"
-	trash_can.position = trash_can_pos + Vector2(64, 64) # Offset to center the output contraption
+	Grid.place_contraption(Vector2i(0,0), trash_can)
 	add_child(trash_can)
 
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 		Grid.cells[Grid.vector_to_coord(Grid.coords(input_pos))] = input
 
 		input.name = "InputThingy" + str(i+1)
-		input.position = input_pos + Vector2(64, 64)# Offset to center the output contraption
+		Grid.place_contraption(Vector2i(0, (i*3 + 1)), input)
 		add_child(input)
 
 	# Samething for the outputs at the right side of the grid
@@ -34,7 +34,8 @@ func _ready() -> void:
 		Grid.cells[Grid.vector_to_coord(Grid.coords(output_pos))] = output
 
 		output.name = "OutputThingy" + str(i+1)
-		output.position = output_pos + Vector2(64, 64) # Offset to center the output contraption
+		
+		Grid.place_contraption(Vector2i((Grid.ROW_SIZE - 1), (i*3 + 1)), output)
 		add_child(output)
 
 
