@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cm8pxrbi842au" path="res://Scenes/Contraptions/heater.gd" id="1_emja5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
-size = Vector2(90, 91)
-
 [sub_resource type="Curve2D" id="Curve2D_be0bl"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -44, 0, 0, 0, 0, 0, 44, 0)
@@ -24,10 +21,6 @@ size = Vector2(128, 128)
 [node name="Heater" type="StaticBody2D" unique_id=1849556168]
 script = ExtResource("1_emja5")
 metadata/_custom_type_script = "uid://cm8pxrbi842au"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=928395063]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_e7js5")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2097960051]
 color = Color(8.904189e-07, 0.28397036, 0.31524792, 1)

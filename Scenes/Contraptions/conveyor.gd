@@ -33,7 +33,11 @@ func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
 
 	pathFollow.h_offset = -item.get_meta("size") / 2
 	itemsNodes.insert(0, pathFollow)
-	pathFollow.progress_ratio = 0.5
+
+	if slot != core_position + rotate_vector(Vector2i(-1, 0)):
+		pathFollow.progress_ratio = 0.5
+	else:
+		pathFollow.progress_ratio = 0.0
 
 func get_facing_output_position() -> Vector2i:
 	var output_offset = rotate_vector(Vector2i(1, 0))

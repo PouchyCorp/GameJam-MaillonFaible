@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dkw2garxjdeyj" path="res://Scenes/Contraptions/cutter.gd" id="1_vd457"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t55a"]
-size = Vector2(90, 91)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yp31"]
 size = Vector2(90, 91)
 
@@ -18,10 +15,6 @@ size = Vector2(128, 128)
 [node name="Cutter" type="StaticBody2D" unique_id=1711607641]
 script = ExtResource("1_vd457")
 metadata/_custom_type_script = "uid://cbty1u3flijoc"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1691926649]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_2t55a")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=702291181]
 z_index = 3
