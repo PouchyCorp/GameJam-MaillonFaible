@@ -120,6 +120,3 @@ func side_offset(side:Constants.Sides) -> Vector2i:
 		Constants.Sides.BOTTOM:
 			return Vector2i(0, 1)
 	return Vector2i.ZERO
-
-
-
