@@ -143,10 +143,10 @@ func _try_push_left_item() -> void:
 		_start_left_drop_process()
 		return
 
-	if leftContraption.can_append_item(product_item_left_buffer, core_position):
+	if leftContraption.can_append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0))):
 		if leftDropTimer.is_stopped() == false:
 			leftDropTimer.stop()
-		leftContraption.append_item(product_item_left_buffer, core_position)
+		leftContraption.append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0)))
 		product_item_left_buffer = null
 
 
@@ -159,10 +159,10 @@ func _try_push_right_item() -> void:
 		_start_right_drop_process()
 		return
 
-	if rightContraption.can_append_item(product_item_right_buffer, core_position):
+	if rightContraption.can_append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1))):
 		if rightDropTimer.is_stopped() == false:
 			rightDropTimer.stop()
-		rightContraption.append_item(product_item_right_buffer, core_position)
+		rightContraption.append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1)))
 		product_item_right_buffer = null
 
 
