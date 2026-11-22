@@ -56,7 +56,6 @@ func _process_oil(delta: float) -> void:
 	_setup_oil_system()
 	if oil_level > 0.0:
 		oil_level = maxf(0.0, oil_level - oil_drain_per_second * delta)
-		works = true
 	else:
 		var sound_player = AudioStreamPlayer.new()
 		var stream = load("res://Assets/Sounds/explosion.mp3")
@@ -65,7 +64,6 @@ func _process_oil(delta: float) -> void:
 		sound_player.play()
 		await not sound_player.playing
 		sound_player.queue_free()
-		works = false
 		
 	if oil_bar != null:
 		oil_bar.value = oil_level

@@ -47,8 +47,6 @@ func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 		return false
 	if (slot - core_position) not in get_rotated_input_slots():
 		return false
-	if not works:
-		return false
 
 	if processing_item != null:
 		return false

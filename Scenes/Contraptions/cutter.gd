@@ -66,8 +66,6 @@ func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
 	if product_item_left_buffer != null or product_item_right_buffer != null:
 		return false
 	return true
-	if not works:
-		return false
 
 
 func append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> void:
