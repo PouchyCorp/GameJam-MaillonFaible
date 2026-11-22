@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bht6jjoved8cu" path="res://Assets/Sprites/commander.png" id="5_eow3j"]
 [ext_resource type="Texture2D" uid="uid://c65cqd654pu42" path="res://Assets/Sprites/commander_appui.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://coiire1ed4erq" path="res://Assets/Sprites/commander_survol.png" id="7_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://kph0kxs3qdr1" path="res://Assets/Sprites/small_splitter.png" id="8_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://o2x10giygp6t" path="res://Assets/Sprites/small_burner.png" id="9_iotsf"]
+[ext_resource type="Texture2D" uid="uid://cxop6h35k2use" path="res://Assets/Sprites/small_merger.png" id="10_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://ctv51fotn3alk" path="res://Assets/Sprites/small_cutter.png" id="11_215e1"]
 
 [node name="Game" type="Node" unique_id=1962059938]
 
@@ -80,7 +84,7 @@ layout_mode = 2
 
 [node name="ItemPrev" type="TextureRect" parent="Tkt/PanelContainer/VBoxContainer/CommandBase2" unique_id=1853768493]
 layout_mode = 2
-texture = ExtResource("4_ryrav")
+texture = ExtResource("8_mfdv2")
 
 [node name="CommandButton" type="TextureButton" parent="Tkt/PanelContainer/VBoxContainer/CommandBase2" unique_id=1234263483]
 layout_mode = 2
@@ -93,7 +97,7 @@ layout_mode = 2
 
 [node name="ItemPrev" type="TextureRect" parent="Tkt/PanelContainer/VBoxContainer/CommandBase3" unique_id=689409100]
 layout_mode = 2
-texture = ExtResource("4_ryrav")
+texture = ExtResource("9_iotsf")
 
 [node name="CommandButton" type="TextureButton" parent="Tkt/PanelContainer/VBoxContainer/CommandBase3" unique_id=204981589]
 layout_mode = 2
@@ -106,7 +110,7 @@ layout_mode = 2
 
 [node name="ItemPrev" type="TextureRect" parent="Tkt/PanelContainer/VBoxContainer/CommandBase4" unique_id=1442336306]
 layout_mode = 2
-texture = ExtResource("4_ryrav")
+texture = ExtResource("10_lc2xo")
 
 [node name="CommandButton" type="TextureButton" parent="Tkt/PanelContainer/VBoxContainer/CommandBase4" unique_id=1235627329]
 layout_mode = 2
@@ -119,7 +123,7 @@ layout_mode = 2
 
 [node name="ItemPrev" type="TextureRect" parent="Tkt/PanelContainer/VBoxContainer/CommandBase5" unique_id=1015224659]
 layout_mode = 2
-texture = ExtResource("4_ryrav")
+texture = ExtResource("11_215e1")
 
 [node name="CommandButton" type="TextureButton" parent="Tkt/PanelContainer/VBoxContainer/CommandBase5" unique_id=930384486]
 layout_mode = 2
