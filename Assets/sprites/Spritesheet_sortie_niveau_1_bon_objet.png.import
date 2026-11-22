@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0htsb46ivlvx"
-path="res://.godot/imported/Spritesheet_sortie_niveau_1_bon_objet.png-b50fd674f7569e323189fb22735c03dd.ctex"
+path="res://.godot/imported/Spritesheet_sortie_niveau_1_bon_objet.png-dcee2c63478765a950d20e6733a50fbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Spritesheet_sortie_niveau_1_bon_objet.png"
-dest_files=["res://.godot/imported/Spritesheet_sortie_niveau_1_bon_objet.png-b50fd674f7569e323189fb22735c03dd.ctex"]
+source_file="res://Assets/Sprites/Spritesheet_sortie_niveau_1_bon_objet.png"
+dest_files=["res://.godot/imported/Spritesheet_sortie_niveau_1_bon_objet.png-dcee2c63478765a950d20e6733a50fbf.ctex"]
 
 [params]
 

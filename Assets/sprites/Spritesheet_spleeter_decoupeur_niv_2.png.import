@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hmht546fstsj"
-path="res://.godot/imported/Spritesheet_spleeter_decoupeur_niv_2.png-8e3c3ae898d070ef3be3a032eb7f02f4.ctex"
+path="res://.godot/imported/Spritesheet_spleeter_decoupeur_niv_2.png-cd87892cf790e276c7506b6e093c447b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Spritesheet_spleeter_decoupeur_niv_2.png"
-dest_files=["res://.godot/imported/Spritesheet_spleeter_decoupeur_niv_2.png-8e3c3ae898d070ef3be3a032eb7f02f4.ctex"]
+source_file="res://Assets/Sprites/Spritesheet_spleeter_decoupeur_niv_2.png"
+dest_files=["res://.godot/imported/Spritesheet_spleeter_decoupeur_niv_2.png-cd87892cf790e276c7506b6e093c447b.ctex"]
 
 [params]
 
