@@ -11,6 +11,8 @@ func _ready() -> void:
 	cells.fill(null)
 
 
+
+
 func coord_to_vector(coord:int) -> Vector2i:
 	return Vector2i(coord % ROW_SIZE, int(float(coord) / float(ROW_SIZE)))
 
@@ -144,7 +146,6 @@ func _on_contraption_command(type:String):
 	var spawn_position = _find_random_placement_for(contraption)
 	if spawn_position.x < 0:
 		push_warning("No free space available to place contraption type: " + type)
-		# TODO : play buzzer sound
 		contraption.queue_free()
 		return
 

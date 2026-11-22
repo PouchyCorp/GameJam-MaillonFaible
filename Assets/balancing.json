@@ -1,11 +1,13 @@
 {
-	"a": {
-		"requirements": {
-			0: {},
-			1: {
-				"planche": 5
-			},
-			2: {},
+
+"1": {
+	"requirements": {
+		"0": {
+		},
+		"1": {
+			"planche": 5
+		},
+		"2": {
 		},
 		"sources": {
 			0: "",
@@ -13,15 +15,22 @@
 			2: ""
 		}
 	},
-	2: {
-		"requirements": {
-			0: {
-				"planche": 3
-			},
-			1: {},
-			2: {
-				"charbon": 3
-			},
+	"sources": {
+		"0": "",
+		"1": "buche",
+		"2": ""
+	}
+},
+
+"2": {
+	"requirements": {
+		"0": {
+			"planche": 3
+		},
+		"1": {
+		},
+		"2": {
+			"charbon": 3
 		},
 		"sources": {
 			0: "",
@@ -29,15 +38,24 @@
 			2: ""
 		}
 	},
-	3: {
-		"requirements": {
-			0: {
-				"beurre": 3
-			},
-			1: {},
-			2: {
-				"fromage": 3
-			},
+	"sources": {
+		"0": "",
+		"1": "buche",
+		"2": ""
+	}
+},
+
+
+"3":
+{
+	"requirements": {
+		"0": {
+			"beurre": 3
+		},
+		"1": {
+		},
+		"2": {
+			"fromage": 3
 		},
 		"sources": {
 			0: "seau",
@@ -45,9 +63,16 @@
 			2: ""
 		}
 	},
-	4: {
-		"requirements": {
-			0: {
+	"sources": {
+		"0": "seau",
+		"1": "vache",
+		"2": ""
+	}
+},
+
+"4": {
+	"requirements": {
+		"0": {
 			"
 			},
 			1: {
@@ -57,22 +82,29 @@
 				"tracteur": 4
 			},
 		},
-		"sources": {
-			0: "seau",
-			1: "vache",
-			2: "buche"
-		}
+		"1": {
+			"fromage_rape":4
+		},
+		"2": {
+			"tracteur":4
+		},
 	},
-	5: {
-		"requirements": {
-			0: {
-				"sirop_erable": 3,
-				"diamant": 5
-			},
-			1: {},
-			2: {
-				"planche_fromage": 2
-			},
+	"sources": {
+		"0": "seau",
+		"1": "vache",
+		"2": "buche"
+	}
+},
+
+"5": {
+	"requirements": {
+		"0": {
+			"sirop_erable": 3, "diamant": 5
+		},
+		"1": {
+		},
+		"2": {
+			"planche_fromage": 2
 		},
 		"sources": {
 			0: "vache",
@@ -80,18 +112,23 @@
 			2: "buche"
 		}
 	},
-	6: {
-		"requirements": {
-			0: {
-				"buche_noel": 3
-			},
-			1: {
-				"statue_vache": 5
-			},
-			2: {
-				"croissant": 1,
-				"beurre": 3
-			},
+	"sources": {
+		"0": "vache",
+		"1": "seau",
+		"2": "buche"
+	}
+},
+
+"6": {
+	"requirements": {
+		"0": {
+			"buche_noel": 3 
+		},
+		"1": {
+			"statue_vache": 5
+		},
+		"2": {
+			"croissant": 1, "beurre":3
 		},
 		"sources": {
 			0: "vache",
@@ -99,18 +136,23 @@
 			2: "buche"
 		}
 	},
-	7: {
-		"requirements": {
-			0: {
-				"planche": 3,
-				"charbon": 3
-			},
-			1: {
-				"statue_ornementee": 5
-			},
-			2: {
-				"tracteur": 5
-			},
+	"sources": {
+		"0": "vache",
+		"1": "seau",
+		"2": "buche"
+	}
+},
+
+"7": {
+	"requirements": {
+		"0": {
+			"planche": 3, "charbon": 3
+		},
+		"1": {
+			"statue_ornementee": 5
+		},
+		"2": {
+			"tracteur": 5
 		},
 		"sources": {
 			0: "buche",
@@ -118,13 +160,21 @@
 			2: "buche"
 		}
 	},
-	8: {
-		"requirements": {
-			0: {},
-			1: {
-				"ambroisie": 3
-			},
-			2: {},
+	"sources": {
+		"0": "buche",
+		"1": "vache",
+		"2": "buche"
+	}
+},
+
+"8": {
+	"requirements": {
+		"0": {
+		},
+		"1": {
+			"ambroisie": 3
+		},
+		"2": {
 		},
 		"sources": {
 			0: "buche",
@@ -132,16 +182,24 @@
 			2: "seau"
 		}
 	},
-	9: {
-		"requirements": {
-			0: {
-				"roquefort": 3,
-				"diamant": 1
-			},
-			1: {
-				"croissant": 4
-			},
-			2: {},
+	"sources": {
+		"0": "buche",
+		"1": "vache",
+		"2": "seau"
+	}
+},
+
+"9": {
+	"requirements": {
+		"0": {
+			"roquefort": 3, "diamant": 1
+
+		},
+		"1": {
+			"croissant": 4
+
+		},
+		"2": {
 		},
 		"sources": {
 			0: "buche",
@@ -149,18 +207,22 @@
 			2: "seau"
 		}
 	},
-	10: {
-		"requirements": {
-			0: {
-				"ambroisie": 3,
-				"statue_ornementee": 2
-			},
-			1: {},
-			2: {
-				"sirop_erable": 1,
-				"roquefort": 2,
-				"fromage_rape": 1
-			},
+	"sources": {
+		"0": "buche",
+		"1": "vache",
+		"2": "seau"
+	}
+},
+
+"10": {
+	"requirements": {
+		"0": {
+			"ambroisie": 3, "statue_ornementee": 2
+		},
+		"1": {
+		},
+		"2": {
+			"sirop_erable": 1, "roquefort":2, "fromage_rape": 1
 		},
 		"sources": {
 			0: "seau",
@@ -168,4 +230,11 @@
 			2: "buche"
 		}
 	},
+	"sources": {
+		"0": "seau",
+		"1": "vache",
+		"2": "buche"
+	}
+},
+
 }

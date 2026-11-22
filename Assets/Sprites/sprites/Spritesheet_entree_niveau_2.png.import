@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7d7h0uhhjahu"
-path="res://.godot/imported/Spritesheet_entree_niveau_2.png-21a2ea994d28dca6ff852fdc6c0b6dcf.ctex"
+path="res://.godot/imported/Spritesheet_entree_niveau_2.png-51dd47f28800d6d9857f536b5e2b22ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/sprites/Spritesheet_entree_niveau_2.png"
-dest_files=["res://.godot/imported/Spritesheet_entree_niveau_2.png-21a2ea994d28dca6ff852fdc6c0b6dcf.ctex"]
+source_file="res://Assets/Sprites/sprites/Spritesheet_entree_niveau_2.png"
+dest_files=["res://.godot/imported/Spritesheet_entree_niveau_2.png-51dd47f28800d6d9857f536b5e2b22ff.ctex"]
 
 [params]
 
