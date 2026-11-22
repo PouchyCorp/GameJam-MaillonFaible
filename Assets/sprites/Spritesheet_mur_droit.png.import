@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq2x8xrvf0at8"
-path="res://.godot/imported/Spritesheet_mur_droit.png-865db17d282d5c731471ce988141acc8.ctex"
+path="res://.godot/imported/Spritesheet_mur_droit.png-7d009ff4587183e94f5e15116e822a44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Spritesheet_mur_droit.png"
-dest_files=["res://.godot/imported/Spritesheet_mur_droit.png-865db17d282d5c731471ce988141acc8.ctex"]
+source_file="res://Assets/sprites/Spritesheet_mur_droit.png"
+dest_files=["res://.godot/imported/Spritesheet_mur_droit.png-7d009ff4587183e94f5e15116e822a44.ctex"]
 
 [params]
 

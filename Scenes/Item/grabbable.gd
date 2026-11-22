@@ -11,7 +11,7 @@ var reached = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = position.snapped(SNAP)
-	drop()
+	$CollisionBox.disabled = false
 
 func _process(_delta: float) -> void:
 	if reached:
@@ -21,13 +21,13 @@ func _process(_delta: float) -> void:
 
 func grab():
 	var coords = position.snapped(SNAP)
-	Grid.take_contraption(coords, self)
+	Grid.take_contraption(Grid.coords(coords), self)
 	core_position = Vector2i(-1, -1)
 	grabbed = true
 	scale = Vector2(0.5,0.5)
 	$CollisionBox.disabled = true
 	
-func drop() -> bool:
+func drop() -> bool:	
 	position = position.snapped(SNAP)
 	if not Grid.can_place(Grid.coords(position)):
 		grabbed = true
@@ -35,6 +35,7 @@ func drop() -> bool:
 		return false
 	grabbed = false
 	core_position = Grid.coords(position)
+	Grid.place_contraption(core_position, self)
 	scale = Vector2(1,1)
 	$CollisionBox.disabled = false
 	return true
