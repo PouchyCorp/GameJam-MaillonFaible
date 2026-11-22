@@ -110,6 +110,12 @@ func _process(delta: float) -> void:
 		var childItems = itemsNodes[i]
 		if childItems is PathFollow2D:
 			var pathFollow: PathFollow2D = childItems
+
+			if (not is_instance_valid(pathFollow) or pathFollow.get_child_count() == 0):
+				childItems.queue_free()
+				itemsNodes.remove_at(i)
+				continue
+			
 			var itemNode: Item = pathFollow.get_child(0, true)
 
 			if (i < itemsNodes.size() - 1):
@@ -156,14 +162,3 @@ func clear_items() -> void:
 			var pathFollow: PathFollow2D = childItems
 			pathFollow.queue_free()
 	itemsNodes.clear()
-
-
-func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# add an item (for testing purposes) when the conveyor is clicked
-		var scene: PackedScene = preload("res://Scenes/Item/item.tscn")
-		var item: Node2D = scene.instantiate() as Node2D
-
-		if item != null:
-			append_item(item, Vector2i(-1, 0))

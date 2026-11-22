@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbwkr3li2kxhc"
-path="res://.godot/imported/Spritesheet_bruleur.png-ae8d77bfb3f10959b6d6b6f7d3b063e2.ctex"
+path="res://.godot/imported/Spritesheet_bruleur.png-701da7454d4bf6a15375bd5cc1b48c14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Spritesheet_bruleur.png"
-dest_files=["res://.godot/imported/Spritesheet_bruleur.png-ae8d77bfb3f10959b6d6b6f7d3b063e2.ctex"]
+source_file="res://Assets/sprites/Spritesheet_bruleur.png"
+dest_files=["res://.godot/imported/Spritesheet_bruleur.png-701da7454d4bf6a15375bd5cc1b48c14.ctex"]
 
 [params]
 
