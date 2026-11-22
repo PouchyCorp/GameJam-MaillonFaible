@@ -13,6 +13,8 @@ var oil_max: float = 100.0
 var oil_drain_per_second: float = 1.5
 var oil_recovery: float = 25.0
 
+var works = true
+
 # Grid data is relative to this machine's core.
 # 1x1 is the default footprint; larger machines override these offsets.
 @export var base_occupied_offsets: Array[Vector2i] = [Vector2i(0, 0)]
@@ -54,6 +56,17 @@ func _process_oil(delta: float) -> void:
 	_setup_oil_system()
 	if oil_level > 0.0:
 		oil_level = maxf(0.0, oil_level - oil_drain_per_second * delta)
+		works = true
+	else:
+		var sound_player = AudioStreamPlayer.new()
+		var stream = load("res://Assets/Sounds/explosion.mp3")
+		sound_player.set_stream(stream)
+		get_tree().current_scene.add_child(sound_player)
+		sound_player.play()
+		await not sound_player.playing
+		sound_player.queue_free()
+		works = false
+		
 	if oil_bar != null:
 		oil_bar.value = oil_level
 		oil_bar.visible = true

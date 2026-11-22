@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bb06lq7i1pxpe"]
+
+[ext_resource type="Script" uid="uid://mhodue0vyjkr" path="res://mainLoop.gd" id="1_hq1ik"]
+[ext_resource type="Script" uid="uid://c22130qcyjytr" path="res://Scenes/Item/constructs_init.gd" id="2_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="6_hq1ik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8brw"]
+font_size = 40
+font_color = Color(1, 0, 0, 1)
+
+[node name="MainNode" type="Node2D" unique_id=166482189]
+script = ExtResource("1_hq1ik")
+
+[node name="PhaseTimer" type="Timer" parent="." unique_id=1087279433]
+one_shot = true
+
+[node name="PhaseTimerLabel" type="Label" parent="." unique_id=1242555006]
+z_index = 10
+offset_left = 546.0
+offset_top = 21.0
+offset_right = 597.0
+offset_bottom = 44.0
+label_settings = SubResource("LabelSettings_c8brw")
+
+[node name="Constructs" type="Node2D" parent="." unique_id=236357334]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+script = ExtResource("2_8mm7a")
+
+[node name="Worker" parent="." unique_id=971947915 instance=ExtResource("6_hq1ik")]
+position = Vector2(511, 513)

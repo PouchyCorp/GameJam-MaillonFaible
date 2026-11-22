@@ -27,7 +27,7 @@ func get_facing_contraption() -> Contraption:
 
 
 func can_append_item(item: Item, slot: Vector2i = Vector2i.ZERO) -> bool:
-	if item == null or product_item_buffer != null:
+	if item == null or product_item_buffer != null or not works:
 		return false
 
 	var local_slot = slot - core_position

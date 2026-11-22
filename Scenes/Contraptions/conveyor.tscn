@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckfdqnbh112nw"]
 
 [ext_resource type="Script" uid="uid://c2ovf46vb581c" path="res://Scenes/Contraptions/conveyor.gd" id="1_be0bl"]
-[ext_resource type="Texture2D" uid="uid://c581hbldb0x2l" path="res://Assets/sprites/sprites/Spritesheet_belt_dessus.png" id="2_4tcvv"]
+[ext_resource type="Texture2D" uid="uid://c581hbldb0x2l" path="res://Assets/Sprites/sprites/Spritesheet_belt_dessus.png" id="2_4tcvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7js5"]
 size = Vector2(128, 128)
