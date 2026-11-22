@@ -48,10 +48,10 @@ func try_push_out_item() -> void:
 		start_drop_process()
 		return
 
-	if target_contraption.can_append_item(product_item_buffer, core_position):
+	if target_contraption.can_append_item(product_item_buffer, core_position + rotate_vector(Vector2i(1, 0))):
 		if dropTimer.is_stopped() == false:
 			dropTimer.stop()
-		target_contraption.append_item(product_item_buffer, core_position)
+		target_contraption.append_item(product_item_buffer, core_position + rotate_vector(Vector2i(1, 0)))
 		product_item_buffer = null
 
 
