@@ -13,13 +13,13 @@ var phaseID = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	input1 = %InputThingy1
-	input2 = %InputThingy2
-	input3 = %InputThingy3
+	input1 = %Constructs.get_node("InputThingy1") as InputThingy
+	input2 = %Constructs.get_node("InputThingy2") as InputThingy
+	input3 = %Constructs.get_node("InputThingy3") as InputThingy
 
-	output1 = %OutputThingy1
-	output2 = %OutputThingy2
-	output3 = %OutputThingy3
+	output1 = %Constructs.get_node("OutputThingy1") as OutputThingy
+	output2 = %Constructs.get_node("OutputThingy2") as OutputThingy
+	output3 = %Constructs.get_node("OutputThingy3") as OutputThingy
 
 	timer = get_node("PhaseTimer")
 	timer.connect("timeout", Callable(self, "_on_phase_timer_timeout"))

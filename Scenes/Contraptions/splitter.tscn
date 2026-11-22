@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b4l0b0of3ed6m" path="res://Scenes/Contraptions/splitter.gd" id="1_ah7u2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t55a"]
-size = Vector2(90, 91)
-
 [sub_resource type="Curve2D" id="Curve2D_c8brw"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -43)
@@ -30,10 +27,6 @@ size = Vector2(128, 128)
 [node name="Splitter" type="StaticBody2D" unique_id=1711607641]
 script = ExtResource("1_ah7u2")
 metadata/_custom_type_script = "uid://cbty1u3flijoc"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1691926649]
-position = Vector2(0, 2.5)
-shape = SubResource("RectangleShape2D_2t55a")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=702291181]
 z_index = 3

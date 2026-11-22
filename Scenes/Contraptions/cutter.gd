@@ -13,12 +13,12 @@ var rightDropTimer: Timer = null
 
 
 func get_left_output_position() -> Vector2i:
-	var output_offset = rotate_vector(Vector2i(2, 0))
+	var output_offset = rotate_vector(Vector2i(0, -1))
 	return core_position + output_offset
 
 
 func get_right_output_position() -> Vector2i:
-	var output_offset = rotate_vector(Vector2i(2, 1))
+	var output_offset = rotate_vector(Vector2i(0, 1))
 	return core_position + output_offset
 
 
@@ -143,10 +143,10 @@ func _try_push_left_item() -> void:
 		_start_left_drop_process()
 		return
 
-	if leftContraption.can_append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0))):
+	if leftContraption.can_append_item(product_item_left_buffer, core_position):
 		if leftDropTimer.is_stopped() == false:
 			leftDropTimer.stop()
-		leftContraption.append_item(product_item_left_buffer, core_position + rotate_vector(Vector2i(1, 0)))
+		leftContraption.append_item(product_item_left_buffer, core_position)
 		product_item_left_buffer = null
 
 
@@ -159,10 +159,10 @@ func _try_push_right_item() -> void:
 		_start_right_drop_process()
 		return
 
-	if rightContraption.can_append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1))):
+	if rightContraption.can_append_item(product_item_right_buffer, core_position):
 		if rightDropTimer.is_stopped() == false:
 			rightDropTimer.stop()
-		rightContraption.append_item(product_item_right_buffer, core_position + rotate_vector(Vector2i(1, 1)))
+		rightContraption.append_item(product_item_right_buffer, core_position)
 		product_item_right_buffer = null
 
 

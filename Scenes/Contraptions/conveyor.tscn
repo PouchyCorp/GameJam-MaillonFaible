@@ -7,7 +7,7 @@ size = Vector2(160, 159.99998)
 
 [sub_resource type="Curve2D" id="Curve2D_be0bl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -44, 0, 0, 0, 0, 0, 44, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -44, 0, 0, 0, 0, 0, 60.448597, 0)
 }
 point_count = 2
 
@@ -40,6 +40,8 @@ shape = SubResource("RectangleShape2D_e7js5")
 
 [node name="MainPath" type="Path2D" parent="." unique_id=1686482513]
 unique_name_in_owner = true
+position = Vector2(-9.5, 0)
+scale = Vector2(1.2159091, 1)
 curve = SubResource("Curve2D_be0bl")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1470416922]

@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://qhlxx4868pwb"]
 
-[ext_resource type="PackedScene" uid="uid://ckfdqnbh112nw" path="res://Scenes/Contraptions/conveyor.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://mhodue0vyjkr" path="res://mainLoop.gd" id="1_hq1ik"]
-[ext_resource type="PackedScene" uid="uid://cqk15siylsiyd" path="res://Scenes/Contraptions/input.tscn" id="4_d5x1h"]
-[ext_resource type="PackedScene" uid="uid://bm005p474wetk" path="res://Scenes/Contraptions/heater.tscn" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://c22130qcyjytr" path="res://Scenes/Item/constructs_init.gd" id="2_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://ch1cq2gopqyq6" path="res://Scenes/Player/worker.tscn" id="6_hq1ik"]
-[ext_resource type="PackedScene" uid="uid://nrvd6lu2qkxp" path="res://Scenes/Contraptions/output.tscn" id="6_nfk4m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c8brw"]
 font_size = 40
 font_color = Color(1, 0, 0, 1)
 
-[node name="Node2D" type="Node2D" unique_id=166482189]
+[node name="MainNode" type="Node2D" unique_id=166482189]
 script = ExtResource("1_hq1ik")
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1087279433]
@@ -25,48 +22,10 @@ offset_right = 597.0
 offset_bottom = 44.0
 label_settings = SubResource("LabelSettings_c8brw")
 
-[node name="Constructs" type="Node" parent="." unique_id=20831199]
+[node name="Constructs" type="Node2D" parent="." unique_id=236357334]
 unique_name_in_owner = true
-
-[node name="InputThingy1" parent="Constructs" unique_id=1418371769 instance=ExtResource("4_d5x1h")]
-unique_name_in_owner = true
-position = Vector2(96, 155)
-
-[node name="InputThingy2" parent="Constructs" unique_id=149304491 instance=ExtResource("4_d5x1h")]
-unique_name_in_owner = true
-position = Vector2(94, 334)
-
-[node name="InputThingy3" parent="Constructs" unique_id=339218062 instance=ExtResource("4_d5x1h")]
-unique_name_in_owner = true
-position = Vector2(94, 518)
-
-[node name="OutputThingy1" parent="Constructs" unique_id=107196506 instance=ExtResource("6_nfk4m")]
-unique_name_in_owner = true
-position = Vector2(1075, 220)
-
-[node name="OutputThingy2" parent="Constructs" unique_id=1345268920 instance=ExtResource("6_nfk4m")]
-unique_name_in_owner = true
-position = Vector2(1076, 336)
-
-[node name="OutputThingy3" parent="Constructs" unique_id=918272379 instance=ExtResource("6_nfk4m")]
-unique_name_in_owner = true
-position = Vector2(1078, 455)
-
-[node name="Conveyor" parent="Constructs" unique_id=886386989 instance=ExtResource("1_0f027")]
-position = Vector2(229, 329)
-
-[node name="Conveyor2" parent="Constructs" unique_id=1282676238 instance=ExtResource("1_0f027")]
-position = Vector2(362, 329)
-
-[node name="Conveyor3" parent="Constructs" unique_id=1373407438 instance=ExtResource("1_0f027")]
-position = Vector2(659, 328)
-
-[node name="Conveyor4" parent="Constructs" unique_id=1843085128 instance=ExtResource("1_0f027")]
-position = Vector2(789, 328)
-
-[node name="Heater" parent="Constructs" unique_id=747148886 node_paths=PackedStringArray("frontContraption") instance=ExtResource("5_8mm7a")]
-position = Vector2(501, 325)
-frontContraption = NodePath("../Conveyor3")
+position = Vector2(64, 64)
+script = ExtResource("2_8mm7a")
 
 [node name="Worker" parent="." unique_id=971947915 instance=ExtResource("6_hq1ik")]
 position = Vector2(511, 513)

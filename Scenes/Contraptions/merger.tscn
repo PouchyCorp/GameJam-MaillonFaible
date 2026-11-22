@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c245mxlsbjwip" path="res://Scenes/Contraptions/merger.gd" id="1_r8xb1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_62myk"]
-size = Vector2(90, 88)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stq56"]
 size = Vector2(256, 256)
 
@@ -19,11 +16,6 @@ size = Vector2(128, 128)
 
 [node name="Merger" type="StaticBody2D" unique_id=1695691332]
 script = ExtResource("1_r8xb1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1000933227]
-position = Vector2(64, 64)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_62myk")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1130119059]
 position = Vector2(64, 58)
