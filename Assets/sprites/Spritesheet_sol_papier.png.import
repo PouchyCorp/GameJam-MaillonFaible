@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://binymph7vvsg7"
-path="res://.godot/imported/Spritesheet_sol_papier.png-201c5b5a7481ef269ef5f8d193b47449.ctex"
+path="res://.godot/imported/Spritesheet_sol_papier.png-c71db5c07aba6f157e07965900f64e24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Spritesheet_sol_papier.png"
-dest_files=["res://.godot/imported/Spritesheet_sol_papier.png-201c5b5a7481ef269ef5f8d193b47449.ctex"]
+source_file="res://Assets/Sprites/Spritesheet_sol_papier.png"
+dest_files=["res://.godot/imported/Spritesheet_sol_papier.png-c71db5c07aba6f157e07965900f64e24.ctex"]
 
 [params]
 
