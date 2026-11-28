@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://fy22cuwbf1db" path="res://icon.svg" id="1_vf3hw"]
 [ext_resource type="Script" uid="uid://ceify8ha1e6xg" path="res://Scenes/Player/worker.gd" id="1_w6ba7"]
-[ext_resource type="PackedScene" uid="uid://lexs3xo86p30" path="res://placement_indicator.tscn" id="2_2qx6u"]
-[ext_resource type="Texture2D" uid="uid://db8ge1nuqnpir" path="res://Assets/sprites/Spritesheet_personage.png" id="2_w6ba7"]
+[ext_resource type="PackedScene" uid="uid://lexs3xo86p30" path="res://Scenes/Player/placement_indicator.tscn" id="2_2qx6u"]
+[ext_resource type="Texture2D" uid="uid://db8ge1nuqnpir" path="res://Assets/Sprites/Spritesheet_personage.png" id="2_w6ba7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmj21"]
 radius = 94.00532
@@ -324,19 +324,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5c7ct"]
-height = 70.0
+height = 22.0
 
 [node name="Worker" type="CharacterBody2D" unique_id=971947915]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_w6ba7")
-
-[node name="PlaceIndicator" parent="." unique_id=1410675015 instance=ExtResource("2_2qx6u")]
-unique_name_in_owner = true
-visible = false
-offset_left = -66.0
-offset_right = 62.0
-color = Color(1.1431054e-06, 0.36110568, 0.07694451, 1)
 
 [node name="Hand" type="Node2D" parent="." unique_id=877140163]
 position = Vector2(0, -100)
@@ -348,14 +341,15 @@ position = Vector2(0, 100)
 position = Vector2(1, -100)
 shape = SubResource("CircleShape2D_pmj21")
 
+[node name="Sprite2D" type="Sprite2D" parent="Hand/ItemDetector" unique_id=1464740051]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1848803218]
-position = Vector2(-1.1920929e-07, -1.9073486e-06)
+position = Vector2(-4, -88.00001)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pmj21")
 animation = &"walk_carry_side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223732288]
-position = Vector2(1, 46)
 shape = SubResource("CapsuleShape2D_5c7ct")
 
 [node name="CarryPlace" type="Node2D" parent="." unique_id=167996407]
@@ -364,6 +358,12 @@ shape = SubResource("CapsuleShape2D_5c7ct")
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_vf3hw")
+
+[node name="PlaceIndicator" parent="." unique_id=1410675015 instance=ExtResource("2_2qx6u")]
+unique_name_in_owner = true
+visible = false
+z_index = -10
+color = Color(1.1431054e-06, 0.36110568, 0.07694451, 1)
 
 [connection signal="area_entered" from="Hand/ItemDetector" to="." method="_on_item_detector_area_entered"]
 [connection signal="area_exited" from="Hand/ItemDetector" to="." method="_on_item_detector_area_exited"]

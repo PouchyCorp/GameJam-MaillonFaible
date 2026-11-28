@@ -37,22 +37,3 @@ func _ready() -> void:
 		
 		Grid.place_contraption(Vector2i((Grid.ROW_SIZE - 1), (i*3 + 1)), output)
 		add_child(output)
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-
-		match event.keycode:
-			KEY_ESCAPE:
-				get_tree().quit()
-
-			KEY_W:
-				Grid._on_contraption_command("conveyor")
-			KEY_X:
-				Grid._on_contraption_command("cutter")
-			KEY_C:
-				Grid._on_contraption_command("splitter")
-			KEY_V:
-				Grid._on_contraption_command("merger")
-			KEY_B:
-				Grid._on_contraption_command("heater")

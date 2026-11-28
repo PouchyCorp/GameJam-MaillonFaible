@@ -1,29 +1,22 @@
 [gd_scene format=3 uid="uid://dq10l0on53arw"]
 
-[ext_resource type="Texture2D" uid="uid://c4lmhnpt4tg5o" path="res://ecran_titre.png" id="1_41rng"]
-[ext_resource type="Script" uid="uid://bbgxfjkon2eya" path="res://menu_principallllllll.gd" id="1_o1e4a"]
+[ext_resource type="Texture2D" uid="uid://dx4gq8que4gtw" path="res://Menu/ecran_titre.png" id="1_41rng"]
+[ext_resource type="Script" uid="uid://ccgwvoou8ti3b" path="res://Menu/menu_principallllllll.gd" id="1_o1e4a"]
 
 [node name="Control" type="Control" unique_id=815912406]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1e4a")
 
 [node name="fond" type="TextureRect" parent="." unique_id=1093800751]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1681.0
-offset_top = -1200.0
-offset_right = 677.0
-offset_bottom = 632.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 4465.1167
+offset_bottom = 2511.6282
+scale = Vector2(0.43, 0.43)
 texture = ExtResource("1_41rng")
 
 [node name="start_btn" type="Button" parent="." unique_id=489960573]
@@ -34,22 +27,19 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -820.0
-offset_top = -31.0
-offset_right = -63.0
-offset_bottom = 448.0
+offset_left = -807.0
+offset_top = -292.0
+offset_right = -406.0
+offset_bottom = -73.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1937853981]
-zoom = Vector2(0.3, 0.3)
-
 [node name="quitter_btn" type="Button" parent="." unique_id=156661989]
 layout_mode = 0
-offset_left = -1574.0
-offset_top = -1005.0
-offset_right = -1205.0
-offset_bottom = -860.0
+offset_left = 34.0
+offset_top = 30.0
+offset_right = 307.0
+offset_bottom = 149.0
 theme_override_font_sizes/font_size = 64
 text = "Quitter"
 

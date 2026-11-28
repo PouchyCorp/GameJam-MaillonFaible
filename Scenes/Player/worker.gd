@@ -40,31 +40,46 @@ func _physics_process(delta: float) -> void:
 
 	if facing == Direction.FRONT:
 		$AnimatedSprite2D.animation = animationPrefix + "front"
-		$CarryPlace.position = Vector2(0,0)
+		$CarryPlace.position = Vector2(- 64,50)
 		z_index = -1
+
+		if (grabbedItem != null):
+			grabbedItem.z_index = 10
+			grabbedItem.position = position + Vector2(-64, - 100 - 64) + Vector2(0, 50)
 	elif facing == Direction.RIGHT:
 		$AnimatedSprite2D.animation = animationPrefix + "side"
 		$AnimatedSprite2D.flip_h = false
-		$CarryPlace.position = Vector2(57,-26)
+		$CarryPlace.position = Vector2(100, - 64)
 		z_index = -1
+
+		if (grabbedItem != null):
+			grabbedItem.z_index = 10
+			grabbedItem.position = position + Vector2(-64, - 100 - 64) + Vector2(50, 0)
 	elif facing == Direction.LEFT:
 		$AnimatedSprite2D.animation = animationPrefix + "side"
 		$AnimatedSprite2D.flip_h = true
-		$CarryPlace.position = Vector2(-57,-26)
+		$CarryPlace.position = Vector2(-100 - 64, - 64)
 		z_index = -1
+
+		if (grabbedItem != null):
+			grabbedItem.z_index = 10
+			grabbedItem.position = position + Vector2(-64, - 100 - 64) + Vector2(-50, 0)
+
 	elif facing == Direction.BACK:
 		$AnimatedSprite2D.animation = animationPrefix + "back"
-		$CarryPlace.position = Vector2(0,0)
+		$CarryPlace.position = Vector2(- 64,-50 - 64)
 		z_index = 1
+
+		if (grabbedItem != null):
+			grabbedItem.z_index = 0
+			grabbedItem.position = position + Vector2(-64, - 100 - 64) + Vector2(0, -50)
 	
 	velocity = lerp(velocity, direction * SPEED, ACCEL * delta)  # larp alert !!
 	move_and_slide()
 	
 
 	if grabbedItem != null && hasItem:
-		
-		grabbedItem.position = position + $CarryPlace.position
-		$PlaceIndicator.position = grabbedItem.position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE)) - position
+		$PlaceIndicator.position = grabbedItem.position.snapped(Vector2(Grid.GRID_SIZE,Grid.GRID_SIZE)) - position + Vector2(Grid.GRID_SIZE/2,Grid.GRID_SIZE/2) # To adjust the indicator to the grid and the player position
 
 func _on_item_detector_body_entered(body: Node2D) -> void:
 	if (body is Grabbable):
@@ -92,13 +107,14 @@ func compare_distance(a:Grabbable,b:Grabbable):
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("interact")):
-		if hasItem:
+		if hasItem: # Drop the item
 			if grabbedItem.drop():
 				hasItem = false
 				reachable.push_front(grabbedItem)
 				grabbedItem = null
 				$PlaceIndicator.hide()
-		elif !hasItem && reachable.size() > 0:
+
+		elif !hasItem && reachable.size() > 0: # Grab the nearest item
 			grabbedItem = reachable[0]
 			grabbedItem.ungrab_highlight()
 			grabbedItem.grab()
@@ -110,7 +126,8 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("rotate")):
 		if hasItem:
 			grabbedItem.facing = (grabbedItem.facing+1)%4 as Constants.Directions
-			grabbedItem.rotate(PI/2)
+			grabbedItem.global_rotation = grabbedItem.facing * PI/2
+			%PlaceIndicator.global_rotation = grabbedItem.facing * PI/2
 
 			# match grabbedItem.facing:
 			# 	Constants.Directions.RIGHT:
